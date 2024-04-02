@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">APPCatalogo</string>
+    <string name="inicio">Comienza</string>
+    <string name="titulo">Game Vault</string>
 </resources>
