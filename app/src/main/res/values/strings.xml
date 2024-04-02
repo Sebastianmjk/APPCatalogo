@@ -5,4 +5,5 @@
     <string name="contraseña">Contraseña</string>
     <string name="noCuentaRegistrate">No tienes cuenta. Registrate</string>
     <string name="iniciarSesion">Iniciar Sesión</string>
+    <string name="titulo">Game Vault</string>
 </resources>
