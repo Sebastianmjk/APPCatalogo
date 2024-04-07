@@ -6,4 +6,5 @@
     <string name="noCuentaRegistrate">No tienes cuenta. Registrate</string>
     <string name="iniciarSesion">Iniciar Sesión</string>
     <string name="titulo">Game Vault</string>
+    <string name="descripcion_imagen">Imagen del logo del proyecto</string>
 </resources>
