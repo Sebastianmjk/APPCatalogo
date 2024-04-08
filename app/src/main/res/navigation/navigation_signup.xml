@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation_signup">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_signup"
+    app:startDestination="@id/registroFirstPage">
 
+    <fragment
+        android:id="@+id/registroFirstPage"
+        android:name="com.example.appcatalogo.registroFirstPage"
+        android:label="fragment_registro_first_page"
+        tools:layout="@layout/fragment_registro_first_page" />
 </navigation>
