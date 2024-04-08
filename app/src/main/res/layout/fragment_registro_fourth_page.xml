@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registroFourthPage">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:id="@+id/passwordText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/contraseñas"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/descripcionPasswordText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descripcionPasswordText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/ingreseContraseña"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/inputContraseña"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+
+        <EditText
+            android:id="@+id/inputContraseña"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints="contraseña"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/contraseña"
+            android:inputType="textPassword"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/inputConfirmarContraseña"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionPasswordText" />
+
+        <EditText
+            android:id="@+id/inputConfirmarContraseña"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="10dp"
+            android:autofillHints="confirmarContraseña"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/confirmarContraseña"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/descripcionEightCharactersText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputContraseña" />
+
+        <TextView
+            android:id="@+id/descripcionEightCharactersText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="395dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/ochoCaracteres"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputConfirmarContraseña" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

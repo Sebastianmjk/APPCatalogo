@@ -26,5 +26,13 @@
     <string name="verificaciónCorreo">Verificación del correo</string>
     <string name="ingreseCodigo">Ingrese el código que se le fue enviado al correo que proporciono</string>
     <string name="valorVerificicacion">*</string>
+    <string name="contraseñas">Contraseñas</string>
+    <string name="ingreseContraseña">Cree una contraseña y confirmela</string>
+    <string name="ochoCaracteres">La contraseña debe ser minimo de 8 caracteres</string>
+    <string name="confirmarContraseña">Confirmar Contraseña</string>
+
+
+
+
 
 </resources>
