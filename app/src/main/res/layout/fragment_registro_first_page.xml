@@ -51,8 +51,8 @@
             android:paddingStart="25sp"
             android:paddingEnd="25sp"
             android:textSize="14sp"
-            tools:layout_editor_absoluteX="24dp"
-            tools:layout_editor_absoluteY="299dp" />
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="301dp" />
 
         <EditText
             android:id="@+id/inputPrimerApellido"

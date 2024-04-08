@@ -47,14 +47,7 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonBack" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/buttonArrowBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/descripcionImagenArrowBack" />
+
 
 
 
