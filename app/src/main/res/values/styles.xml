@@ -2,7 +2,7 @@
 <resources>
     <style name="EstiloBotonPrincipal" parent="Widget.AppCompat.Button.Colored">
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:background">@drawable/button_shape</item>
+        <item name="android:background">@drawable/custom_button</item>
 
     </style>
 </resources>
