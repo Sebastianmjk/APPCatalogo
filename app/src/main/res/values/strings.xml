@@ -20,6 +20,4 @@
     <string name="segundoNombre">Segundo Nombre (opcional)</string>
     <string name="primerApellido">Primer Apellido</string>
     <string name="segundoApellido">Segundo Apellido</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
