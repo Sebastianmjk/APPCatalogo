@@ -27,5 +27,14 @@
         android:id="@+id/registroThirdPage"
         android:name="com.example.appcatalogo.registroThirdPage"
         android:label="fragment_registro_third_page"
-        tools:layout="@layout/fragment_registro_third_page" />
+        tools:layout="@layout/fragment_registro_third_page" >
+        <action
+            android:id="@+id/action_registroThirdPage_to_registroFourthPage"
+            app:destination="@id/registroFourthPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroFourthPage"
+        android:name="com.example.appcatalogo.registroFourthPage"
+        android:label="fragment_registro_fourth_page"
+        tools:layout="@layout/fragment_registro_fourth_page" />
 </navigation>

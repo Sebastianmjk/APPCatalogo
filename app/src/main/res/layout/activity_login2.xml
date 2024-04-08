@@ -109,21 +109,21 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonIniciarSesion">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/conectSignUp"
                 android:layout_width="0dp"
                 android:layout_height="31dp"
                 android:text="@string/registrate"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintWidth_default="wrap"
-                app:layout_constraintBottom_toBottomOf="@+id/conectSignup"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewNoCuenta"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/conectSignup"
-                app:layout_constraintTop_toTopOf="@+id/conectSignup"
+                app:layout_constraintStart_toEndOf="@+id/textViewNoCuenta"
+                app:layout_constraintTop_toTopOf="@+id/textViewNoCuenta"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/conectSignup"
+                android:id="@+id/textViewNoCuenta"
                 android:layout_width="wrap_content"
                 android:layout_height="31dp"
                 android:background="#FFFFFF"
@@ -133,7 +133,7 @@
                 android:textSize="16sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/conectSignUp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />

@@ -10,13 +10,21 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        val buttonNext:Button  = findViewById(R.id.buttonNext)
-        val buttonBack:Button = findViewById(R.id.buttonBack)
+        val buttonNext: Button = findViewById(R.id.buttonNext)
+        val buttonBack: Button = findViewById(R.id.buttonBack)
 
 
         val navController = findNavController(R.id.fragmentContainerViewSignUp)
         buttonNext.setOnClickListener {
-            navController.navigate(R.id.action_registroFirstPage_to_registroSecondPage)
+            val navegationFragments = when (navController.currentDestination?.id) {
+                R.id.registroFirstPage -> R.id.action_registroFirstPage_to_registroSecondPage
+                R.id.registroSecondPage -> R.id.action_registroSecondPage_to_registroThirdPage
+                R.id.registroThirdPage -> R.id.action_registroThirdPage_to_registroFourthPage
+                else -> null
+            }
+            navegationFragments?.let {
+                navController.navigate(it)
+            }
         }
 
         // Configura el botón para navegar al fragmento anterior
