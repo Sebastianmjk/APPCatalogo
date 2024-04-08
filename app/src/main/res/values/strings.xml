@@ -10,4 +10,7 @@
     <string name="titulo">Game Vault</string>
     <string name="descripcion_imagen">Imagen del logo del proyecto</string>
     <string name="passwordForget">Olvidaste tu contraseña</string>
+    <!--    Strings SignUp-->
+    <string name="textButtonNext">Siguiente</string>
+    <string name="textButtonBack">Volver</string>
 </resources>
