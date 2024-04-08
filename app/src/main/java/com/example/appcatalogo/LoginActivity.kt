@@ -8,4 +8,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login2)
     }
+
+    //Cambiar de actividad de Login a SignUp
+
 }

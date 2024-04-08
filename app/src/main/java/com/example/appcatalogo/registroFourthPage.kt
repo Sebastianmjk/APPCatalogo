@@ -1,4 +1,4 @@
-}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}package com.example.appcatalogo
+package com.example.appcatalogo
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

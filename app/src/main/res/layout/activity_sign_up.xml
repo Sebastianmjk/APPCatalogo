@@ -61,7 +61,7 @@
             android:contentDescription="@string/descripcionImagenArrowBack" />
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
+            android:id="@+id/fragmentContainerViewSignUp"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="409dp"
             android:layout_height="581dp"

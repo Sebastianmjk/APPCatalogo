@@ -9,5 +9,23 @@
         android:id="@+id/registroFirstPage"
         android:name="com.example.appcatalogo.registroFirstPage"
         android:label="fragment_registro_first_page"
-        tools:layout="@layout/fragment_registro_first_page" />
+        tools:layout="@layout/fragment_registro_first_page" >
+        <action
+            android:id="@+id/action_registroFirstPage_to_registroSecondPage"
+            app:destination="@id/registroSecondPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroSecondPage"
+        android:name="com.example.appcatalogo.registroSecondPage"
+        android:label="fragment_registro_second_page"
+        tools:layout="@layout/fragment_registro_second_page" >
+        <action
+            android:id="@+id/action_registroSecondPage_to_registroThirdPage"
+            app:destination="@id/registroThirdPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroThirdPage"
+        android:name="com.example.appcatalogo.registroThirdPage"
+        android:label="fragment_registro_third_page"
+        tools:layout="@layout/fragment_registro_third_page" />
 </navigation>
