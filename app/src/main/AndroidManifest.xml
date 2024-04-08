@@ -12,9 +12,12 @@
         android:theme="@style/Theme.APPCatalogo"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
-            android:windowSoftInputMode="stateVisible|adjustUnspecified"
+            android:name=".SignUp"
             android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustUnspecified" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

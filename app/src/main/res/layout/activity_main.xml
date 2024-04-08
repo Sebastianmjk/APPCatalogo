@@ -17,7 +17,7 @@
         android:contentDescription="@string/descripcion_imagen"
         app:layout_constraintBottom_toTopOf="@+id/tituloInicial"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"

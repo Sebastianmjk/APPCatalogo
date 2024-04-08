@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">APPCatalogo</string>
     <string name="inicio">Comienza</string>
-<!--    Strings Login-->
+    <!--    Strings Login-->
     <string name="usuario">Usuario</string>
     <string name="contraseña">Contraseña</string>
     <string name="noCuentaRegistrate">No tienes cuenta.</string>
