@@ -9,5 +9,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>
 <!-- Paleta de colores del proyecto  -->
-    <color name="primaryColor">#3F51B5</color>
+    <color name="primaryColor">#3F51B5</color> <!-- Azul oscuro -->
+    <color name="deepBlue">#003F8F</color> <!-- Azul profundo -->
+    <color name="lightBlue">#2196F3</color> <!-- Azul claro -->
+    <color name="darkGray">#333333</color> <!-- Gris oscuro -->
+    <color name="mediumGray">#5C5C5C</color> <!-- Gris medio -->
+    <color name="lightPurple">#757DE8</color> <!-- Morado claro -->
+    <color name="lightGray">#CCCCCC</color> <!-- Gris claro -->
+    <color name="veryLightPurple">#DEDEFF</color> <!-- Morado muy claro -->
+    <color name="offWhite">#F5F5F5</color> <!-- Blanco apagado -->
 </resources>
