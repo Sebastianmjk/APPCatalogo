@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,31 +12,103 @@
         android:background="#FFFFFF">
 
         <TextView
-            android:id="@+id/emailText"
-            android:layout_width="wrap_content"
+            android:id="@+id/verificationText"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="121dp"
+            android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
-            android:text="@string/correoElectronico"
+            android:text="@string/verificaciónCorreo"
             android:textColor="#000000"
             android:textSize="30sp"
             android:textStyle="bold"
-             />
+            app:layout_constraintBottom_toTopOf="@+id/descripcionverificationText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/descripcionEmailText"
-            android:layout_width="365dp"
-            android:layout_height="44dp"
+            android:id="@+id/descripcionverificationText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
-            android:text="@string/ingreseCorreo"
+            android:text="@string/ingreseCodigo"
             android:textColor="#000000"
             android:textSize="15sp"
-            />
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/verificationText" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="409dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="432dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionverificationText">
+
+            <TextView
+                android:id="@+id/Codigo1Text"
+                style="@style/EstiloCodigoVerificacion"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="34dp"
+                android:text="@string/valorVerificicacion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Codigo4Text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Codigo2Text"
+                style="@style/EstiloCodigoVerificacion"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/valorVerificicacion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Codigo3Text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Codigo3Text"
+                style="@style/EstiloCodigoVerificacion"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="34dp"
+                android:text="@string/valorVerificicacion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Codigo2Text"
+                app:layout_constraintStart_toEndOf="@+id/Codigo4Text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/Codigo4Text"
+                style="@style/EstiloCodigoVerificacion"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="34dp"
+                android:text="@string/valorVerificicacion"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Codigo3Text"
+                app:layout_constraintStart_toEndOf="@+id/Codigo1Text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

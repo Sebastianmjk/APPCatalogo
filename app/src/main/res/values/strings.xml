@@ -23,5 +23,8 @@
     <string name="correoElectronico">Correo Electrónico</string>
     <string name="correo">correo electrónico</string>
     <string name="ingreseCorreo">Ingrese su correo electrónico para recibir el código de confirmación</string>
+    <string name="verificaciónCorreo">Verificación del correo</string>
+    <string name="ingreseCodigo">Ingrese el código que se le fue enviado al correo que proporciono</string>
+    <string name="valorVerificicacion">*</string>
 
 </resources>
