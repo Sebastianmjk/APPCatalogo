@@ -13,4 +13,13 @@
     <!--    Strings SignUp-->
     <string name="textButtonNext">Siguiente</string>
     <string name="textButtonBack">Volver</string>
+    <string name="descripcionImagenArrowBack">Imagen de devolverse</string>
+    <string name="nombres">Nombres</string>
+    <string name="ingreseNombresApellidos">Ingrese sus nombres y apellidos</string>
+    <string name="primerNombre">Primer Nombre</string>
+    <string name="segundoNombre">Segundo Nombre (opcional)</string>
+    <string name="primerApellido">Primer Apellido</string>
+    <string name="segundoApellido">Segundo Apellido</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

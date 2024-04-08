@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".registroFirstPage">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/namesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="252dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/nombres"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/inputPrimerNombre"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:autofillHints="primerNombre"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/primerNombre"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="22dp"
+            tools:layout_editor_absoluteY="224dp" />
+
+        <EditText
+            android:id="@+id/inputSegundoNombre"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:autofillHints="segundoNombre"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/segundoNombre"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="24dp"
+            tools:layout_editor_absoluteY="299dp" />
+
+        <EditText
+            android:id="@+id/inputPrimerApellido"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:autofillHints="primerApellido"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/primerApellido"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="24dp"
+            tools:layout_editor_absoluteY="403dp" />
+
+        <EditText
+            android:id="@+id/inputSegundoApellido"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:autofillHints="segundoApellido"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/segundoApellido"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="457dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
