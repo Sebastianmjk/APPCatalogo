@@ -24,7 +24,7 @@
 
             <Button
                 android:id="@+id/buttonBack"
-                style="@style/EstiloBotonPrincipal"
+                style="@style/EstiloBotonSecundario"
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="1dp"
@@ -46,6 +46,14 @@
                 app:layout_constraintStart_toEndOf="@+id/buttonBack"
                 app:layout_constraintTop_toTopOf="@+id/buttonBack" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/backArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="103dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
