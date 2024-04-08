@@ -20,4 +20,8 @@
     <string name="segundoNombre">Segundo Nombre (opcional)</string>
     <string name="primerApellido">Primer Apellido</string>
     <string name="segundoApellido">Segundo Apellido</string>
+    <string name="correoElectronico">Correo Electrónico</string>
+    <string name="correo">correo electrónico</string>
+    <string name="ingreseCorreo">Ingrese su correo electrónico para recibir el código de confirmación</string>
+
 </resources>
