@@ -60,6 +60,22 @@
             app:srcCompat="@drawable/angulo_izquierdo"
             android:contentDescription="@string/descripcionImagenArrowBack" />
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="409dp"
+            android:layout_height="581dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/footerVar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrowBack"
+            app:navGraph="@navigation/navigation_signup" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
