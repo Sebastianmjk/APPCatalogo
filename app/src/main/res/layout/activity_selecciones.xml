@@ -5,39 +5,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".selecciones">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/footerVarSelection"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/buttonBackSelection"
-            style="@style/EstiloBotonSecundario"
-            android:layout_width="150sp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="1dp"
-            android:text="@string/textButtonBack"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonNextSelection"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttonNextSelection"
-            style="@style/EstiloBotonPrincipal"
-            android:layout_width="150sp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="1dp"
-            android:text="@string/textButtonNext"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonBackSelection"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/buttonBackSelection"
-            app:layout_constraintTop_toTopOf="@+id/buttonBackSelection" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    
 </androidx.constraintlayout.widget.ConstraintLayout>

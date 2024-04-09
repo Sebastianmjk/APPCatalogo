@@ -134,18 +134,5 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonBack" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ImageView
-            android:id="@+id/arrowBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/angulo_izquierdo"
-            android:contentDescription="@string/descripcionImagenArrowBack" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
