@@ -11,7 +11,11 @@
     </style>
 
     <style name="EstiloCodigoVerificacion" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">#000000</item>
         <item name="android:background">@drawable/custom_codigo_verificacion</item>
+    </style>
+
+    <style name="EstiloSelecciones" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/custom_selection_button</item>
     </style>
 </resources>

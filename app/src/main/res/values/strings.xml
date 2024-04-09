@@ -33,5 +33,6 @@
     <!--    Strings KnowMore-->
     <string name="descripcionCuestionario">Completa el siguiente cuestionario para saber mas de ti</string>
     <string name="comenzar">Comenzar</string>
-    
+
+
 </resources>

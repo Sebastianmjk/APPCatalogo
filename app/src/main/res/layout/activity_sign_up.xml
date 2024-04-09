@@ -13,67 +13,18 @@
         android:background="@color/white"
         tools:context=".SignUp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/footerVar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                android:id="@+id/buttonBack"
-                style="@style/EstiloBotonSecundario"
-                android:layout_width="150sp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
-                android:text="@string/textButtonBack"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/buttonNext"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/buttonNext"
-                style="@style/EstiloBotonPrincipal"
-                android:layout_width="150sp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:text="@string/textButtonNext"
-                app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/buttonBack"
-                app:layout_constraintTop_toTopOf="@+id/buttonBack" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/arrowBack"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/angulo_izquierdo"
-            android:contentDescription="@string/descripcionImagenArrowBack" />
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewSignUp"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="409dp"
-            android:layout_height="581dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
             android:layout_marginEnd="1dp"
-            android:layout_marginBottom="1dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/footerVar"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/arrowBack"
+            app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/navigation_signup" />
 
 
