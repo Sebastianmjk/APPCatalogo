@@ -10,7 +10,7 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".LoginActivity">
+        tools:context=".Login.LoginActivity">
 
         <Button
             android:id="@+id/buttonIniciarSesion"

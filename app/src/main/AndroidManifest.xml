@@ -18,10 +18,10 @@
             android:name=".Know_more"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name=".SignUp.SignUp"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustUnspecified" />
         <activity

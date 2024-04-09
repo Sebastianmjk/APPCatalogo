@@ -1,12 +1,13 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.SignUp
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.example.appcatalogo.R
 
-class registroFirstPage : Fragment() {
+class registroThirdPage : Fragment() {
 
 
     override fun onCreateView(
@@ -14,7 +15,7 @@ class registroFirstPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro_first_page, container, false)
+        return inflater.inflate(R.layout.fragment_registro_third_page, container, false)
     }
 
 

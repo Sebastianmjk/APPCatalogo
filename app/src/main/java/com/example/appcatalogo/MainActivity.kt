@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
-import android.view.View
+import com.example.appcatalogo.Login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         val comienzaButton =  findViewById<Button>(R.id.buttonInical);
         comienzaButton.setOnClickListener{
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
