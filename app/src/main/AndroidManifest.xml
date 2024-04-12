@@ -12,16 +12,16 @@
         android:theme="@style/Theme.APPCatalogo"
         tools:targetApi="31">
         <activity
-            android:name=".selecciones"
+            android:name=".Selecciones"
             android:exported="false" />
         <activity
             android:name=".Know_more"
             android:exported="false" />
         <activity
-            android:name=".SignUp.SignUp"
+            android:name=".signUp.SignUp"
             android:exported="false" />
         <activity
-            android:name=".Login.LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustUnspecified" />
         <activity

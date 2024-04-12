@@ -1,6 +1,5 @@
-package com.example.appcatalogo.SignUp
+package com.example.appcatalogo.signUp
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +7,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.appcatalogo.Login.LoginActivity
 import com.example.appcatalogo.R
 
-class registroSecondPage : Fragment() {
+class RegistroThirdPage : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro_second_page, container, false)
+        return inflater.inflate(R.layout.fragment_registro_third_page, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,7 +26,7 @@ class registroSecondPage : Fragment() {
         val buttonNext = view.findViewById<Button>(R.id.buttonNext)
         val buttonBack = view.findViewById<Button>(R.id.buttonBack)
         buttonNext.setOnClickListener {
-            findNavController().navigate(R.id.action_registroSecondPage_to_registroThirdPage)
+            findNavController().navigate(R.id.action_registroThirdPage_to_registroFourthPage)
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()

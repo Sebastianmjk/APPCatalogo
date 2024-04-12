@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registroFirstPage"
-        android:name="com.example.appcatalogo.SignUp.registroFirstPage"
+        android:name="com.example.appcatalogo.signUp.RegistroFirstPage"
         android:label="fragment_registro_first_page"
         tools:layout="@layout/fragment_registro_first_page" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroSecondPage"
-        android:name="com.example.appcatalogo.SignUp.registroSecondPage"
+        android:name="com.example.appcatalogo.signUp.RegistroSecondPage"
         android:label="fragment_registro_second_page"
         tools:layout="@layout/fragment_registro_second_page" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroThirdPage"
-        android:name="com.example.appcatalogo.SignUp.registroThirdPage"
+        android:name="com.example.appcatalogo.signUp.RegistroThirdPage"
         android:label="fragment_registro_third_page"
         tools:layout="@layout/fragment_registro_third_page" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/registroFourthPage"
-        android:name="com.example.appcatalogo.SignUp.registroFourthPage"
+        android:name="com.example.appcatalogo.signUp.RegistroFourthPage"
         android:label="fragment_registro_fourth_page"
         tools:layout="@layout/fragment_registro_fourth_page" />
 </navigation>

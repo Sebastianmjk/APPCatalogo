@@ -1,13 +1,11 @@
-package com.example.appcatalogo.SignUp
+package com.example.appcatalogo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.appcatalogo.R
 
-class SignUp : AppCompatActivity() {
+class Selecciones : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
-
+        setContentView(R.layout.activity_selecciones)
     }
 }

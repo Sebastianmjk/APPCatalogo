@@ -1,11 +1,11 @@
-package com.example.appcatalogo.Login
+package com.example.appcatalogo.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import com.example.appcatalogo.R
-import com.example.appcatalogo.SignUp.SignUp
+import com.example.appcatalogo.signUp.SignUp
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
