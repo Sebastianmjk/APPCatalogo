@@ -36,5 +36,41 @@
         android:id="@+id/registroFourthPage"
         android:name="com.example.appcatalogo.signUp.RegistroFourthPage"
         android:label="fragment_registro_fourth_page"
-        tools:layout="@layout/fragment_registro_fourth_page" />
+        tools:layout="@layout/fragment_registro_fourth_page" >
+        <action
+            android:id="@+id/action_registroFourthPage_to_knowMore"
+            app:destination="@id/knowMore" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowMore"
+        android:name="com.example.appcatalogo.signUp.KnowMore"
+        android:label="fragment_know_more"
+        tools:layout="@layout/fragment_know_more" >
+        <action
+            android:id="@+id/action_knowMore_to_selectionDesarrolladoras"
+            app:destination="@id/selectionDesarrolladoras" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionDesarrolladoras"
+        android:name="com.example.appcatalogo.signUp.SelectionDesarrolladoras"
+        android:label="fragment_selection_desarrolladoras"
+        tools:layout="@layout/fragment_selection_desarrolladoras" >
+        <action
+            android:id="@+id/action_selectionDesarrolladoras_to_selectionDispositivos"
+            app:destination="@id/selectionDispositivos" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionDispositivos"
+        android:name="com.example.appcatalogo.signUp.SelectionDispositivos"
+        android:label="fragment_selection_dispositivos"
+        tools:layout="@layout/fragment_selection_dispositivos" >
+        <action
+            android:id="@+id/action_selectionDispositivos_to_seleccionCategorias"
+            app:destination="@id/seleccionCategorias" />
+    </fragment>
+    <fragment
+        android:id="@+id/seleccionCategorias"
+        android:name="com.example.appcatalogo.signUp.SeleccionCategorias"
+        android:label="fragment_seleccion_de_categorias"
+        tools:layout="@layout/fragment_seleccion_de_categorias" />
 </navigation>

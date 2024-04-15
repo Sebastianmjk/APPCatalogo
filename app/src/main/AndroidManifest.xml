@@ -17,12 +17,6 @@
             android:name=".Prueba"
             android:exported="false" />
         <activity
-            android:name=".Selecciones"
-            android:exported="false" />
-        <activity
-            android:name=".Know_more"
-            android:exported="false" />
-        <activity
             android:name=".signUp.SignUp"
             android:exported="false" />
         <activity
