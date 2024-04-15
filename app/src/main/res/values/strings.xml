@@ -47,9 +47,13 @@
     <string name="descripcionImagenCelular">Imagen de celular</string>
     <string name="descripcionImagenLaptop">Imagen de laptop</string>
     <string name="descripcionImagenNintendoSwitch">Imagen de nintendo switch</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="escogeCategorias">Escoge tus Categorias</string>
+    <string name="descripcionImagenSports">Imagen de juegos de deportes</string>
+    <string name="descripcionImagenShooters">Imagen de juegos de shoters</string>
+    <string name="descripcionImagenCars">Imagen de juegos de carros</string>
+    <string name="descripcionImagenKitchen">Imagen de juegos de cocina</string>
+    <string name="descripcionImagenAdventure">Imagen de juegos de aventura</string>
+    <string name="descripcionImagenSurvival">Imagen de juegos de supervivencia</string>
 
 
 </resources>
