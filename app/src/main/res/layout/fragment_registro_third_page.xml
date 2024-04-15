@@ -16,7 +16,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="80dp"
             android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
             android:text="@string/verificaciónCorreo"
@@ -27,7 +26,7 @@
             app:layout_constraintBottom_toTopOf="@+id/descripcionverificationText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/guidelineTitleFR3" />
 
         <TextView
             android:id="@+id/descripcionverificationText"
@@ -49,8 +48,6 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="409dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="432dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descripcionverificationText">
@@ -114,10 +111,9 @@
             android:id="@+id/footerVar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineFooterFR3">
 
             <Button
                 android:id="@+id/buttonBack"
@@ -143,6 +139,20 @@
                 app:layout_constraintStart_toEndOf="@+id/buttonBack"
                 app:layout_constraintTop_toTopOf="@+id/buttonBack" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTitleFR3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineFooterFR3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.89" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

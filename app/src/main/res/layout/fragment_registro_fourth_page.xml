@@ -16,7 +16,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="30dp"
             android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
             android:text="@string/contraseñas"
@@ -26,7 +25,7 @@
             app:layout_constraintBottom_toTopOf="@+id/descripcionPasswordText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/guidelineTitleFR4" />
 
         <TextView
             android:id="@+id/descripcionPasswordText"
@@ -90,12 +89,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
-            android:layout_marginBottom="395dp"
             android:fontFamily="@font/inter"
             android:text="@string/ochoCaracteres"
             android:textColor="#000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputConfirmarContraseña" />
@@ -104,10 +101,9 @@
             android:id="@+id/footerVar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineFooterFR4">
 
             <Button
                 android:id="@+id/buttonBack"
@@ -133,6 +129,20 @@
                 app:layout_constraintStart_toEndOf="@+id/buttonBack"
                 app:layout_constraintTop_toTopOf="@+id/buttonBack" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineTitleFR4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineFooterFR4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.89" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
