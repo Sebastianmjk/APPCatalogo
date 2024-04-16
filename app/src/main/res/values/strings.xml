@@ -54,6 +54,8 @@
     <string name="descripcionImagenKitchen">Imagen de juegos de cocina</string>
     <string name="descripcionImagenAdventure">Imagen de juegos de aventura</string>
     <string name="descripcionImagenSurvival">Imagen de juegos de supervivencia</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
