@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
             android:text="@string/escogeCategorias"
@@ -63,122 +63,25 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonBackSelection" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/categoriasScrollView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/footerVarSelection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/escogerCategoriasTittle">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
+                android:id="@+id/rvSeleccion"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="26dp"
-                android:layout_marginBottom="20dp"
-                android:background="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/footerVarSelection"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/escogerCategoriasTittle">
+                tools:listitem="@layout/item_selecciones"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
 
-                <ImageView
-                    android:id="@+id/sportsImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginEnd="25dp"
-                    android:contentDescription="@string/descripcionImagenSports"
-                    app:layout_constraintBottom_toTopOf="@+id/survivalImageView"
-                    app:layout_constraintEnd_toStartOf="@+id/shootersImageView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/shootersImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginEnd="25dp"
-                    android:contentDescription="@string/descripcionImagenShooters"
-                    app:layout_constraintBottom_toTopOf="@+id/adventureImageView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/sportsImageView"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/survivalImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginEnd="25dp"
-                    android:contentDescription="@string/descripcionImagenSurvival"
-                    app:layout_constraintBottom_toTopOf="@+id/kitchenImageView"
-                    app:layout_constraintEnd_toStartOf="@+id/adventureImageView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sportsImageView"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/adventureImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginEnd="25dp"
-                    android:contentDescription="@string/descripcionImagenAdventure"
-                    app:layout_constraintBottom_toTopOf="@+id/carsImageView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/survivalImageView"
-                    app:layout_constraintTop_toBottomOf="@+id/shootersImageView"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/kitchenImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginBottom="31dp"
-                    android:contentDescription="@string/descripcionImagenKitchen"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/carsImageView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/survivalImageView"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/carsImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="31dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginBottom="31dp"
-                    android:contentDescription="@string/descripcionImagenCars"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/kitchenImageView"
-                    app:layout_constraintTop_toBottomOf="@+id/adventureImageView"
-                    tools:src="@tools:sample/avatars" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 
 class SeleccionCategorias : Fragment() {
@@ -30,5 +32,10 @@ class SeleccionCategorias : Fragment() {
         buttonBack.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        val recycler = view.findViewById<RecyclerView>(R.id.rvSeleccion)
+
+        val LayoutManager = GridLayoutManager(this, 2)
+        recycler.layoutManager = LayoutManager
     }
 }
