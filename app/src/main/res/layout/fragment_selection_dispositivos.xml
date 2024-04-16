@@ -14,11 +14,11 @@
 
         <TextView
             android:id="@+id/escogerDispositivosTittle"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="80dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginEnd="5dp"
             android:fontFamily="@font/inter"
             android:text="@string/escogerDispositivos"
             android:textAlignment="center"
@@ -79,8 +79,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_width="0dp"
-                android:layout_height="479dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="26dp"

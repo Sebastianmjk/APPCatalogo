@@ -21,8 +21,8 @@ class SelectionDispositivos : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonNext = view.findViewById<Button>(R.id.buttonNext)
-        val buttonBack = view.findViewById<Button>(R.id.buttonBack)
+        val buttonNext = view.findViewById<Button>(R.id.buttonNextSelection)
+        val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
         buttonNext.setOnClickListener {
             findNavController().navigate(R.id.action_selectionDispositivos_to_seleccionCategorias)
         }

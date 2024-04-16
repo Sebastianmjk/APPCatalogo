@@ -21,8 +21,8 @@ class SeleccionCategorias : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonNext = view.findViewById<Button>(R.id.buttonNext)
-        val buttonBack = view.findViewById<Button>(R.id.buttonBack)
+        val buttonNext = view.findViewById<Button>(R.id.buttonNextSelection)
+        val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
         buttonNext.setOnClickListener {
             // findNavController().navigate(R.id.action_selectionDesarrolladoras_to_selectionDispositivos)
             println("Ultimo fragmento")
