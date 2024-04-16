@@ -20,10 +20,8 @@
 
         <TextView
             android:id="@+id/emailText"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
             android:text="@string/correoElectronico"
             android:textColor="#000000"
@@ -52,7 +50,6 @@
             android:textColor="#000000"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
@@ -62,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="54dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="26dp"
             android:autofillHints="emailAddress"
             android:background="@drawable/custom_input"
@@ -73,17 +70,16 @@
             android:paddingEnd="25sp"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/descripcionEmailText" />
+            app:layout_constraintTop_toBottomOf="@+id/descripcionEmailText" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/footerVar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guidelineFooterFR2">
+            app:layout_constraintTop_toTopOf="@+id/guidelineFooterFR2">
 
             <Button
                 android:id="@+id/buttonBack"
