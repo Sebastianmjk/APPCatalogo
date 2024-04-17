@@ -23,14 +23,19 @@ class SeleccionCategorias : Fragment() {
         return inflater.inflate(R.layout.fragment_seleccion_de_categorias, container, false)
     }
 
-    fun getSeleccionList() : ArrayList<Selecciones>{
+    private fun getSeleccionList() : ArrayList<Selecciones>{
 
         var seleccionesList : ArrayList<Selecciones> = ArrayList()
-        seleccionesList.add(Selecciones(1, R.mipmap.brujulas))
-        seleccionesList.add(Selecciones(2, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(3, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(4, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(5, R.mipmap.ic_launcher_round))
+        seleccionesList.add(Selecciones(1, R.mipmap.adventure))
+        seleccionesList.add(Selecciones(2, R.mipmap.shooter))
+        seleccionesList.add(Selecciones(3, R.mipmap.rpg))
+        seleccionesList.add(Selecciones(4, R.mipmap.simulator))
+        seleccionesList.add(Selecciones(5, R.mipmap.puzzle))
+        seleccionesList.add(Selecciones(6, R.mipmap.ic_launcher_round))
+        seleccionesList.add(Selecciones(7, R.mipmap.ic_launcher_round))
+        seleccionesList.add(Selecciones(8, R.mipmap.ic_launcher_round))
+        seleccionesList.add(Selecciones(9, R.mipmap.ic_launcher_round))
+        seleccionesList.add(Selecciones(10, R.mipmap.ic_launcher_round))
         return seleccionesList
 
     }
