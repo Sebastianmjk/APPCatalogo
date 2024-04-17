@@ -1,4 +1,4 @@
-package com.example.appcatalogo.signUp
+package com.example.appcatalogo.signUp.Quest
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +9,7 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appcatalogo.AdapterSelecciones
 import com.example.appcatalogo.R
-import com.example.appcatalogo.Selecciones
 
 class SeleccionCategorias : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.signUp.Quest
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appcatalogo.R
 
 class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) : RecyclerView.Adapter<AdapterSelecciones.ViewHolder>() {
 

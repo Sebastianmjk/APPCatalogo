@@ -1,4 +1,4 @@
-package com.example.appcatalogo.signUp
+package com.example.appcatalogo.signUp.Quest
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,21 +9,25 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
 
-class KnowMore : Fragment() {
+class SelectionDispositivos : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_know_more, container, false)
+        return inflater.inflate(R.layout.fragment_selection_dispositivos, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonComenzar = view.findViewById<Button>(R.id.buttonComenzar)
-        buttonComenzar.setOnClickListener {
-             findNavController().navigate(R.id.action_knowMore_to_selectionDesarrolladoras)
+        val buttonNext = view.findViewById<Button>(R.id.buttonNextSelection)
+        val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
+        buttonNext.setOnClickListener {
+            findNavController().navigate(R.id.action_selectionDispositivos_to_seleccionCategorias)
+        }
+        buttonBack.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }
