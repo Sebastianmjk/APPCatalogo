@@ -1,4 +1,4 @@
-package com.example.appcatalogo.signUp.Quest
+package com.example.appcatalogo.signUp.quest
 
 import android.content.Context
 import android.view.LayoutInflater

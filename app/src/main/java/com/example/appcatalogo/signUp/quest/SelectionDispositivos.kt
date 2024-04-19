@@ -1,4 +1,4 @@
-package com.example.appcatalogo.signUp.Quest
+package com.example.appcatalogo.signUp.quest
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 
-class SelectionDesarrolladoras : Fragment() {
+class SelectionDispositivos : Fragment() {
 
     private lateinit var adaptador : AdapterSelecciones
     private lateinit var recyclerView: RecyclerView
@@ -20,25 +20,26 @@ class SelectionDesarrolladoras : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_selection_desarrolladoras, container, false)
+        return inflater.inflate(R.layout.fragment_selection_dispositivos, container, false)
     }
 
     private fun getSeleccionList() : ArrayList<Selecciones>{
 
-        var seleccionesList : ArrayList<Selecciones> = ArrayList()
-        seleccionesList.add(Selecciones(1, R.mipmap.adventure))
-        seleccionesList.add(Selecciones(2, R.mipmap.shooter))
-        seleccionesList.add(Selecciones(3, R.mipmap.rpg))
-        seleccionesList.add(Selecciones(4, R.mipmap.simulator))
-        seleccionesList.add(Selecciones(5, R.mipmap.puzzle))
-        seleccionesList.add(Selecciones(6, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(7, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(8, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(9, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(10, R.mipmap.ic_launcher_round))
+        val seleccionesList : ArrayList<Selecciones> = ArrayList()
+        seleccionesList.add(Selecciones(1, R.mipmap.playstation))
+        seleccionesList.add(Selecciones(2, R.mipmap.xbox))
+        seleccionesList.add(Selecciones(3, R.mipmap.nintendoswitch))
+        seleccionesList.add(Selecciones(4, R.mipmap.pc))
+        seleccionesList.add(Selecciones(5, R.mipmap.celular))
+        seleccionesList.add(Selecciones(6, R.mipmap.portatil))
+        seleccionesList.add(Selecciones(7, R.mipmap.wii))
+        seleccionesList.add(Selecciones(8, R.mipmap.psp))
+        seleccionesList.add(Selecciones(9, R.mipmap.tablet))
+        seleccionesList.add(Selecciones(10, R.mipmap.nes))
         return seleccionesList
 
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,7 +53,7 @@ class SelectionDesarrolladoras : Fragment() {
         val buttonNext = view.findViewById<Button>(R.id.buttonNextSelection)
         val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
         buttonNext.setOnClickListener {
-            findNavController().navigate(R.id.action_selectionDesarrolladoras_to_selectionDispositivos)
+            findNavController().navigate(R.id.action_selectionDispositivos_to_seleccionCategorias)
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()

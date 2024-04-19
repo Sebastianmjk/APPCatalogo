@@ -1,4 +1,4 @@
-package com.example.appcatalogo.signUp.Quest
+package com.example.appcatalogo.signUp.quest
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,17 +25,17 @@ class SeleccionCategorias : Fragment() {
 
     private fun getSeleccionList() : ArrayList<Selecciones>{
 
-        var seleccionesList : ArrayList<Selecciones> = ArrayList()
+        val seleccionesList : ArrayList<Selecciones> = ArrayList()
         seleccionesList.add(Selecciones(1, R.mipmap.adventure))
         seleccionesList.add(Selecciones(2, R.mipmap.shooter))
         seleccionesList.add(Selecciones(3, R.mipmap.rpg))
         seleccionesList.add(Selecciones(4, R.mipmap.simulator))
         seleccionesList.add(Selecciones(5, R.mipmap.puzzle))
-        seleccionesList.add(Selecciones(6, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(7, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(8, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(9, R.mipmap.ic_launcher_round))
-        seleccionesList.add(Selecciones(10, R.mipmap.ic_launcher_round))
+        seleccionesList.add(Selecciones(6, R.mipmap.musica))
+        seleccionesList.add(Selecciones(7, R.mipmap.arcade))
+        seleccionesList.add(Selecciones(8, R.mipmap.deportes))
+        seleccionesList.add(Selecciones(9, R.mipmap.estrategia))
+        seleccionesList.add(Selecciones(10, R.mipmap.plataformas))
         return seleccionesList
 
     }
