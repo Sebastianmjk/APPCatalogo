@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/knowMore"
-        android:name="com.example.appcatalogo.signUp.KnowMore"
+        android:name="com.example.appcatalogo.signUp.quest.KnowMore"
         android:label="fragment_know_more"
         tools:layout="@layout/fragment_know_more" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectionDesarrolladoras"
-        android:name="com.example.appcatalogo.signUp.SelectionDesarrolladoras"
+        android:name="com.example.appcatalogo.signUp.quest.SelectionDesarrolladoras"
         android:label="fragment_selection_desarrolladoras"
         tools:layout="@layout/fragment_selection_desarrolladoras" >
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/selectionDispositivos"
-        android:name="com.example.appcatalogo.signUp.SelectionDispositivos"
+        android:name="com.example.appcatalogo.signUp.quest.SelectionDispositivos"
         android:label="fragment_selection_dispositivos"
         tools:layout="@layout/fragment_selection_dispositivos" >
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/seleccionCategorias"
-        android:name="com.example.appcatalogo.signUp.SeleccionCategorias"
+        android:name="com.example.appcatalogo.signUp.quest.SeleccionCategorias"
         android:label="fragment_seleccion_de_categorias"
         tools:layout="@layout/fragment_seleccion_de_categorias" />
 </navigation>

@@ -46,13 +46,14 @@
         android:layout_width="235dp"
         android:layout_height="215dp"
         android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
         android:contentDescription="@string/descripcion_imagen"
         app:layout_constraintBottom_toTopOf="@+id/titleText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/klipartz_com" />
+        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/inputUsername"

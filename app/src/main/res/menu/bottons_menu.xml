@@ -3,23 +3,18 @@
     >
     <item
         android:id="@+id/home"
-        android:icon="@drawable/home_icon"
-        android:title="Explora"
-        />
+        android:title="Explora" />
 
     <item
-        android:icon="@drawable/match_icon"
         android:id="@+id/match"
-            android:title="Match" />
+        android:title="Match" />
 
     <item
-        android:icon="@drawable/vector_person"
         android:id="@+id/profile"
-        android:title="Perfil"/>
+        android:title="Perfil" />
 
     <item
-        android:icon="@drawable/search_icon"
         android:id="@+id/search"
-        android:title="Search"/>
+        android:title="Search" />
 
 </menu>

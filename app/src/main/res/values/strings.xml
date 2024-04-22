@@ -34,27 +34,8 @@
     <string name="descripcionCuestionario">Completa el siguiente cuestionario para saber mas de ti</string>
     <string name="comenzar">Comenzar</string>
     <string name="escogerDesarrolladora">Escoge tus desarrolladoras</string>
-    <string name="descripcionImagenActivision">Imagen de activisión</string>
-    <string name="descripcionImagenEpicGames">Imagen de epic games</string>
-    <string name="descripcionImagenEa">Imagen de ea</string>
-    <string name="descripcionImagenSega">Imagen de sega</string>
-    <string name="descripcionImagenUbisoft">Imagen de ubisoft</string>
-    <string name="descripcionImagenCapcom">Imagen de capcom</string>
     <string name="escogerDispositivos">Escoge tus dispositivos</string>
-    <string name="descripcionImagenPlayStation5">Imagen de play5</string>
-    <string name="descripcionImagenXboxSeries">Imagen de xboxseries</string>
-    <string name="descripcionImagenPc">Imagen de pc</string>
-    <string name="descripcionImagenCelular">Imagen de celular</string>
-    <string name="descripcionImagenLaptop">Imagen de laptop</string>
-    <string name="descripcionImagenNintendoSwitch">Imagen de nintendo switch</string>
     <string name="escogeCategorias">Escoge tus categorias</string>
-    <string name="descripcionImagenSports">Imagen de juegos de deportes</string>
-    <string name="descripcionImagenShooters">Imagen de juegos de shoters</string>
-    <string name="descripcionImagenCars">Imagen de juegos de carros</string>
-    <string name="descripcionImagenKitchen">Imagen de juegos de cocina</string>
-    <string name="descripcionImagenAdventure">Imagen de juegos de aventura</string>
-    <string name="descripcionImagenSurvival">Imagen de juegos de supervivencia</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 

@@ -14,16 +14,20 @@
         android:theme="@style/Theme.APPCatalogo"
         tools:targetApi="34">
         <activity
+            android:screenOrientation="portrait"
             android:name=".Prueba"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".signUp.SignUp"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".login.LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustUnspecified" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
