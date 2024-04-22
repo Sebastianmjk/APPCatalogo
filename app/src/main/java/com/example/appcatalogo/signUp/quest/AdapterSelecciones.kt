@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
@@ -16,6 +17,7 @@ class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) :
 
         var idSeleccion : Int = 0
         var imageSeleccion : ImageView = itemView.findViewById(R.id.ivSelecciones)
+        var checkSelecciones : CheckBox = itemView.findViewById(R.id.checkBoxSelecciones)
 
     }
 
@@ -32,5 +34,7 @@ class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) :
         val seleccion = seleccioneslist[position]
         holder.idSeleccion = seleccion.id
         holder.imageSeleccion.setImageResource(seleccion.image)
+
+
     }
 }
