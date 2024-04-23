@@ -17,7 +17,6 @@ class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) :
 
         var idSeleccion : Int = 0
         var imageSeleccion : ImageView = itemView.findViewById(R.id.ivSelecciones)
-        var checkSelecciones : CheckBox = itemView.findViewById(R.id.checkBoxSelecciones)
 
     }
 

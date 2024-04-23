@@ -15,11 +15,6 @@
         android:scaleType="centerCrop"
         tools:src="@tools:sample/avatars" />
 
-    <CheckBox
-        android:id="@+id/checkBoxSelecciones"
-        android:layout_width="48dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
 
 
 </LinearLayout>

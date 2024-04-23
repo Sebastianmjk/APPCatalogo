@@ -72,5 +72,14 @@
         android:id="@+id/seleccionCategorias"
         android:name="com.example.appcatalogo.signUp.quest.SeleccionCategorias"
         android:label="fragment_seleccion_de_categorias"
-        tools:layout="@layout/fragment_seleccion_de_categorias" />
+        tools:layout="@layout/fragment_seleccion_de_categorias" >
+        <action
+            android:id="@+id/action_seleccionCategorias_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFirstPage"
+        android:name="com.example.appcatalogo.homePage.HomeFirstPage"
+        android:label="fragment_home_first_page"
+        tools:layout="@layout/fragment_home_first_page" />
 </navigation>
