@@ -81,5 +81,14 @@
         android:id="@+id/homeFirstPage"
         android:name="com.example.appcatalogo.homePage.HomeFirstPage"
         android:label="fragment_home_first_page"
-        tools:layout="@layout/fragment_home_first_page" />
+        tools:layout="@layout/fragment_home_first_page" >
+        <action
+            android:id="@+id/action_homeFirstPage_to_categoriasDetail"
+            app:destination="@id/categoriasDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriasDetail"
+        android:name="com.example.appcatalogo.homePage.CategoriasDetail"
+        android:label="fragment_categorias_detail"
+        tools:layout="@layout/fragment_categorias_detail" />
 </navigation>

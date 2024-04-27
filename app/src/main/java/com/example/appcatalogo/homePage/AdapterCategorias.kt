@@ -13,6 +13,9 @@ class AdapterCategorias(private val categoriaslist : ArrayList<Categorias>) : Re
 
     lateinit var context : Context
 
+    var onItemClick : ((Categorias) -> Unit)? = null
+
+
     class ViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
 
         var idCaregoria : Int = 0
@@ -34,5 +37,8 @@ class AdapterCategorias(private val categoriaslist : ArrayList<Categorias>) : Re
         holder.idCaregoria = categoria.id
         holder.imageCategoria.setImageResource(categoria.image)
 
+        holder.imageCategoria.setOnClickListener{
+            onItemClick?.invoke(categoria)
+        }
     }
 }
