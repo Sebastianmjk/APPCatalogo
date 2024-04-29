@@ -3,18 +3,18 @@
     >
     <item
         android:id="@+id/home"
-        android:title="Explora" />
+        android:title="@string/explora" />
 
     <item
         android:id="@+id/match"
-        android:title="Match" />
+        android:title="@string/match" />
 
     <item
         android:id="@+id/profile"
-        android:title="Perfil" />
+        android:title="@string/perfil" />
 
     <item
         android:id="@+id/search"
-        android:title="Search" />
+        android:title="@string/search" />
 
 </menu>
