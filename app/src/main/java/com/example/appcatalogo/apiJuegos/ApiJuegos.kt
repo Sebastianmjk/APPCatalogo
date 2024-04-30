@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 
 interface ApiJuegos {
-    @GET("?limit=10&offset=10")
+    @GET("?limit=10&offset=20")
     fun listJuegos() : Call<RemoteResult>
 }
 

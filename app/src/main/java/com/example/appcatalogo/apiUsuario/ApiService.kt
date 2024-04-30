@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiJuegos
+package com.example.appcatalogo.apiUsuario
 
 import com.example.appcatalogo.ImageResponse
 import retrofit2.Response
@@ -7,6 +7,6 @@ import retrofit2.http.Header
 
 
 interface ApiService {
-    @GET("https://apicatalogojuegos.onrender.com/GameVault/Usuario/profile/")
+    @GET("profile/")
     suspend fun getGame(@Header("Authorization") authHeader: String): Response<ImageResponse>
 }
