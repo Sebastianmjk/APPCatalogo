@@ -1,5 +1,6 @@
 package com.example.appcatalogo.signUp.quest
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -58,6 +59,10 @@ class SeleccionCategorias : Fragment() {
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        adaptador.onItemClick = { seleccion, view ->
+            view.setBackgroundColor(if (seleccion.seleccionado) Color.parseColor("#3F51B5") else Color.TRANSPARENT)
         }
 
 

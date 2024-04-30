@@ -1,8 +1,11 @@
 package com.example.appcatalogo
 
-import com.google.gson.annotations.SerializedName
+
 
 data class ImageResponse(
-    @SerializedName("status") var status : String,
-    @SerializedName("message") var images : List<String>
+    var Usuario : String,
+    var Nombre : String,
+    var Apellido : String,
+    var Email : String,
+    var Imagen : String
 )

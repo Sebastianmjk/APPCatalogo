@@ -41,6 +41,9 @@
     <string name="search">Search</string>
     <string name="match">Match</string>
     <string name="explora">Explora</string>
+    <string name="tituloJuego">Titulo</string>
+    <string name="titulo_juego_detail">titulo juego detail</string>
+    <string name="resumen_juego_detail">resumen juego detail</string>
 
 
 </resources>
