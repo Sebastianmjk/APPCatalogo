@@ -12,18 +12,33 @@
         android:background="#FFFFFF">
 
         <TextView
+            android:id="@+id/tv_escoga3_selecciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="147dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/escoga_maximo_3"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/escogerCategoriasTittle" />
+
+        <TextView
             android:id="@+id/escogerCategoriasTittle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="26dp"
             android:fontFamily="@font/inter"
             android:text="@string/escogeCategorias"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@+id/categoriasScrollView"
+            app:layout_constraintBottom_toTopOf="@+id/tv_escoga3_selecciones"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -68,19 +83,18 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/footerVarSelection"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/escogerCategoriasTittle">
+            app:layout_constraintTop_toBottomOf="@+id/tv_escoga3_selecciones">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSeleccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_selecciones"/>
+                tools:listitem="@layout/item_selecciones" />
 
         </androidx.core.widget.NestedScrollView>
 

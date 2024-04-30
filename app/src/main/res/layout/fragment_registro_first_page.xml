@@ -39,21 +39,41 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="35dp"
             android:fontFamily="@font/inter"
             android:text="@string/ingreseNombresApellidos"
             android:textColor="#000000"
             android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@+id/inputPrimerNombre"
+            app:layout_constraintBottom_toTopOf="@+id/inputUsername"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/namesText" />
+
+        <EditText
+            android:id="@+id/inputUsername"
+            android:layout_width="363dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="22dp"
+            android:autofillHints="userName"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/user_name"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/inputPrimerNombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionNamesText" />
 
         <EditText
             android:id="@+id/inputPrimerNombre"
             android:layout_width="363dp"
             android:layout_height="54dp"
             android:layout_marginStart="26dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="26dp"
             android:layout_marginBottom="15dp"
             android:autofillHints="primerNombre"
@@ -67,7 +87,7 @@
             app:layout_constraintBottom_toTopOf="@+id/inputSegundoNombre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descripcionNamesText" />
+            app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
 
         <EditText
             android:id="@+id/inputSegundoNombre"
@@ -115,7 +135,7 @@
             android:layout_height="54dp"
             android:layout_marginStart="26dp"
             android:layout_marginEnd="26dp"
-            android:layout_marginBottom="200dp"
+            android:layout_marginBottom="160dp"
             android:autofillHints="segundoApellido"
             android:background="@drawable/custom_input"
             android:ems="10"

@@ -72,31 +72,5 @@
         android:id="@+id/seleccionCategorias"
         android:name="com.example.appcatalogo.signUp.quest.SeleccionCategorias"
         android:label="fragment_seleccion_de_categorias"
-        tools:layout="@layout/fragment_seleccion_de_categorias" >
-        <action
-            android:id="@+id/action_seleccionCategorias_to_homeFirstPage"
-            app:destination="@id/homeFirstPage" />
-    </fragment>
-    <fragment
-        android:id="@+id/homeFirstPage"
-        android:name="com.example.appcatalogo.homePage.HomeFirstPage"
-        android:label="fragment_home_first_page"
-        tools:layout="@layout/fragment_home_first_page" >
-        <action
-            android:id="@+id/action_homeFirstPage_to_categoriasDetail"
-            app:destination="@id/categoriasDetail" />
-        <action
-            android:id="@+id/action_homeFirstPage_to_juegoDetail"
-            app:destination="@id/juegoDetail" />
-    </fragment>
-    <fragment
-        android:id="@+id/categoriasDetail"
-        android:name="com.example.appcatalogo.homePage.CategoriasDetail"
-        android:label="fragment_categorias_detail"
-        tools:layout="@layout/fragment_categorias_detail" />
-    <fragment
-        android:id="@+id/juegoDetail"
-        android:name="com.example.appcatalogo.apiJuegos.model.JuegoDetail"
-        android:label="fragment_juego_detail"
-        tools:layout="@layout/fragment_juego_detail" />
+        tools:layout="@layout/fragment_seleccion_de_categorias" />
 </navigation>

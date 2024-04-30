@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -81,7 +82,7 @@ class HomeFirstPage : Fragment() {
     }
 
     private fun loadGames() {
-        ApiClient.apiService.listJuegos().enqueue(object : Callback<RemoteResult> {
+        ApiClient.apiService.listJuegos("20").enqueue(object : Callback<RemoteResult> {
             override fun onResponse(call: Call<RemoteResult>, response: Response<RemoteResult>) {
                 if (response.isSuccessful) {
                     val juegos = response.body()?.results
