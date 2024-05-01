@@ -16,9 +16,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="34">
         <activity
-            android:name=".HomePage"
-            android:exported="false" />
-        <activity
             android:name=".Prueba"
             android:exported="false"
             android:screenOrientation="portrait" />

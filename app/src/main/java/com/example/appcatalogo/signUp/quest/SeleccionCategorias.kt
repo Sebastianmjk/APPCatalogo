@@ -1,6 +1,5 @@
 package com.example.appcatalogo.signUp.quest
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +10,6 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appcatalogo.HomePage
 import com.example.appcatalogo.R
 
 
@@ -58,10 +56,7 @@ class SeleccionCategorias : Fragment() {
         val buttonNext = view.findViewById<Button>(R.id.buttonNextSelection)
         val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
         buttonNext.setOnClickListener {
-            val intent = Intent(activity, HomePage::class.java)
-            startActivity(intent)
-            activity?.finish()
-
+            findNavController().navigate(R.id.action_seleccionCategorias_to_homeFirstPage)
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()

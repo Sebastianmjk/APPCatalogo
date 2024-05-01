@@ -4,39 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homePage.CategoriasDetail">
+    tools:context=".CategoriasSlideBar">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/categoriaNombre"
+            android:id="@+id/categoriasSlideBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="136dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="136dp"
-            android:text="@string/categoria"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="120dp"
+            android:layout_marginBottom="20dp"
             android:fontFamily="@font/inter"
+            android:text="@string/categoria"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="35sp"
+            app:layout_constraintBottom_toTopOf="@+id/rvCategoriasSlideBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCategoriasJuegos"
+            android:id="@+id/rvCategoriasSlideBar"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="605dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/item_juego" />
+            app:layout_constraintTop_toBottomOf="@+id/categoriasSlideBar"
+            tools:listitem="@layout/item_selecciones" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
