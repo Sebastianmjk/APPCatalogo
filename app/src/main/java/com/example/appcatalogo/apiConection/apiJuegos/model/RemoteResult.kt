@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiJuegos.model
+package com.example.appcatalogo.apiConection.apiJuegos.model
 
 data class RemoteResult(
     val count: Int,

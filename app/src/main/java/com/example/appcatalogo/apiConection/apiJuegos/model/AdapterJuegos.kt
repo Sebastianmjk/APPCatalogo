@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiJuegos.model
+package com.example.appcatalogo.apiConection.apiJuegos.model
 
 import android.view.LayoutInflater
 import android.view.View

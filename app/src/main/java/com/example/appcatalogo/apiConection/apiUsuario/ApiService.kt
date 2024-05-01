@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiUsuario
+package com.example.appcatalogo.apiConection.apiUsuario
 
 import com.example.appcatalogo.ImageResponse
 import retrofit2.Response

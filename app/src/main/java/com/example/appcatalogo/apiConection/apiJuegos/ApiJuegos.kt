@@ -1,7 +1,7 @@
-package com.example.appcatalogo.apiJuegos
+package com.example.appcatalogo.apiConection.apiJuegos
 
 
-import com.example.appcatalogo.apiJuegos.model.RemoteResult
+import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

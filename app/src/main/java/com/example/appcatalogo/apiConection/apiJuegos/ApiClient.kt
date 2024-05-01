@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiJuegos
+package com.example.appcatalogo.apiConection.apiJuegos
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

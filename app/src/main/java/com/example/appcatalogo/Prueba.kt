@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.appcatalogo.apiUsuario.ApiService
+import com.example.appcatalogo.apiConection.apiUsuario.ApiService
 import com.example.appcatalogo.databinding.ActivityPruebaBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

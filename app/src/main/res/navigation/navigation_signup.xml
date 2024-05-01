@@ -91,7 +91,7 @@
     </fragment>
     <fragment
         android:id="@+id/juegoDetail"
-        android:name="com.example.appcatalogo.apiJuegos.model.JuegoDetail"
+        android:name="com.example.appcatalogo.apiConection.apiJuegos.model.JuegoDetail"
         android:label="fragment_juego_detail"
         tools:layout="@layout/fragment_juego_detail" />
     <fragment

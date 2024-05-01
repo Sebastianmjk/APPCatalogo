@@ -11,9 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
-import com.example.appcatalogo.apiJuegos.ApiClient
-import com.example.appcatalogo.apiJuegos.model.AdapterJuegos
-import com.example.appcatalogo.apiJuegos.model.RemoteResult
+import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
+import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
+import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

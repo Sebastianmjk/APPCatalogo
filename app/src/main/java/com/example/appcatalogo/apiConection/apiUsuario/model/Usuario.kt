@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiUsuario.model
+package com.example.appcatalogo.apiConection.apiUsuario.model
 
 data class Usuario(
     var Usuario : String,
