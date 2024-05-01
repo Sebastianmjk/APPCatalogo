@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,11 +41,11 @@ class HomeFirstPage : Fragment() {
         categoriasList.add(Categorias(3, R.mipmap.rpg, "RPG"))
         categoriasList.add(Categorias(4, R.mipmap.simulator, "Simulator"))
         categoriasList.add(Categorias(5, R.mipmap.puzzle, "Puzzle"))
-        categoriasList.add(Categorias(6, R.mipmap.musica, "Musica"))
+        categoriasList.add(Categorias(6, R.mipmap.musica, "Music"))
         categoriasList.add(Categorias(7, R.mipmap.arcade, "Arcade"))
-        categoriasList.add(Categorias(8, R.mipmap.deportes, "Deportes"))
-        categoriasList.add(Categorias(9, R.mipmap.estrategia, "Estrategia"))
-        categoriasList.add(Categorias(10, R.mipmap.plataformas, "Plataformas"))
+        categoriasList.add(Categorias(8, R.mipmap.deportes, "Sport"))
+        categoriasList.add(Categorias(9, R.mipmap.estrategia, "Strategy"))
+        categoriasList.add(Categorias(10, R.mipmap.plataformas, "Platform"))
         return categoriasList
 
     }
