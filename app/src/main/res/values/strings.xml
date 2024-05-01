@@ -15,7 +15,7 @@
     <string name="textButtonBack">Volver</string>
     <string name="descripcionImagenArrowBack">Imagen de devolverse</string>
     <string name="nombres">Nombres</string>
-    <string name="ingreseNombresApellidos">Ingrese sus nombres y apellidos</string>
+    <string name="ingreseNombresApellidos">Ingrese su user name, sus nombres y apellidos</string>
     <string name="primerNombre">Primer Nombre</string>
     <string name="segundoNombre">Segundo Nombre (opcional)</string>
     <string name="primerApellido">Primer Apellido</string>

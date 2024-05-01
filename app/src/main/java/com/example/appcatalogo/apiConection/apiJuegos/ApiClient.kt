@@ -1,8 +1,10 @@
 package com.example.appcatalogo.apiConection.apiJuegos
 
+import com.example.appcatalogo.apiConection.apiGeneros.ApiGeneros
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
@@ -23,5 +25,9 @@ object ApiClient {
 
     val apiService: ApiJuegos by lazy {
         retrofit.create(ApiJuegos::class.java)
+    }
+
+    val apiGenero: ApiGeneros by lazy {
+        retrofit.create(ApiGeneros::class.java)
     }
 }
