@@ -1,6 +1,6 @@
 package com.example.appcatalogo.apiConection.apiUsuario
 
-import com.example.appcatalogo.ImageResponse
+import com.example.appcatalogo.prueba.ImageResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

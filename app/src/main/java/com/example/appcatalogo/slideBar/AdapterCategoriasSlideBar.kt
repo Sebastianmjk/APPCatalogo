@@ -1,4 +1,4 @@
-package com.example.appcatalogo.homePage
+package com.example.appcatalogo.slideBar
 
 
 import android.content.Context
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
+import com.example.appcatalogo.homePage.Categorias
 
 class AdapterCategoriasSlideBar(private val categoriaslist : ArrayList<Categorias>) : RecyclerView.Adapter<AdapterCategoriasSlideBar.ViewHolder>() {
 

@@ -1,4 +1,4 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.prueba
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

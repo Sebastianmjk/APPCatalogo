@@ -1,4 +1,4 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.prueba
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -109,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoriasSlideBar2"
-        android:name="com.example.appcatalogo.CategoriasSlideBar"
+        android:name="com.example.appcatalogo.slideBar.CategoriasSlideBar"
         android:label="fragment_categorias_slide_bar"
         tools:layout="@layout/fragment_categorias_slide_bar" >
         <action

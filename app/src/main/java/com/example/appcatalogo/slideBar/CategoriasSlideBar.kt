@@ -1,4 +1,4 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.slideBar
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.appcatalogo.homePage.AdapterCategoriasSlideBar
+import com.example.appcatalogo.R
 import com.example.appcatalogo.homePage.Categorias
 
 

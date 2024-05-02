@@ -1,9 +1,10 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
+import com.example.appcatalogo.R
 import com.example.appcatalogo.signUp.SignUp
 
 class MainActivity : AppCompatActivity() {

@@ -1,8 +1,9 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.prueba
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.appcatalogo.R
 
 class GameAdapter(private val image: String): RecyclerView.Adapter<GameViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
