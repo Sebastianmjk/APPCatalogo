@@ -1,9 +1,11 @@
 package com.example.appcatalogo.apiConection.apiUsuario.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Usuario(
-    var Usuario : String,
-    var Nombre : String,
-    var Apellido : String,
-    var Email : String,
-    var Imagen : String
+    @SerializedName("Usuario") var usuario : String,
+    @SerializedName("Nombre") var nombre : String,
+    @SerializedName("Apellido") var apellido : String,
+    @SerializedName("Email") var email : String,
+    @SerializedName("Imagen") var imagen : String
 )

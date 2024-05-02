@@ -4,23 +4,24 @@ import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionReques
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionResponse
 import com.example.appcatalogo.apiConection.apiUsuario.model.Usuario
 import com.example.appcatalogo.apiConection.apiUsuario.model.UsuarioRegistro
+import retrofit2.Response
 import retrofit2.http.*
 
 interface UsuarioApi {
     @POST("login/")
-    fun loginUser(@Body usuario: AutenticacionRequest): AutenticacionResponse
+    suspend fun loginUser(@Body usuario: AutenticacionRequest): Response<AutenticacionResponse>
 
     @POST("register/")
-    fun registerUser(@Body usuario: UsuarioRegistro): AutenticacionResponse
+    suspend fun registerUser(@Body usuario: UsuarioRegistro): Response<AutenticacionResponse>
 
     @GET("profile/")
-    fun profileUser(@Header("Authorization") authHeader: String): Usuario
+    suspend fun profileUser(@Header("Authorization") authHeader: String): Response<Usuario>
 
     @DELETE("delete_account/{id}")
-    fun deleteUser(@Header("Authorization") authHeader: String ,@Path("id") id:Int):Void
+    suspend fun deleteUser(@Header("Authorization") authHeader: String ,@Path("id") id:Int):Void
 
     @FormUrlEncoded
     @PATCH("edit_user/")
-    fun editUser(@Header("Authorization") authHeader: String ,@FieldMap fieldsUser: Map<String,String>)
+    suspend fun editUser(@Header("Authorization") authHeader: String ,@FieldMap fieldsUser: Map<String,String>)
 
 }
