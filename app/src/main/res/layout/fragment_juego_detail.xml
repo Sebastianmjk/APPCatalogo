@@ -36,26 +36,38 @@
 
             <TextView
                 android:id="@+id/tx_juego_resumen_detail"
-                android:layout_width="379dp"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/inter"
                 android:text="@string/resumen_juego_detail"
                 android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tx_juego_titulo_detail" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRecomendaciones"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="250dp"
-                tools:layout_editor_absoluteX="136dp"
-                tools:layout_editor_absoluteY="338dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tx_juego_resumen_detail"
                 tools:listitem="@layout/item_juego" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
