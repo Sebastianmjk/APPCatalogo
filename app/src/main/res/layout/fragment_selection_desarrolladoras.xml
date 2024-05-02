@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectionDesarrolladoras">
+    tools:context=".signUp.quest.SelectionDesarrolladoras">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,20 +12,33 @@
         android:background="#FFFFFF">
 
         <TextView
-            android:id="@+id/escogerDesarrolladorasTittle"
-            android:layout_width="0dp"
+            android:id="@+id/tv_escoga3_selecciones"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="147dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/escoga_maximo_3"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/escogerDesarrolladorasTittle" />
+
+        <TextView
+            android:id="@+id/escogerDesarrolladorasTittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/inter"
             android:text="@string/escogerDesarrolladora"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintBottom_toTopOf="@+id/tv_escoga3_selecciones"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,106 +76,27 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonBackSelection" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
-            android:layout_width="0dp"
-            android:layout_height="479dp"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="26dp"
-            android:layout_marginBottom="20dp"
-            android:background="#FFFFFF"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/desarrolladorasScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/footerVarSelection"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/escogerDesarrolladorasTittle">
+            app:layout_constraintTop_toBottomOf="@+id/tv_escoga3_selecciones">
 
-            <ImageView
-                android:id="@+id/activisionImageView"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSeleccion"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="25dp"
-                android:contentDescription="@string/descripcionImagenActivision"
-                app:layout_constraintBottom_toTopOf="@+id/eaImageView"
-                app:layout_constraintEnd_toStartOf="@+id/epicGamesImageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
+                tools:listitem="@layout/item_selecciones" />
 
-            <ImageView
-                android:id="@+id/epicGamesImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="25dp"
-                android:contentDescription="@string/descripcionImagenEpicGames"
-                app:layout_constraintBottom_toTopOf="@+id/segaImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/activisionImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/eaImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="25dp"
-                android:contentDescription="@string/descripcionImagenEa"
-                app:layout_constraintBottom_toTopOf="@+id/ubisoftImageView"
-                app:layout_constraintEnd_toStartOf="@+id/segaImageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/activisionImageView"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/segaImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="25dp"
-                android:contentDescription="@string/descripcionImagenSega"
-                app:layout_constraintBottom_toTopOf="@+id/capcomImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/eaImageView"
-                app:layout_constraintTop_toBottomOf="@+id/epicGamesImageView"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/ubisoftImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="31dp"
-                android:contentDescription="@string/descripcionImagenUbisoft"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/capcomImageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eaImageView"
-                tools:src="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/capcomImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="31dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginBottom="31dp"
-                android:contentDescription="@string/descripcionImagenCapcom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/ubisoftImageView"
-                app:layout_constraintTop_toBottomOf="@+id/segaImageView"
-                tools:src="@tools:sample/avatars" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </FrameLayout>

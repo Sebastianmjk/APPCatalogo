@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">APPCatalogo</string>
+    <string name="app_name">Game Vault</string>
     <string name="inicio">Comienza</string>
     <!--    Strings Login-->
     <string name="usuario">Usuario</string>
@@ -15,7 +15,7 @@
     <string name="textButtonBack">Volver</string>
     <string name="descripcionImagenArrowBack">Imagen de devolverse</string>
     <string name="nombres">Nombres</string>
-    <string name="ingreseNombresApellidos">Ingrese sus nombres y apellidos</string>
+    <string name="ingreseNombresApellidos">Ingrese su user name, sus nombres y apellidos</string>
     <string name="primerNombre">Primer Nombre</string>
     <string name="segundoNombre">Segundo Nombre (opcional)</string>
     <string name="primerApellido">Primer Apellido</string>
@@ -34,22 +34,19 @@
     <string name="descripcionCuestionario">Completa el siguiente cuestionario para saber mas de ti</string>
     <string name="comenzar">Comenzar</string>
     <string name="escogerDesarrolladora">Escoge tus desarrolladoras</string>
-    <string name="descripcionImagenActivision">Imagen de activisión</string>
-    <string name="descripcionImagenEpicGames">Imagen de epic games</string>
-    <string name="descripcionImagenEa">Imagen de ea</string>
-    <string name="descripcionImagenSega">Imagen de sega</string>
-    <string name="descripcionImagenUbisoft">Imagen de ubisoft</string>
-    <string name="descripcionImagenCapcom">Imagen de capcom</string>
     <string name="escogerDispositivos">Escoge tus dispositivos</string>
-    <string name="descripcionImagenPlayStation5">Imagen de play5</string>
-    <string name="descripcionImagenXboxSeries">Imagen de xboxseries</string>
-    <string name="descripcionImagenPc">Imagen de pc</string>
-    <string name="descripcionImagenCelular">Imagen de celular</string>
-    <string name="descripcionImagenLaptop">Imagen de laptop</string>
-    <string name="descripcionImagenNintendoSwitch">Imagen de nintendo switch</string>
-
+    <string name="escogeCategorias">Escoge tus categorias</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="escogeCategorias">Escoge tus Categorias</string>
+    <string name="perfil">Perfil</string>
+    <string name="search">Search</string>
+    <string name="match">Match</string>
+    <string name="explora">Explora</string>
+    <string name="tituloJuego">Titulo</string>
+    <string name="titulo_juego_detail">titulo juego detail</string>
+    <string name="resumen_juego_detail">resumen juego detail</string>
+    <string name="escoga_maximo_3">Escoga maximo 3</string>
+    <string name="user_name">User Name</string>
+    <string name="categoria">Categorias</string>
 
 
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_signup"
-    app:startDestination="@id/registroFirstPage">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/registroFirstPage"
@@ -36,5 +36,96 @@
         android:id="@+id/registroFourthPage"
         android:name="com.example.appcatalogo.signUp.RegistroFourthPage"
         android:label="fragment_registro_fourth_page"
-        tools:layout="@layout/fragment_registro_fourth_page" />
+        tools:layout="@layout/fragment_registro_fourth_page" >
+        <action
+            android:id="@+id/action_registroFourthPage_to_knowMore"
+            app:destination="@id/knowMore" />
+    </fragment>
+    <fragment
+        android:id="@+id/knowMore"
+        android:name="com.example.appcatalogo.signUp.quest.KnowMore"
+        android:label="fragment_know_more"
+        tools:layout="@layout/fragment_know_more" >
+        <action
+            android:id="@+id/action_knowMore_to_selectionDesarrolladoras"
+            app:destination="@id/selectionDesarrolladoras" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionDesarrolladoras"
+        android:name="com.example.appcatalogo.signUp.quest.SelectionDesarrolladoras"
+        android:label="fragment_selection_desarrolladoras"
+        tools:layout="@layout/fragment_selection_desarrolladoras" >
+        <action
+            android:id="@+id/action_selectionDesarrolladoras_to_selectionDispositivos"
+            app:destination="@id/selectionDispositivos" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectionDispositivos"
+        android:name="com.example.appcatalogo.signUp.quest.SelectionDispositivos"
+        android:label="fragment_selection_dispositivos"
+        tools:layout="@layout/fragment_selection_dispositivos" >
+        <action
+            android:id="@+id/action_selectionDispositivos_to_seleccionCategorias"
+            app:destination="@id/seleccionCategorias" />
+    </fragment>
+    <fragment
+        android:id="@+id/seleccionCategorias"
+        android:name="com.example.appcatalogo.signUp.quest.SeleccionCategorias"
+        android:label="fragment_seleccion_de_categorias"
+        tools:layout="@layout/fragment_seleccion_de_categorias" >
+        <action
+            android:id="@+id/action_seleccionCategorias_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFirstPage"
+        android:name="com.example.appcatalogo.homePage.HomeFirstPage"
+        android:label="fragment_home_first_page"
+        tools:layout="@layout/fragment_home_first_page" >
+        <action
+            android:id="@+id/action_homeFirstPage_to_categoriasDetail"
+            app:destination="@id/categoriasDetail" />
+        <action
+            android:id="@+id/action_homeFirstPage_to_juegoDetail"
+            app:destination="@id/juegoDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/juegoDetail"
+        android:name="com.example.appcatalogo.apiConection.apiJuegos.model.JuegoDetail"
+        android:label="fragment_juego_detail"
+        tools:layout="@layout/fragment_juego_detail" >
+        <action
+            android:id="@+id/action_juegoDetail_self"
+            app:destination="@id/juegoDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriasDetail"
+        android:name="com.example.appcatalogo.homePage.CategoriasDetail"
+        android:label="fragment_categorias_detail"
+        tools:layout="@layout/fragment_categorias_detail" >
+        <action
+            android:id="@+id/action_categoriasDetail_to_juegoDetail"
+            app:destination="@id/juegoDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoriasSlideBar2"
+        android:name="com.example.appcatalogo.slideBar.CategoriasSlideBar"
+        android:label="fragment_categorias_slide_bar"
+        tools:layout="@layout/fragment_categorias_slide_bar" >
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_categoriasDetail"
+            app:destination="@id/categoriasDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appcatalogo.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_loginFragment_to_registroFirstPage"
+            app:destination="@id/registroFirstPage" />
+    </fragment>
 </navigation>

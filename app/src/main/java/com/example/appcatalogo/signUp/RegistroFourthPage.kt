@@ -12,7 +12,6 @@ import com.example.appcatalogo.R
 class RegistroFourthPage : Fragment() {
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,8 +26,7 @@ class RegistroFourthPage : Fragment() {
         val buttonNext = view.findViewById<Button>(R.id.buttonNext)
         val buttonBack = view.findViewById<Button>(R.id.buttonBack)
         buttonNext.setOnClickListener {
-//            findNavController().navigate(R.id.action_registroThirdPage_to_registroFourthPage)
-            println("Esta en el ultimo fragmento")
+            findNavController().navigate(R.id.action_registroFourthPage_to_knowMore)
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()
