@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.appcatalogo.login.LoginActivity
 import com.example.appcatalogo.R
 
 class RegistroFirstPage : Fragment() {
@@ -30,9 +29,7 @@ class RegistroFirstPage : Fragment() {
             findNavController().navigate(R.id.action_registroFirstPage_to_registroSecondPage)
         }
         buttonBack.setOnClickListener {
-            val intent = Intent(activity, LoginActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+            findNavController().navigateUp()
         }
     }
 

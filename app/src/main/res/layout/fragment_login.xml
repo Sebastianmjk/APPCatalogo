@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".login.LoginFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constrainLogin"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context=".login.LoginActivity">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <Button
             android:id="@+id/buttonIniciarSesion"
@@ -27,74 +28,74 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/inter"
-        android:text="@string/titulo"
-        android:textColor="#000000"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/inputUsername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/titulo"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/inputUsername"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="235dp"
-        android:layout_height="215dp"
-        android:layout_marginTop="16dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/descripcion_imagen"
-        app:layout_constraintBottom_toTopOf="@+id/titleText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="235dp"
+            android:layout_height="215dp"
+            android:layout_marginTop="16dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="@string/descripcion_imagen"
+            app:layout_constraintBottom_toTopOf="@+id/titleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/inputUsername"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="14dp"
-        android:autofillHints="username"
-        android:background="@drawable/custom_input"
-        android:ems="10"
-        android:hint="@string/usuario"
-        android:inputType="textPersonName"
-        android:paddingStart="25sp"
-        android:paddingEnd="25sp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/inputPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+        <EditText
+            android:id="@+id/inputUsername"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="14dp"
+            android:autofillHints="username"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/usuario"
+            android:inputType="textPersonName"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/inputPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
-    <EditText
-        android:id="@+id/inputPassword"
-        android:background="@drawable/custom_input"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:ems="10"
-        android:paddingStart="25sp"
-        android:paddingEnd="25sp"
-        android:textSize="14sp"
-        android:inputType="textPassword"
-        android:hint="@string/contraseña"
-        android:autofillHints="password"
-        app:layout_constraintBottom_toTopOf="@+id/buttonIniciarSesion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="20dp"
+            android:autofillHints="password"
+            android:background="@drawable/custom_input"
+            android:ems="10"
+            android:hint="@string/contraseña"
+            android:inputType="textPassword"
+            android:paddingStart="25sp"
+            android:paddingEnd="25sp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonIniciarSesion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

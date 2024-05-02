@@ -116,4 +116,16 @@
             android:id="@+id/action_categoriasSlideBar2_to_categoriasDetail"
             app:destination="@id/categoriasDetail" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.appcatalogo.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_loginFragment_to_registroFirstPage"
+            app:destination="@id/registroFirstPage" />
+    </fragment>
 </navigation>

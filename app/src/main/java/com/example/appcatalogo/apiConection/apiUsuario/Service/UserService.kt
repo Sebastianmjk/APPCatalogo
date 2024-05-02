@@ -25,7 +25,7 @@ object UserService {
         }
     }
 
-    suspend fun registerUser(usuario: UsuarioRegistro): AutenticacionResponse {
+    suspend fun registerUser(usuario: UsuarioRegistro): Response<AutenticacionResponse> {
         return withContext(Dispatchers.IO) {
             usuarioApi.registerUser(usuario)
         }
