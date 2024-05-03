@@ -272,4 +272,17 @@
             android:id="@+id/action_homeUsuario_to_perfil"
             app:destination="@id/perfil" />
     </fragment>
+    <argument
+        android:name="userName"
+        app:argType="string" />
+    <argument
+        android:name="primerNombre"
+        app:argType="string" />
+    <argument
+        android:name="segundoNombre"
+        app:argType="string" />
+    <argument
+        android:name="primerApellido"
+        app:argType="string" />
+    <argument android:name="segundoApellido" />
 </navigation>

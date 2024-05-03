@@ -50,12 +50,14 @@ class RegistroFirstPage : Fragment() {
             if (textUsername.isEmpty() && textPrimerNombre.isEmpty() && textPrimerApellido.isEmpty() && textSegundoApellido.isEmpty()){
                 showError("Tiene que completar los campos obligatorios")
             }else{
-                val bundle = Bundle()
-                bundle.putString(
-                    "userName", textUsername,
-                    
+                val action = RegistroFirstPageDirections.actionRegistroFirstPageToRegistroSecondPage(
+                    userName = textUsername,
+                    primerNombre = textPrimerNombre,
+                    segundoNombre = textSegundoNombre,
+                    primerApellido = textPrimerApellido,
+                    segundoApellido = textSegundoApellido
                 )
-                findNavController().navigate(R.id.action_registroFirstPage_to_registroSecondPage)
+                findNavController().navigate(action)
             }
 
         }

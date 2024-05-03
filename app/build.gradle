@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -55,5 +56,6 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1'
 
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
 
 }
