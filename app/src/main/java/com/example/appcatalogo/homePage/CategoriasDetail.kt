@@ -14,6 +14,7 @@
     import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
     import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
     import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
+    import com.google.android.material.bottomnavigation.BottomNavigationView
     import retrofit2.Call
     import retrofit2.Callback
     import retrofit2.Response
@@ -55,6 +56,36 @@
                 bundle.putString("resumen_juego", juego.resumen)
                 findNavController().navigate(R.id.action_categoriasDetail_to_juegoDetail, bundle)
             }
+
+            val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)
+
+
+
+            navView.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.home_icono -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_homeFirstPage)
+                    }
+
+                    R.id.home_usuario_icono -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_homeUsuario)
+                    }
+
+                    R.id.agregar_icono -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_crear)
+                    }
+
+                    R.id.search_icono -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_buscar)
+                    }
+
+                    R.id.profile_icono -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_perfil)
+                    }
+                }
+                true
+            }
+
         }
         private fun loadGeneros() {
             ApiClient.apiGenero.listGeneros(nombreCategoria ?: "", "20").enqueue(object : Callback<RemoteResult> {

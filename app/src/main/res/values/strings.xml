@@ -47,6 +47,10 @@
     <string name="escoga_maximo_3">Escoga maximo 3</string>
     <string name="user_name">User Name</string>
     <string name="categoria">Categorias</string>
+    <string name="home_icono">Home</string>
+    <string name="agregar_icono">Agregar</string>
+    <string name="buscar_icono">Buscar</string>
+    <string name="perfil_icono">Perfil</string>
 
 
 </resources>

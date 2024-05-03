@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,6 +56,34 @@ class JuegoDetail : Fragment() {
             bundle.putString("titulo_juego", juego.titulo)
             bundle.putString("resumen_juego", juego.resumen)
             findNavController().navigate(R.id.action_juegoDetail_self, bundle)
+        }
+
+        val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)
+
+
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home_icono -> {
+                    findNavController().navigate(R.id.action_juegoDetail_to_homeFirstPage)
+                }
+
+                R.id.home_usuario_icono -> {
+                    findNavController().navigate(R.id.action_juegoDetail_to_homeUsuario)
+                }
+
+                R.id.agregar_icono -> {
+                    findNavController().navigate(R.id.action_juegoDetail_to_crear)
+                }
+
+                R.id.search_icono -> {
+                    findNavController().navigate(R.id.action_juegoDetail_to_buscar)
+                }
+
+                R.id.profile_icono -> {
+                    findNavController().navigate(R.id.action_juegoDetail_to_perfil)
+                }
+            }
+            true
         }
 
     }

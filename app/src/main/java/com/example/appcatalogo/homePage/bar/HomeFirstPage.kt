@@ -1,4 +1,4 @@
-package com.example.appcatalogo.homePage
+package com.example.appcatalogo.homePage.bar
 
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +13,9 @@ import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
 import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
+import com.example.appcatalogo.homePage.AdapterCategorias
+import com.example.appcatalogo.homePage.Categorias
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,6 +54,31 @@ class HomeFirstPage : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)
+
+
+
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home_icono -> {
+                    findNavController().navigate(R.id.action_homeFirstPage_self)
+                }
+                R.id.home_usuario_icono -> {
+                    findNavController().navigate(R.id.action_homeFirstPage_to_homeUsuario)
+                }
+                R.id.agregar_icono -> {
+                    findNavController().navigate(R.id.action_homeFirstPage_to_crear)
+                }
+                R.id.search_icono -> {
+                    findNavController().navigate(R.id.action_homeFirstPage_to_buscar)
+                }
+                R.id.profile_icono -> {
+                    findNavController().navigate(R.id.action_homeFirstPage_to_perfil)
+                }
+            }
+            true
+        }
 
         val layoutManagerCategorias = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recyclerViewCategorias = view.findViewById(R.id.rvHomePageCategorias)

@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFirstPage"
-        android:name="com.example.appcatalogo.homePage.HomeFirstPage"
+        android:name="com.example.appcatalogo.homePage.bar.HomeFirstPage"
         android:label="fragment_home_first_page"
         tools:layout="@layout/fragment_home_first_page" >
         <action
@@ -88,6 +88,21 @@
         <action
             android:id="@+id/action_homeFirstPage_to_juegoDetail"
             app:destination="@id/juegoDetail" />
+        <action
+            android:id="@+id/action_homeFirstPage_self"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_homeFirstPage_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_homeFirstPage_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_homeFirstPage_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_homeFirstPage_to_perfil"
+            app:destination="@id/perfil" />
     </fragment>
     <fragment
         android:id="@+id/juegoDetail"
@@ -97,6 +112,21 @@
         <action
             android:id="@+id/action_juegoDetail_self"
             app:destination="@id/juegoDetail" />
+        <action
+            android:id="@+id/action_juegoDetail_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_juegoDetail_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_juegoDetail_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_juegoDetail_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_juegoDetail_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
     </fragment>
     <fragment
         android:id="@+id/categoriasDetail"
@@ -106,6 +136,21 @@
         <action
             android:id="@+id/action_categoriasDetail_to_juegoDetail"
             app:destination="@id/juegoDetail" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
     </fragment>
     <fragment
         android:id="@+id/categoriasSlideBar2"
@@ -115,6 +160,21 @@
         <action
             android:id="@+id/action_categoriasSlideBar2_to_categoriasDetail"
             app:destination="@id/categoriasDetail" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_perfil"
+            app:destination="@id/perfil" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -127,5 +187,89 @@
         <action
             android:id="@+id/action_loginFragment_to_registroFirstPage"
             app:destination="@id/registroFirstPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/buscar"
+        android:name="com.example.appcatalogo.homePage.bar.Buscar"
+        android:label="fragment_buscar"
+        tools:layout="@layout/fragment_buscar" >
+        <action
+            android:id="@+id/action_buscar_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_buscar_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_buscar_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_buscar_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_buscar_self"
+            app:destination="@id/buscar" />
+    </fragment>
+    <fragment
+        android:id="@+id/crear"
+        android:name="com.example.appcatalogo.homePage.bar.Crear"
+        android:label="fragment_crear"
+        tools:layout="@layout/fragment_crear" >
+        <action
+            android:id="@+id/action_crear_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_crear_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_crear_self"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_crear_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_crear_to_perfil"
+            app:destination="@id/perfil" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfil"
+        android:name="com.example.appcatalogo.homePage.bar.Perfil"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfil_self"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_perfil_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_perfil_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_perfil_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_perfil_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeUsuario"
+        android:name="com.example.appcatalogo.homePage.bar.HomeUsuario"
+        android:label="fragment_home_usuario"
+        tools:layout="@layout/fragment_home_usuario" >
+        <action
+            android:id="@+id/action_homeUsuario_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_homeUsuario_self"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_homeUsuario_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_homeUsuario_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_homeUsuario_to_perfil"
+            app:destination="@id/perfil" />
     </fragment>
 </navigation>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.homePage.Categorias
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class CategoriasSlideBar : Fragment() {
@@ -56,7 +57,36 @@ class CategoriasSlideBar : Fragment() {
             bundle.putString("nombre_categoria", categoria.nombre)
             findNavController().navigate(R.id.action_categoriasSlideBar2_to_categoriasDetail, bundle)
         }
-    }
 
+        val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)
+
+
+
+        navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home_icono -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_homeFirstPage)
+                }
+
+                R.id.home_usuario_icono -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_homeUsuario)
+                }
+
+                R.id.agregar_icono -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_crear)
+                }
+
+                R.id.search_icono -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_buscar)
+                }
+
+                R.id.profile_icono -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_perfil)
+                }
+            }
+            true
+        }
+
+    }
 
 }
