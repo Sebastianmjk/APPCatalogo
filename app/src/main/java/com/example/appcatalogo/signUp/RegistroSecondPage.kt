@@ -8,27 +8,36 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
-
+import com.example.appcatalogo.databinding.FragmentRegistroSecondPageBinding
 class RegistroSecondPage : Fragment() {
 
+    private var _binding: FragmentRegistroSecondPageBinding? = null
+    // This property is only valid between onCreateView and onDestroyView.
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registro_second_page, container, false)
+        _binding = FragmentRegistroSecondPageBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val buttonNext = view.findViewById<Button>(R.id.buttonNext)
-        val buttonBack = view.findViewById<Button>(R.id.buttonBack)
-        buttonNext.setOnClickListener {
+
+
+        binding.buttonNext.setOnClickListener {
+            val correoElectronico = binding.inputEmail.text.toString()
             findNavController().navigate(R.id.action_registroSecondPage_to_registroThirdPage)
         }
-        buttonBack.setOnClickListener {
+        binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

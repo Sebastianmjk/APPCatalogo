@@ -22,6 +22,16 @@
         <action
             android:id="@+id/action_registroSecondPage_to_registroThirdPage"
             app:destination="@id/registroThirdPage" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="apellido"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/registroThirdPage"
@@ -272,17 +282,5 @@
             android:id="@+id/action_homeUsuario_to_perfil"
             app:destination="@id/perfil" />
     </fragment>
-    <argument
-        android:name="userName"
-        app:argType="string" />
-    <argument
-        android:name="primerNombre"
-        app:argType="string" />
-    <argument
-        android:name="segundoNombre"
-        app:argType="string" />
-    <argument
-        android:name="primerApellido"
-        app:argType="string" />
-    <argument android:name="segundoApellido" />
+
 </navigation>

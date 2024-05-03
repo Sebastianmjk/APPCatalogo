@@ -52,10 +52,8 @@ class RegistroFirstPage : Fragment() {
             }else{
                 val action = RegistroFirstPageDirections.actionRegistroFirstPageToRegistroSecondPage(
                     userName = textUsername,
-                    primerNombre = textPrimerNombre,
-                    segundoNombre = textSegundoNombre,
-                    primerApellido = textPrimerApellido,
-                    segundoApellido = textSegundoApellido
+                    nombre = textPrimerNombre + textSegundoNombre,
+                    apellido = textPrimerApellido + textSegundoApellido
                 )
                 findNavController().navigate(action)
             }
