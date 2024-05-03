@@ -59,8 +59,8 @@ class LoginFragment : Fragment() {
 
         val iniciarSesionButton = view.findViewById<Button>(R.id.buttonIniciarSesion);
         iniciarSesionButton.setOnClickListener {
-            username = inputUsername.text.toString()
-            userPassword = inputPassword.text.toString()
+            username = inputUsername.text.toString().replace(" ","")
+            userPassword = inputPassword.text.toString().replace(" ","")
             CoroutineScope(Dispatchers.IO).launch {
                 val response = UserService.loginUser(AutenticacionRequest(username, userPassword))
                 withContext(Dispatchers.Main) {

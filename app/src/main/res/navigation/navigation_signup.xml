@@ -41,6 +41,18 @@
         <action
             android:id="@+id/action_registroThirdPage_to_registroFourthPage"
             app:destination="@id/registroFourthPage" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="apellido"
+            app:argType="string" />
+        <argument
+            android:name="correoElectronico"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/registroFourthPage"
@@ -50,6 +62,18 @@
         <action
             android:id="@+id/action_registroFourthPage_to_knowMore"
             app:destination="@id/knowMore" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="nombre"
+            app:argType="string" />
+        <argument
+            android:name="apellido"
+            app:argType="string" />
+        <argument
+            android:name="correoElectronico"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/knowMore"
