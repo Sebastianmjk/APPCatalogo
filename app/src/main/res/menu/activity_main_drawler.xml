@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+
+        <item
+            android:id="@+id/nav_item_mi_perfil"
+            android:title="@string/mi_perfil"/>
+
+        <item
+            android:id="@+id/nav_item_inicio"
+            android:title="@string/inicio_slude_bar"/>
+
+        <item
+            android:id="@+id/nav_item_categorias"
+            android:title="@string/categorias"/>
+
+        <item
+            android:id="@+id/nav_item_mis_juegos"
+            android:title="@string/mis_juegos"/>
+
+        <item
+            android:id="@+id/nav_item_mis_catalogos"
+            android:title="@string/mis_catalogos"/>
+
+        <item
+            android:id="@+id/nav_item_cerrar_sesion"
+            android:title="@string/cerrar_sesi_n"/>
+
+    </group>
+
+</menu>

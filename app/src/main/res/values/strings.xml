@@ -51,6 +51,15 @@
     <string name="agregar_icono">Agregar</string>
     <string name="buscar_icono">Buscar</string>
     <string name="perfil_icono">Perfil</string>
+    <string name="mi_perfil">Mi perfil</string>
+    <string name="inicio_slude_bar">Inicio</string>
+    <string name="categorias">Categorias</string>
+    <string name="mis_juegos">Mis juegos</string>
+    <string name="mis_catalogos">Mis catalogos</string>
+    <string name="cerrar_sesi_n">Cerrar Sesión</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
 
 
 </resources>
