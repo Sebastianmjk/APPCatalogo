@@ -4,24 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.drawerlayout.widget.DrawerLayout
+
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.appcatalogo.R
 import com.example.appcatalogo.databinding.FragmentRegistroSecondPageBinding
 import com.example.appcatalogo.showError
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.navigation.NavigationView
+
 
 class RegistroSecondPage : Fragment() {
 
 
-
     private var _binding: FragmentRegistroSecondPageBinding? = null
-    // This property is only valid between onCreateView and onDestroyView.
+
     private val binding get() = _binding!!
 
     private val args: RegistroSecondPageArgs by navArgs()
