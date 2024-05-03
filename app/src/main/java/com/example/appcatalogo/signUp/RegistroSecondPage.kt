@@ -9,8 +9,10 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.appcatalogo.R
 import com.example.appcatalogo.databinding.FragmentRegistroSecondPageBinding
+import com.example.appcatalogo.showError
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 
@@ -21,6 +23,8 @@ class RegistroSecondPage : Fragment() {
     private var _binding: FragmentRegistroSecondPageBinding? = null
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
+
+    private val args: RegistroSecondPageArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -33,10 +37,23 @@ class RegistroSecondPage : Fragment() {
 
 
 
-
         binding.buttonNext.setOnClickListener {
             val correoElectronico = binding.inputEmail.text.toString()
-            findNavController().navigate(R.id.action_registroSecondPage_to_registroThirdPage)
+            if (correoElectronico.isEmpty()) {
+                showError("El campo de correo electrónico no puede estar vacío")
+                return@setOnClickListener
+            }
+            if (!validateEmail(correoElectronico)) {
+                showError("El correo electrónico no es válido")
+                return@setOnClickListener
+            }
+            val action = RegistroSecondPageDirections.actionRegistroSecondPageToRegistroThirdPage(
+                userName = args.userName,
+                nombre = args.nombre,
+                apellido = args.apellido,
+                correoElectronico = correoElectronico
+            )
+            findNavController().navigate(action)
         }
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
@@ -46,6 +63,10 @@ class RegistroSecondPage : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun validateEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
 }

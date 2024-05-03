@@ -18,8 +18,6 @@ import com.google.android.material.navigation.NavigationView
 class RegistroFirstPage : Fragment() {
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -29,9 +27,6 @@ class RegistroFirstPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
 
 
         val buttonNext = view.findViewById<Button>(R.id.buttonNext)
@@ -44,27 +39,30 @@ class RegistroFirstPage : Fragment() {
         val inputPrimerApellido = view.findViewById<EditText>(R.id.inputPrimerApellido)
         val inputSegundoApellido = view.findViewById<EditText>(R.id.inputSegundoApellido)
 
-        var textUsername:String
-        var textPrimerNombre:String
-        var textSegundoNombre:String
-        var textPrimerApellido:String
-        var textSegundoApellido:String
+        var textUsername: String
+        var textPrimerNombre: String
+        var textSegundoNombre: String
+        var textPrimerApellido: String
+        var textSegundoApellido: String
 
 
         buttonNext.setOnClickListener {
-            textUsername = inputUsername.toString()
-            textPrimerNombre = inputPrimerNombre.toString()
-            textSegundoNombre = inputSegundoNombre.toString() ?: ""
-            textPrimerApellido = inputPrimerApellido.toString()
-            textSegundoApellido = inputSegundoApellido.toString()
-            if (textUsername.isEmpty() && textPrimerNombre.isEmpty() && textPrimerApellido.isEmpty() && textSegundoApellido.isEmpty()){
+            textUsername = inputUsername.text.toString().replace(" ", "")
+            textPrimerNombre = inputPrimerNombre.text.toString().replace(" ", "")
+            textSegundoNombre = inputSegundoNombre.text.toString().replace(" ", "") ?: ""
+            textPrimerApellido = inputPrimerApellido.text.toString().replace(" ", "")
+            textSegundoApellido = inputSegundoApellido.text.toString().replace(" ", "")
+            if (textUsername.isEmpty() && textPrimerNombre.isEmpty() && textPrimerApellido.isEmpty() && textSegundoApellido.isEmpty()) {
                 showError("Tiene que completar los campos obligatorios")
-            }else{
-                val action = RegistroFirstPageDirections.actionRegistroFirstPageToRegistroSecondPage(
-                    userName = textUsername,
-                    nombre = textPrimerNombre + textSegundoNombre,
-                    apellido = textPrimerApellido + textSegundoApellido
-                )
+            } else {
+                val nombre =
+                    if (textSegundoNombre.isEmpty()) textPrimerNombre else "$textPrimerNombre $textSegundoNombre"
+                val action =
+                    RegistroFirstPageDirections.actionRegistroFirstPageToRegistroSecondPage(
+                        userName = textUsername,
+                        nombre = nombre,
+                        apellido = "$textPrimerApellido $textSegundoApellido"
+                    )
                 findNavController().navigate(action)
             }
 
@@ -74,7 +72,7 @@ class RegistroFirstPage : Fragment() {
         }
     }
 
-    private fun showError(message:String) {
+    private fun showError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
