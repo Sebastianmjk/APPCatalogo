@@ -17,4 +17,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="MyNavigationMenu" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:gravity">center</item> <!-- Texto centrado -->
+    </style>
+
 </resources>
