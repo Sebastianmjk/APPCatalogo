@@ -9,17 +9,26 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiUsuario.Service.TokenManager
 import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionRequest
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LoginFragment : Fragment() {
+
+    private lateinit var drawerLayout: DrawerLayout
+    private var appBarLayout: AppBarLayout? = null
+    private var coordinatorLayout: CoordinatorLayout? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +38,16 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        appBarLayout = activity?.findViewById(R.id.app_bar_layout)
+        coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
+        drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
+
+        coordinatorLayout?.visibility = View.GONE
+        appBarLayout?.visibility = View.GONE
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+
         val inputUsername: EditText = view.findViewById(R.id.inputUsername)
         val inputPassword: EditText = view.findViewById(R.id.inputPassword)
         var username: String

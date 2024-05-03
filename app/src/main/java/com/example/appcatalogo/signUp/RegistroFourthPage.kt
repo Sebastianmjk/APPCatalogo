@@ -5,9 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.navigation.NavigationView
 
 class RegistroFourthPage : Fragment() {
 
@@ -22,6 +26,8 @@ class RegistroFourthPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         val buttonNext = view.findViewById<Button>(R.id.buttonNext)
         val buttonBack = view.findViewById<Button>(R.id.buttonBack)

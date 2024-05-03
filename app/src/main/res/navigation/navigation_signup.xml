@@ -260,6 +260,12 @@
         <action
             android:id="@+id/action_perfil_to_homeFirstPage"
             app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_perfil_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_perfil_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeUsuario"

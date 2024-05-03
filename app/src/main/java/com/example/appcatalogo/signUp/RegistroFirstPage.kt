@@ -7,22 +7,32 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.navigation.NavigationView
 
 class RegistroFirstPage : Fragment() {
+
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_registro_first_page, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
+
 
         val buttonNext = view.findViewById<Button>(R.id.buttonNext)
         val buttonBack = view.findViewById<Button>(R.id.buttonBack)

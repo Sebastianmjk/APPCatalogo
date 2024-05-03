@@ -5,18 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.homePage.Categorias
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
 
 
 class CategoriasSlideBar : Fragment() {
 
     private lateinit var adaptador : AdapterCategoriasSlideBar
     private lateinit var recyclerViewCategoriasSlideBar: RecyclerView
+
+    private lateinit var drawerLayout: DrawerLayout
+    private var navView: NavigationView? = null
+    private var appBarLayout: AppBarLayout? = null
+    private var coordinatorLayout: CoordinatorLayout? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +56,18 @@ class CategoriasSlideBar : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val layoutManagerCategorias = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        navView = activity?.findViewById(R.id.nav_view)
+        appBarLayout = activity?.findViewById(R.id.app_bar_layout)
+        coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
+        drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
+
+
+        coordinatorLayout?.visibility = View.VISIBLE
+        appBarLayout?.visibility = View.VISIBLE
+        navView?.visibility = View.VISIBLE
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+
+        val layoutManagerCategorias = GridLayoutManager(context, 2)
         recyclerViewCategoriasSlideBar = view.findViewById(R.id.rvCategoriasSlideBar)
         recyclerViewCategoriasSlideBar.layoutManager = layoutManagerCategorias
         adaptador = AdapterCategoriasSlideBar(getCategoriasList())

@@ -19,6 +19,8 @@ class SeleccionCategorias : Fragment() {
     private lateinit var adaptador : AdapterSelecciones
     private lateinit var recyclerView: RecyclerView
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -45,6 +47,7 @@ class SeleccionCategorias : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView = view.findViewById(R.id.rvSeleccion)
