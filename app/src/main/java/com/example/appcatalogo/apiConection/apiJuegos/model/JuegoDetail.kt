@@ -28,11 +28,6 @@ class JuegoDetail : Fragment() {
     private lateinit var recyclerViewJuegos : RecyclerView
     private var tituloJuego: String? = null
 
-    private lateinit var drawerLayout: DrawerLayout
-    private var navView: NavigationView? = null
-    private var appBarLayout: AppBarLayout? = null
-    private var coordinatorLayout: CoordinatorLayout? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,15 +47,6 @@ class JuegoDetail : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
-        navView = activity?.findViewById(R.id.nav_view)
-        appBarLayout = activity?.findViewById(R.id.app_bar_layout)
-        coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
-
-        coordinatorLayout?.visibility = View.GONE
-        appBarLayout?.visibility = View.GONE
-        navView?.visibility = View.GONE
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
 
         val layoutManagerJuegos = LinearLayoutManager(context)

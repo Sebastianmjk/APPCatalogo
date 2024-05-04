@@ -24,11 +24,13 @@ import kotlinx.coroutines.withContext
 import com.example.appcatalogo.databinding.FragmentLoginBinding
 import com.example.appcatalogo.showError
 import com.example.appcatalogo.messageErrorToStatus
+import com.google.android.material.navigation.NavigationView
 
 class LoginFragment : Fragment() {
 
     private lateinit var drawerLayout: DrawerLayout
     private var appBarLayout: AppBarLayout? = null
+    private var navView: NavigationView? = null
     private var coordinatorLayout: CoordinatorLayout? = null
 
     private var _binding:FragmentLoginBinding? = null
@@ -46,11 +48,13 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         appBarLayout = activity?.findViewById(R.id.app_bar_layout)
+        navView = activity?.findViewById(R.id.nav_view)
         coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
         drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
 
         coordinatorLayout?.visibility = View.GONE
         appBarLayout?.visibility = View.GONE
+        navView?.visibility = View.VISIBLE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         var username: String

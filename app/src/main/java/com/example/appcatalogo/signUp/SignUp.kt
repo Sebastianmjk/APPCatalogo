@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.fragment.NavHostFragment
 import com.example.appcatalogo.R
 import com.google.android.material.navigation.NavigationView
 
@@ -16,6 +17,7 @@ open class SignUp : AppCompatActivity() {
         protected open lateinit var drawerLayout: DrawerLayout
         protected open lateinit var navView: NavigationView
         private lateinit var toggle: ActionBarDrawerToggle
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +31,7 @@ open class SignUp : AppCompatActivity() {
 
         drawerLayout = findViewById(R.id.drawlerLayout)
         navView = findViewById(R.id.nav_view)
-
-        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        
 
 
         val menuButton: ImageButton = findViewById(R.id.menu_button)
@@ -44,28 +43,14 @@ open class SignUp : AppCompatActivity() {
             }
         }
 
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerViewSignUp) as NavHostFragment
+        val navController = navHostFragment.navController
+
         val backButton: ImageButton = findViewById(R.id.back_button)
         backButton.setOnClickListener {
-
-
+            navController.popBackStack()
         }
 
     }
 
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        toggle.syncState()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        toggle.onConfigurationChanged(newConfig)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (toggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
     }

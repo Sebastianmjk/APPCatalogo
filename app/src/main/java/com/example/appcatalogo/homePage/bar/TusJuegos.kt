@@ -6,15 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 
-class Perfil : Fragment() {
+
+class TusJuegos : Fragment() {
 
     private lateinit var drawerLayout: DrawerLayout
     private var navView: NavigationView? = null
@@ -25,8 +25,8 @@ class Perfil : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_perfil, container, false)
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_tus_juegos, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,23 +46,23 @@ class Perfil : Fragment() {
         navView?.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_item_mi_perfil -> {
-                    findNavController().navigate(R.id.action_perfil_self)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_perfil)
                     true
                 }
                 R.id.nav_item_inicio -> {
-                    findNavController().navigate(R.id.action_perfil_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_homeFirstPage)
                     true
                 }
                 R.id.nav_item_categorias -> {
-                    findNavController().navigate(R.id.action_perfil_to_categoriasSlideBar2)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_categoriasSlideBar2)
                     true
                 }
                 R.id.nav_item_mis_juegos -> {
-                    findNavController().navigate(R.id.action_perfil_to_tusJuegos2)
+                    findNavController().navigate(R.id.action_tusJuegos2_self)
                     true
                 }
                 R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_perfil_to_tusCatalogos)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_tusCatalogos)
                     true
                 }
                 R.id.nav_item_cerrar_sesion -> {
@@ -74,41 +74,27 @@ class Perfil : Fragment() {
             }
         }
 
-
         val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)
-
-
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_icono -> {
-                    findNavController().navigate(R.id.action_perfil_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_homeFirstPage)
                 }
-
                 R.id.home_usuario_icono -> {
-                    findNavController().navigate(R.id.action_perfil_to_homeUsuario)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_homeUsuario)
                 }
-
                 R.id.agregar_icono -> {
-                    findNavController().navigate(R.id.action_perfil_to_crear)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_crear)
                 }
-
                 R.id.search_icono -> {
-                    findNavController().navigate(R.id.action_perfil_to_buscar)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_buscar)
                 }
-
                 R.id.profile_icono -> {
-                    findNavController().navigate(R.id.action_perfil_self)
+                    findNavController().navigate(R.id.action_tusJuegos2_to_perfil)
                 }
             }
             true
         }
-
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-    }
-
 }

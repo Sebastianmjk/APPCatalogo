@@ -185,6 +185,15 @@
         <action
             android:id="@+id/action_categoriasDetail_to_homeUsuario"
             app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_tusCatalogos"
+            app:destination="@id/tusCatalogos" />
+        <action
+            android:id="@+id/action_categoriasDetail_to_tusJuegos2"
+            app:destination="@id/tusJuegos2" />
     </fragment>
     <fragment
         android:id="@+id/categoriasSlideBar2"
@@ -209,6 +218,15 @@
         <action
             android:id="@+id/action_categoriasSlideBar2_to_perfil"
             app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_self"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_tusCatalogos"
+            app:destination="@id/tusCatalogos" />
+        <action
+            android:id="@+id/action_categoriasSlideBar2_to_tusJuegos2"
+            app:destination="@id/tusJuegos2" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -263,6 +281,15 @@
         <action
             android:id="@+id/action_crear_to_perfil"
             app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_crear_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_crear_to_tusCatalogos"
+            app:destination="@id/tusCatalogos" />
+        <action
+            android:id="@+id/action_crear_to_tusJuegos2"
+            app:destination="@id/tusJuegos2" />
     </fragment>
     <fragment
         android:id="@+id/perfil"
@@ -290,6 +317,12 @@
         <action
             android:id="@+id/action_perfil_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_perfil_to_tusJuegos2"
+            app:destination="@id/tusJuegos2" />
+        <action
+            android:id="@+id/action_perfil_to_tusCatalogos"
+            app:destination="@id/tusCatalogos" />
     </fragment>
     <fragment
         android:id="@+id/homeUsuario"
@@ -311,6 +344,66 @@
         <action
             android:id="@+id/action_homeUsuario_to_perfil"
             app:destination="@id/perfil" />
+    </fragment>
+    <fragment
+        android:id="@+id/tusCatalogos"
+        android:name="com.example.appcatalogo.homePage.bar.TusCatalogos"
+        android:label="fragment_tus_catalogos"
+        tools:layout="@layout/fragment_tus_catalogos" >
+        <action
+            android:id="@+id/action_tusCatalogos_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_tusCatalogos_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_tusCatalogos_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_tusCatalogos_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_tusCatalogos_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_tusCatalogos_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_tusCatalogos_self"
+            app:destination="@id/tusCatalogos" />
+        <action
+            android:id="@+id/action_tusCatalogos_to_tusJuegos2"
+            app:destination="@id/tusJuegos2" />
+    </fragment>
+    <fragment
+        android:id="@+id/tusJuegos2"
+        android:name="com.example.appcatalogo.homePage.bar.TusJuegos"
+        android:label="fragment_tus_juegos"
+        tools:layout="@layout/fragment_tus_juegos" >
+        <action
+            android:id="@+id/action_tusJuegos2_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_tusJuegos2_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_tusJuegos2_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_tusJuegos2_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_tusJuegos2_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_tusJuegos2_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_tusJuegos2_self"
+            app:destination="@id/tusJuegos2" />
+        <action
+            android:id="@+id/action_tusJuegos2_to_tusCatalogos"
+            app:destination="@id/tusCatalogos" />
     </fragment>
 
 </navigation>

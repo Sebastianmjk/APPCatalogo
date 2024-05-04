@@ -67,6 +67,37 @@ class CategoriasSlideBar : Fragment() {
         navView?.visibility = View.VISIBLE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
+        navView?.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.nav_item_mi_perfil -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_perfil)
+                    true
+                }
+                R.id.nav_item_inicio -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_homeFirstPage)
+                    true
+                }
+                R.id.nav_item_categorias -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_self)
+                    true
+                }
+                R.id.nav_item_mis_juegos -> {
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_tusJuegos2)
+                    true
+                }
+                R.id.nav_item_mis_catalogos -> {
+                    findNavController().navigate(R.id.action_categoriasDetail_to_tusCatalogos)
+                    true
+                }
+                R.id.nav_item_cerrar_sesion -> {
+                    findNavController().popBackStack(R.id.loginFragment, false)
+                    true
+
+                }
+                else -> false
+            }
+        }
+
         val layoutManagerCategorias = GridLayoutManager(context, 2)
         recyclerViewCategoriasSlideBar = view.findViewById(R.id.rvCategoriasSlideBar)
         recyclerViewCategoriasSlideBar.layoutManager = layoutManagerCategorias
