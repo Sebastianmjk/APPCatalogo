@@ -17,11 +17,13 @@ import com.example.appcatalogo.apiConection.apiUsuario.Service.TokenManager
 import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionRequest
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.appcatalogo.databinding.FragmentLoginBinding
+import com.example.appcatalogo.showError
+import com.example.appcatalogo.messageErrorToStatus
 
 class LoginFragment : Fragment() {
 
@@ -29,11 +31,15 @@ class LoginFragment : Fragment() {
     private var appBarLayout: AppBarLayout? = null
     private var coordinatorLayout: CoordinatorLayout? = null
 
+    private var _binding:FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,20 +53,19 @@ class LoginFragment : Fragment() {
         appBarLayout?.visibility = View.GONE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
-
-        val inputUsername: EditText = view.findViewById(R.id.inputUsername)
-        val inputPassword: EditText = view.findViewById(R.id.inputPassword)
         var username: String
         var userPassword: String
-        val conectSignUp: TextView = view.findViewById(R.id.conectSignUp)
-        conectSignUp.setOnClickListener {
+        binding.conectSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registroFirstPage)
         }
 
-        val iniciarSesionButton = view.findViewById<Button>(R.id.buttonIniciarSesion);
-        iniciarSesionButton.setOnClickListener {
-            username = inputUsername.text.toString().replace(" ","")
-            userPassword = inputPassword.text.toString().replace(" ","")
+        binding.buttonIniciarSesion.setOnClickListener {
+            username = binding.inputUsername.text.toString().replace(" ","")
+            userPassword = binding.inputPassword.text.toString().replace(" ","")
+            if (username.isEmpty() || userPassword.isEmpty()) {
+                showError("Tiene que completar los campos obligatorios")
+                return@setOnClickListener
+            }
             CoroutineScope(Dispatchers.IO).launch {
                 val response = UserService.loginUser(AutenticacionRequest(username, userPassword))
                 withContext(Dispatchers.Main) {
@@ -72,7 +77,7 @@ class LoginFragment : Fragment() {
                         }
                         findNavController().navigate(R.id.action_loginFragment_to_homeFirstPage)
                     } else {
-                        showError(response.code())
+                        showError(createMessageError(response.code()))
                     }
                 }
             }
@@ -89,9 +94,6 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun showError(status: Int){
-        Toast.makeText(requireContext(), createMessageError(status), Toast.LENGTH_SHORT).show()
-    }
 
 
 }
