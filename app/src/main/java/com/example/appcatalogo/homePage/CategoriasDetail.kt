@@ -138,6 +138,11 @@
             }
 
         }
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        }
         private fun loadGeneros() {
             ApiClient.apiGenero.listGeneros(nombreCategoria ?: "", "20").enqueue(object : Callback<RemoteResult> {
                     override fun onResponse(

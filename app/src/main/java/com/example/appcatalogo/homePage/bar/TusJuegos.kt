@@ -97,4 +97,9 @@ class TusJuegos : Fragment() {
             true
         }
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+    }
 }

@@ -86,7 +86,7 @@ class CategoriasSlideBar : Fragment() {
                     true
                 }
                 R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_tusCatalogos)
+                    findNavController().navigate(R.id.action_categoriasSlideBar2_to_tusCatalogos)
                     true
                 }
                 R.id.nav_item_cerrar_sesion -> {
@@ -139,6 +139,11 @@ class CategoriasSlideBar : Fragment() {
             true
         }
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 
 }
