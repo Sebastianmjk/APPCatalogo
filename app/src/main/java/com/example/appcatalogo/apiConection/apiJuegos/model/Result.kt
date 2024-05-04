@@ -8,6 +8,7 @@ data class Result(
     val fecha_Lanzamiento: String,
     val generos: List<String>,
     val id: Int,
+    val images: List<String>,
     val listas_de_deseos: Int,
     val menciones_listas: Int,
     val numero_Partidas: Int,

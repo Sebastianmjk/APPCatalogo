@@ -10,6 +10,6 @@ class GameViewHolder(view: View):RecyclerView.ViewHolder(view) {
     private val binding = ItemGameBinding.bind(view)
 
     fun bind(image:String) {
-        Picasso.get().load(image).into(binding.ivGame)
+       /* Picasso.get().load(image).into(binding.ivGame)*/
     }
 }
