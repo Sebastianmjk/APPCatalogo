@@ -74,7 +74,7 @@
             android:background="@drawable/custom_input"
             android:ems="10"
             android:hint="@string/confirmarContraseña"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:paddingStart="25sp"
             android:paddingEnd="25sp"
             android:textSize="14sp"

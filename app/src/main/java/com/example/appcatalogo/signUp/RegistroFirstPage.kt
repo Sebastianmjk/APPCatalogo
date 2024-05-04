@@ -52,7 +52,7 @@ class RegistroFirstPage : Fragment() {
             textSegundoNombre = inputSegundoNombre.text.toString().replace(" ", "") ?: ""
             textPrimerApellido = inputPrimerApellido.text.toString().replace(" ", "")
             textSegundoApellido = inputSegundoApellido.text.toString().replace(" ", "")
-            if (textUsername.isEmpty() && textPrimerNombre.isEmpty() && textPrimerApellido.isEmpty() && textSegundoApellido.isEmpty()) {
+            if (textUsername.isEmpty() || textPrimerNombre.isEmpty() || textPrimerApellido.isEmpty() || textSegundoApellido.isEmpty()) {
                 showError("Tiene que completar los campos obligatorios")
             } else {
                 val nombre =
