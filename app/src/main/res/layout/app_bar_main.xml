@@ -19,6 +19,15 @@
             android:background="#003F8F">
 
             <ImageButton
+                android:id="@+id/back_button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:layout_marginRight="10dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back" />
+
+            <ImageButton
                 android:id="@+id/menu_button"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

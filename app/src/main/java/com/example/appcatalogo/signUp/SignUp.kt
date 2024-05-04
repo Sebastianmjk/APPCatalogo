@@ -44,6 +44,12 @@ open class SignUp : AppCompatActivity() {
             }
         }
 
+        val backButton: ImageButton = findViewById(R.id.back_button)
+        backButton.setOnClickListener {
+
+
+        }
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
