@@ -16,13 +16,14 @@
             android:id="@+id/toolbar_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#003F8F" >
+            android:background="#003F8F">
 
             <ImageButton
                 android:id="@+id/menu_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="end"
+                android:layout_marginRight="10dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/menu_slide" />
 
