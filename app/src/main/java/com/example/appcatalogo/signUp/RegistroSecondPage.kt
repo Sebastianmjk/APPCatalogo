@@ -52,6 +52,7 @@ class RegistroSecondPage : Fragment() {
             }
             CoroutineScope(Dispatchers.IO).launch {
                 if (!trySendCode(correoElectronico)) {
+                    println("Correo: $correoElectronico")
                     return@launch
                 }
                 withContext(Dispatchers.Main) {
