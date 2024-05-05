@@ -18,4 +18,8 @@
         <item name="android:textColor">#FFFFFF</item> <!-- Color de texto blanco -->
         <item name="android:gravity">center</item> <!-- Texto centrado -->
     </style>
+    <style name="EstiloBotonBuscar" parent="Widget.AppCompat.SearchView">
+        <item name="android:background">@drawable/custom_input_buscar</item>
+    </style>
+
 </resources>

@@ -260,6 +260,9 @@
         <action
             android:id="@+id/action_buscar_self"
             app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_buscar_to_juegoDetail"
+            app:destination="@id/juegoDetail" />
     </fragment>
     <fragment
         android:id="@+id/crear"
