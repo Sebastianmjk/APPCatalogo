@@ -312,5 +312,35 @@
             android:id="@+id/action_homeUsuario_to_perfil"
             app:destination="@id/perfil" />
     </fragment>
+    <fragment
+        android:id="@+id/registroCorreoContra"
+        android:name="com.example.appcatalogo.login.RegistroCorreoContra"
+        android:label="fragment_correo_contra"
+        tools:layout="@layout/fragment_correo_contra" >
+        <action
+            android:id="@+id/action_registroCorreoContra_to_registroCorreoVerificacion"
+            app:destination="@id/registroCorreoVerificacion" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroNuevaContra"
+        android:name="com.example.appcatalogo.login.RegistroNuevaContra"
+        android:label="fragment_nueva_contra"
+        tools:layout="@layout/fragment_nueva_contra" >
+        <argument
+            android:name="correoElectronico"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroCorreoVerificacion"
+        android:name="com.example.appcatalogo.login.RegistroCorreoVerificacion"
+        android:label="fragment_correo_verificacion"
+        tools:layout="@layout/fragment_correo_verificacion" >
+        <action
+            android:id="@+id/action_registroCorreoVerificacion_to_registroNuevaContra"
+            app:destination="@id/registroNuevaContra" />
+        <argument
+            android:name="correoElectronico"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

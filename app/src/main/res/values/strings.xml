@@ -23,12 +23,17 @@
     <string name="correoElectronico">Correo Electrónico</string>
     <string name="correo">correo electrónico</string>
     <string name="ingreseCorreo">Ingrese su correo electrónico para recibir el código de confirmación</string>
+    <string name="ingreseCorreoConfirmacion">Ingrese su correo electrónico para recibir el código de confirmación</string>
     <string name="verificaciónCorreo">Verificación del correo</string>
     <string name="ingreseCodigo">Ingrese el código que se le fue enviado al correo que proporciono</string>
+    <string name="ingreseCodigoVerificación">Ingrese el código que se le fue enviado al correo que proporciono</string>
     <string name="valorVerificicacion">*</string>
     <string name="contraseñas">Contraseñas</string>
+    <string name="nuevaContraseña">Nueva Contraseña</string>
     <string name="ingreseContraseña">Cree una contraseña y confirmela</string>
+    <string name="ingreseNuevaContraseña">Ingrese la nueva contraseña y confirmela</string>
     <string name="ochoCaracteres">La contraseña debe ser minimo de 8 caracteres</string>
+    <string name="nuevaOchoCaracteres">La nueva contraseña debe ser minimo de 8 caracteres</string>
     <string name="confirmarContraseña">Confirmar Contraseña</string>
     <!--    Strings KnowMore-->
     <string name="descripcionCuestionario">Completa el siguiente cuestionario para saber mas de ti</string>
