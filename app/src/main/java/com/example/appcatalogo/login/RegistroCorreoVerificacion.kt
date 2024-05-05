@@ -22,6 +22,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import com.example.appcatalogo.apiConection.apiUsuario.model.VerifyEmail
+
 
 
 class RegistroCorreoVerificacion : Fragment() {
@@ -86,7 +88,8 @@ class RegistroCorreoVerificacion : Fragment() {
                 withContext(Dispatchers.Main) {
                     val action =
                         RegistroCorreoVerificacionDirections.actionRegistroCorreoVerificacionToRegistroNuevaContra(
-                            correoElectronico = email
+                            correoElectronico = email,
+                            code = code
                         )
                     findNavController().navigate(action)
                 }
@@ -106,7 +109,7 @@ class RegistroCorreoVerificacion : Fragment() {
     private suspend fun tryVerifyCode(email: String, code: String): Boolean {
         return try {
             withTimeout(8000) {
-                val response = UserService.verifyCode(email = email, code = code)
+                val response = UserService.verifyCode(VerifyEmail(email=email, code=code))
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {
