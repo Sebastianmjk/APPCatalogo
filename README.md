@@ -1,5 +1,8 @@
 # Game Vault
 
+![92 sin título_20240417105705](https://github.com/Sebastianmjk/APPCatalogo/assets/148504578/29dd1d6d-2dfc-400c-a9ad-330d240d9cec)
+
+
 Esta es una aplicación basada en videojuegos, en la cual cada usuario podra tener su propio espacio donde podra encontrar sus juegos seleccionados con sus respectivas recomendaciones, también podra crear sus propios catalogos en los cuales podras gestionar los juegos en los que estes interesado.
 
 ## Tecnologias
