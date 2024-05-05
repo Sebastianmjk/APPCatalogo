@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.appcatalogo.R
 import android.content.Context
 import android.text.TextWatcher
 import android.text.Editable
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.navigation.fragment.navArgs
+import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
 import com.example.appcatalogo.databinding.FragmentRegistroThirdPageBinding
+import com.example.appcatalogo.messageErrorToStatus
+import com.example.appcatalogo.showError
+import kotlinx.coroutines.*
+import java.io.IOException
+import java.util.concurrent.TimeoutException
 
 class RegistroThirdPage : Fragment() {
 
@@ -68,14 +70,22 @@ class RegistroThirdPage : Fragment() {
             })
 
             binding.buttonNext.setOnClickListener {
-                val action =
-                    RegistroThirdPageDirections.actionRegistroThirdPageToRegistroFourthPage(
-                        userName = args.userName,
-                        nombre = args.nombre,
-                        apellido = args.apellido,
-                        correoElectronico = args.correoElectronico,
-                    )
-                findNavController().navigate(action)
+                val code = binding.invisibleEditText.text.toString()
+                CoroutineScope(Dispatchers.IO).launch {
+                    if (!tryVerifyCode(args.correoElectronico, code)) {
+                        return@launch
+                    }
+                    withContext(Dispatchers.Main) {
+                        val action = RegistroThirdPageDirections.actionRegistroThirdPageToRegistroFourthPage(
+                            userName = args.userName,
+                            nombre = args.nombre,
+                            apellido = args.apellido,
+                            correoElectronico = args.correoElectronico
+                        )
+                        findNavController().navigate(action)
+                    }
+                }
+
             }
             binding.buttonBack.setOnClickListener {
                 findNavController().navigateUp()
@@ -86,4 +96,33 @@ class RegistroThirdPage : Fragment() {
             super.onDestroyView()
             _binding = null
         }
+
+    private suspend fun tryVerifyCode(email: String, code: String): Boolean {
+        return try {
+            withTimeout(5000) {
+                val response = UserService.verifyCode(email=email, code=code)
+                if (response.isSuccessful) {
+                    val message = response.body()?.string()
+                    if (message != null) {
+                        showError(message)
+                    }
+                    true
+                } else {
+                    val message = response.errorBody()?.string()
+                    if (message != null) {
+                        showError(message)
+                    } else {
+                        showError(messageErrorToStatus(response.code()))
+                    }
+                    false
+                }
+            }
+        } catch (e: TimeoutException) {
+            showError("Tiempo de espera agotado")
+            false
+        }catch (e: IOException) {
+            showError("Error de conexión de red")
+            false
+        }
+    }
     }

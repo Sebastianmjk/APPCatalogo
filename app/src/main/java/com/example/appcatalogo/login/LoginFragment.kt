@@ -5,10 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
@@ -23,7 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.appcatalogo.databinding.FragmentLoginBinding
 import com.example.appcatalogo.showError
-import com.example.appcatalogo.messageErrorToStatus
 import com.google.android.material.navigation.NavigationView
 
 class LoginFragment : Fragment() {
@@ -59,6 +54,9 @@ class LoginFragment : Fragment() {
 
         var username: String
         var userPassword: String
+        binding.passwordForgetText.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registroCorreoContra)
+        }
         binding.conectSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registroFirstPage)
         }

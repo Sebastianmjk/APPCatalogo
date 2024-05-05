@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
 import retrofit2.Response
 
 object UserService {
@@ -28,6 +29,18 @@ object UserService {
     suspend fun registerUser(usuario: UsuarioRegistro): Response<AutenticacionResponse> {
         return withContext(Dispatchers.IO) {
             usuarioApi.registerUser(usuario)
+        }
+    }
+
+    suspend fun sendCode(email: String): Response<ResponseBody> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.sendCode(email)
+        }
+    }
+
+    suspend fun verifyCode(email: String, code: String): Response<ResponseBody> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.verifyCode(email, code)
         }
     }
 

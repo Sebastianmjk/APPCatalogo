@@ -239,6 +239,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registroFirstPage"
             app:destination="@id/registroFirstPage" />
+        <action
+            android:id="@+id/action_loginFragment_to_registroCorreoContra"
+            app:destination="@id/registroCorreoContra" />
     </fragment>
     <fragment
         android:id="@+id/buscar"

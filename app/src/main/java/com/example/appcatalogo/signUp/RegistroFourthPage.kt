@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -14,6 +13,7 @@ import com.example.appcatalogo.databinding.FragmentRegistroFourthPageBinding
 import com.example.appcatalogo.showError
 import com.example.appcatalogo.messageErrorToStatus
 import kotlinx.coroutines.*
+import java.io.IOException
 import java.util.concurrent.TimeoutException
 
 class RegistroFourthPage : Fragment() {
@@ -64,6 +64,9 @@ class RegistroFourthPage : Fragment() {
                     withContext(Dispatchers.Main){
                         findNavController().navigate(RegistroFourthPageDirections.actionRegistroFourthPageToKnowMore())
                     }
+                }else{
+                    showError("No se pudo registrar el usuario")
+                    return@launch
                 }
             }
 
@@ -98,6 +101,9 @@ class RegistroFourthPage : Fragment() {
             }
         } catch (e: TimeoutException) {
             showError("Tiempo de espera agotado")
+            false
+        }catch (e: IOException) {
+            showError("Error de conexión de red")
             false
         }
     }
