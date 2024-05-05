@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import com.example.appcatalogo.apiConection.apiUsuario.model.VerifyEmail
 
 class RegistroThirdPage : Fragment() {
 
@@ -108,7 +109,7 @@ class RegistroThirdPage : Fragment() {
     private suspend fun tryVerifyCode(email: String, code: String): Boolean {
         return try {
             withTimeout(5000) {
-                val response = UserService.verifyCode(email=email, code=code)
+                val response = UserService.verifyCode(VerifyEmail(email=email, code=code))
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {

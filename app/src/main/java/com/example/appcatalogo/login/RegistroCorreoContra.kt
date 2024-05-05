@@ -17,6 +17,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
 import java.io.IOException
 import java.util.concurrent.TimeoutException
+import com.example.appcatalogo.apiConection.apiUsuario.model.EmailSendCode
+
 
 
 class RegistroCorreoContra : Fragment() {
@@ -77,7 +79,7 @@ class RegistroCorreoContra : Fragment() {
     private suspend fun trySendCode(email: String): Boolean {
         return try {
             withTimeout(5000) {
-                val response = UserService.sendCode(email)
+                val response = UserService.sendCode(EmailSendCode(email))
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {

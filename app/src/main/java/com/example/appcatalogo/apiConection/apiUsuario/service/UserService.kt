@@ -5,6 +5,9 @@ import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionReques
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionResponse
 import com.example.appcatalogo.apiConection.apiUsuario.model.Usuario
 import com.example.appcatalogo.apiConection.apiUsuario.model.UsuarioRegistro
+import com.example.appcatalogo.apiConection.apiUsuario.model.EmailSendCode
+import com.example.appcatalogo.apiConection.apiUsuario.model.VerifyEmail
+import com.example.appcatalogo.apiConection.apiUsuario.model.UserChangePassword
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.Dispatchers
@@ -41,15 +44,21 @@ object UserService {
         }
     }
 
-    suspend fun sendCode(email: String): Response<ResponseBody> {
+    suspend fun sendCode(email:EmailSendCode): Response<ResponseBody> {
         return withContext(Dispatchers.IO) {
             usuarioApi.sendCode(email)
         }
     }
 
-    suspend fun verifyCode(email: String, code: String): Response<ResponseBody> {
+    suspend fun verifyCode(solicitud:VerifyEmail): Response<ResponseBody> {
         return withContext(Dispatchers.IO) {
-            usuarioApi.verifyCode(email, code)
+            usuarioApi.verifyCode(solicitud)
+        }
+    }
+
+    suspend fun changePasswordForgot(solicitud:UserChangePassword): Response<ResponseBody> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.changePasswordForgot(solicitud)
         }
     }
 
