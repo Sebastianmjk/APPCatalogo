@@ -68,6 +68,10 @@
     <string name="tus_juegos">Tus Juegos</string>
     <string name="guardar_cambios">Guardar</string>
     <string name="juego">juego</string>
+    <string name="titulo_catalogo">Titulo Catalogo</string>
+    <string name="a_adir">Añadir juegos</string>
+    <string name="crea_tu_catalogo">Crea Tu Catalogo</string>
+    <string name="ingrese_el_juego">Ingrese la id del juego</string>
 
 
 </resources>
