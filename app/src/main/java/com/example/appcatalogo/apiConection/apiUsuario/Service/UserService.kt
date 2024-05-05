@@ -31,6 +31,11 @@ object UserService {
             usuarioApi.registerUser(usuario)
         }
     }
+    suspend fun profileUser(authHeader: String): Response<Usuario> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.profileUser(authHeader)
+        }
+    }
 
     suspend fun sendCode(email: String): Response<ResponseBody> {
         return withContext(Dispatchers.IO) {

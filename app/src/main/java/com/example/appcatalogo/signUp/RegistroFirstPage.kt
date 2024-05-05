@@ -7,13 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.navigation.NavigationView
 
 class RegistroFirstPage : Fragment() {
 

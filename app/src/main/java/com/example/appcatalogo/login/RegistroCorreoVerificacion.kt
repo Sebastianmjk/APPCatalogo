@@ -15,7 +15,11 @@ import com.example.appcatalogo.databinding.FragmentCorreoVerificacionBinding
 import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
 import com.example.appcatalogo.showError
 import com.example.appcatalogo.messageErrorToStatus
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
 import java.io.IOException
 import java.util.concurrent.TimeoutException
 
@@ -100,7 +104,7 @@ class RegistroCorreoVerificacion : Fragment() {
 
     private suspend fun tryVerifyCode(email: String, code: String): Boolean {
         return try {
-            withTimeout(5000) {
+            withTimeout(8000) {
                 val response = UserService.verifyCode(email=email, code=code)
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
