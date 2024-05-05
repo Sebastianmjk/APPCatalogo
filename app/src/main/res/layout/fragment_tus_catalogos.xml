@@ -20,6 +20,7 @@
             android:layout_marginEnd="150dp"
             android:layout_marginBottom="350dp"
             android:text="@string/tus_catalogos"
+            android:fontFamily="@font/inter_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
