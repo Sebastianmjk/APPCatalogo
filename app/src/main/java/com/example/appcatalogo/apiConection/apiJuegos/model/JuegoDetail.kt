@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
@@ -17,6 +18,7 @@ import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +47,26 @@ class JuegoDetail : Fragment() {
         val resumenJuego = arguments?.getString("resumen_juego")
         val textView1 = view.findViewById<TextView>(R.id.tx_juego_resumen_detail)
         textView1.text = resumenJuego
+        val imageUrl = arguments?.getString("imagen_juego")
+        val imageView = view.findViewById<ImageView>(R.id.ivGame_detail)
+        if (imageUrl != null) {
+            Picasso.get()
+                .load(imageUrl)
+                .error(R.drawable.logo) // muestra una imagen de error si la carga falla
+                .into(imageView, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                        // La imagen se cargó correctamente
+                    }
+
+                    override fun onError(e: Exception?) {
+                        // Hubo un error al cargar la imagen
+                        Log.d("API", "Error al cargar la imagen: $e")
+                    }
+                })
+        } else {
+            // Cargar una imagen predeterminada de la carpeta drawable
+            Picasso.get().load(R.drawable.logo).into(imageView)
+        }
 
         return view
     }
@@ -75,6 +97,9 @@ class JuegoDetail : Fragment() {
             val bundle = Bundle()
             bundle.putString("titulo_juego", juego.titulo)
             bundle.putString("resumen_juego", juego.resumen)
+            if (juego.images.isNotEmpty()) {
+                bundle.putString("imagen_juego", juego.images[0])
+            }
             findNavController().navigate(R.id.action_juegoDetail_self, bundle)
         }
 

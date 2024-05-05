@@ -62,6 +62,37 @@
             navView?.visibility = View.VISIBLE
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
 
+            navView?.setNavigationItemSelectedListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.nav_item_mi_perfil -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_perfil)
+                        true
+                    }
+                    R.id.nav_item_inicio -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_homeFirstPage)
+                        true
+                    }
+                    R.id.nav_item_categorias -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_categoriasSlideBar2)
+                        true
+                    }
+                    R.id.nav_item_mis_juegos -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_tusJuegos2)
+                        true
+                    }
+                    R.id.nav_item_mis_catalogos -> {
+                        findNavController().navigate(R.id.action_categoriasDetail_to_tusCatalogos)
+                        true
+                    }
+                    R.id.nav_item_cerrar_sesion -> {
+                        findNavController().popBackStack(R.id.loginFragment, false)
+                        true
+
+                    }
+                    else -> false
+                }
+            }
+
             val layoutManagerJuegos = LinearLayoutManager(context)
             recyclerViewJuegos = view.findViewById(R.id.rvCategoriasJuegos)
             recyclerViewJuegos.layoutManager = layoutManagerJuegos
@@ -106,6 +137,11 @@
                 true
             }
 
+        }
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         }
         private fun loadGeneros() {
             ApiClient.apiGenero.listGeneros(nombreCategoria ?: "", "20").enqueue(object : Callback<RemoteResult> {

@@ -58,11 +58,11 @@ class Perfil : Fragment() {
                     true
                 }
                 R.id.nav_item_mis_juegos -> {
-                    findNavController().navigate(R.id.action_perfil_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_perfil_to_tusJuegos2)
                     true
                 }
                 R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_perfil_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_perfil_to_tusCatalogos)
                     true
                 }
                 R.id.nav_item_cerrar_sesion -> {
