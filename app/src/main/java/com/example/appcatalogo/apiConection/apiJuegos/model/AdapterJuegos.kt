@@ -1,5 +1,6 @@
 package com.example.appcatalogo.apiConection.apiJuegos.model
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,15 +24,31 @@ class AdapterJuegos(val juegosList : ArrayList<Result>) : RecyclerView.Adapter<A
             idJuegos = juego.id
             tituloJuegos.text = juego.titulo
 
+            val imageUrl = if (juego.images.isNotEmpty()) juego.images[0] else null
 
-            val imageUrl = juego.images
+            // Log de la URL de la imagen
+            Log.d("API", "URL de la imagen: $imageUrl")
 
-            if (imageUrl.isNotEmpty()) {
-                Picasso.get().load(imageUrl as String).into(imagenJuegos)
+            if (imageUrl != null) {
+                Picasso.get()
+                    .load(imageUrl)
+                    .error(R.drawable.logo) // muestra una imagen de error si la carga falla
+                    .into(imagenJuegos, object : com.squareup.picasso.Callback {
+                        override fun onSuccess() {
+                            // La imagen se cargó correctamente
+                        }
+
+                        override fun onError(e: Exception?) {
+                            // Hubo un error al cargar la imagen
+                            Log.d("API", "Error al cargar la imagen: $e")
+                        }
+                    })
             } else {
+                // Cargar una imagen predeterminada de la carpeta drawable
                 Picasso.get().load(R.drawable.logo).into(imagenJuegos)
             }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
