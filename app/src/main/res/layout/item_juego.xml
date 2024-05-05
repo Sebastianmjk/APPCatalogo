@@ -16,7 +16,8 @@
             android:layout_height="100dp"
             android:layout_weight="1"
             tools:src="@tools:sample/avatars"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp"
+            android:contentDescription="@string/juego" />
     </LinearLayout>
 
     <LinearLayout
@@ -33,6 +34,7 @@
             android:layout_margin="5sp"
             android:layout_weight="1"
             android:gravity="center"
+            android:fontFamily="@font/inter_medium"
             android:text="@string/tituloJuego"
             android:textColor="#000000" />
     </LinearLayout>
