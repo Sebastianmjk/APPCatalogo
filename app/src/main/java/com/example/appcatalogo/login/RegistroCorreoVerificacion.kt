@@ -12,7 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.appcatalogo.databinding.FragmentCorreoVerificacionBinding
-import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.showError
 import com.example.appcatalogo.messageErrorToStatus
 import kotlinx.coroutines.Dispatchers
@@ -75,7 +75,7 @@ class RegistroCorreoVerificacion : Fragment() {
         binding.buttonNext.setOnClickListener {
             val code = binding.invisibleEditText.text.toString()
             if (code.isEmpty()) {
-                 showError("El código es obligatorio")
+                showError("El código es obligatorio")
                 return@setOnClickListener
             }
             val email = args.correoElectronico
@@ -84,9 +84,10 @@ class RegistroCorreoVerificacion : Fragment() {
                     return@launch
                 }
                 withContext(Dispatchers.Main) {
-                    val action = RegistroCorreoVerificacionDirections.actionRegistroCorreoVerificacionToRegistroNuevaContra(
-                        correoElectronico = email
-                    )
+                    val action =
+                        RegistroCorreoVerificacionDirections.actionRegistroCorreoVerificacionToRegistroNuevaContra(
+                            correoElectronico = email
+                        )
                     findNavController().navigate(action)
                 }
             }
@@ -105,28 +106,38 @@ class RegistroCorreoVerificacion : Fragment() {
     private suspend fun tryVerifyCode(email: String, code: String): Boolean {
         return try {
             withTimeout(8000) {
-                val response = UserService.verifyCode(email=email, code=code)
+                val response = UserService.verifyCode(email = email, code = code)
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {
-                        showError(message)
+                        withContext(Dispatchers.Main) {
+                            showError(message)
+                        }
                     }
                     true
                 } else {
                     val message = response.errorBody()?.string()
                     if (message != null) {
-                        showError(message)
+                        withContext(Dispatchers.Main) {
+                            showError(message)
+                        }
                     } else {
-                        showError(messageErrorToStatus(response.code()))
+                        withContext(Dispatchers.Main) {
+                            showError(messageErrorToStatus(response.code()))
+                        }
                     }
                     false
                 }
             }
         } catch (e: TimeoutException) {
-            showError("Tiempo de espera agotado")
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
             false
-        }catch (e: IOException) {
-            showError("Error de conexión de red")
+        } catch (e: IOException) {
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
             false
         }
     }

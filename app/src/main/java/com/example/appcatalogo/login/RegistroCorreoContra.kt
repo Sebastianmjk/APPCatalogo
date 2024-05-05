@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.showError
 import com.example.appcatalogo.databinding.FragmentCorreoContraBinding
-import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.messageErrorToStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -81,24 +81,34 @@ class RegistroCorreoContra : Fragment() {
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {
-                        showError(message)
+                        withContext(Dispatchers.Main) {
+                            showError(message)
+                        }
                     }
                     true
                 } else {
                     val message = response.errorBody()?.string()
                     if (message != null) {
-                        showError(message)
+                        withContext(Dispatchers.Main) {
+                            showError(message)
+                        }
                     } else {
-                        showError(messageErrorToStatus(response.code()))
+                        withContext(Dispatchers.Main) {
+                            showError(messageErrorToStatus(response.code()))
+                        }
                     }
                     false
                 }
             }
         } catch (e: TimeoutException) {
-            showError("Tiempo de espera agotado")
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
             false
         }catch (e: IOException) {
-            showError("Error de conexión de red")
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
             false
         }
     }

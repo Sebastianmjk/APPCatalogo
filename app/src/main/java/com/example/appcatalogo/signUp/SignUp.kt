@@ -1,9 +1,7 @@
 package com.example.appcatalogo.signUp
 
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.ImageButton
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -14,15 +12,14 @@ import com.example.appcatalogo.R
 import com.google.android.material.navigation.NavigationView
 
 open class SignUp : AppCompatActivity() {
-        protected open lateinit var drawerLayout: DrawerLayout
-        protected open lateinit var navView: NavigationView
-        private lateinit var toggle: ActionBarDrawerToggle
-
+    protected open lateinit var drawerLayout: DrawerLayout
+    protected open lateinit var navView: NavigationView
+    private lateinit var toggle: ActionBarDrawerToggle
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_sign_up)
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_sign_up)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
@@ -31,7 +28,6 @@ open class SignUp : AppCompatActivity() {
 
         drawerLayout = findViewById(R.id.drawlerLayout)
         navView = findViewById(R.id.nav_view)
-        
 
 
         val menuButton: ImageButton = findViewById(R.id.menu_button)
@@ -43,7 +39,8 @@ open class SignUp : AppCompatActivity() {
             }
         }
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerViewSignUp) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerViewSignUp) as NavHostFragment
         val navController = navHostFragment.navController
 
         val backButton: ImageButton = findViewById(R.id.back_button)
@@ -52,5 +49,4 @@ open class SignUp : AppCompatActivity() {
         }
 
     }
-
-    }
+}

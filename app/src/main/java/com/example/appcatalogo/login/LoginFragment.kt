@@ -9,8 +9,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
-import com.example.appcatalogo.apiConection.apiUsuario.Service.TokenManager
-import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
+import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionRequest
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.CoroutineScope

@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiConection.apiUsuario.Service
+package com.example.appcatalogo.apiConection.apiUsuario.service
 
 object TokenManager {
     var accessToken: String? = null

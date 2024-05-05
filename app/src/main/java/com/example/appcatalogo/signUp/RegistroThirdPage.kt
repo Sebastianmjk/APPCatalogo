@@ -11,7 +11,7 @@ import android.content.Context
 import android.text.TextWatcher
 import android.text.Editable
 import androidx.navigation.fragment.navArgs
-import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.databinding.FragmentRegistroThirdPageBinding
 import com.example.appcatalogo.messageErrorToStatus
 import com.example.appcatalogo.showError
@@ -112,24 +112,34 @@ class RegistroThirdPage : Fragment() {
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {
-                        showError(message)
+                        withContext(Dispatchers.Main) {
+                            showError(message)
+                        }
                     }
                     true
                 } else {
                     val message = response.errorBody()?.string()
                     if (message != null) {
-                        showError(message)
+                        withContext(Dispatchers.Main) {
+                            showError(message)
+                        }
                     } else {
-                        showError(messageErrorToStatus(response.code()))
+                        withContext(Dispatchers.Main) {
+                            showError(messageErrorToStatus(response.code()))
+                        }
                     }
                     false
                 }
             }
         } catch (e: TimeoutException) {
-            showError("Tiempo de espera agotado")
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
             false
         }catch (e: IOException) {
-            showError("Error de conexión de red")
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
             false
         }
     }

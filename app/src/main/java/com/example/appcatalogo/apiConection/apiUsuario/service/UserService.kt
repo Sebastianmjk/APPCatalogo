@@ -1,4 +1,4 @@
-package com.example.appcatalogo.apiConection.apiUsuario.Service
+package com.example.appcatalogo.apiConection.apiUsuario.service
 
 import com.example.appcatalogo.apiConection.apiUsuario.UsuarioApi
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionRequest
@@ -14,11 +14,15 @@ import retrofit2.Response
 
 object UserService {
     private val baseUrlUser:String = "https://apicatalogojuegos.onrender.com/GameVault/Usuario/"
+    private val client = UserAuthenticateService.getOkHttpClient()
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrlUser)
+        .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private val usuarioApi = retrofit.create(UsuarioApi::class.java)
+
+
 
     suspend fun loginUser(usuario: AutenticacionRequest): Response<AutenticacionResponse> {
         return withContext(Dispatchers.IO) {

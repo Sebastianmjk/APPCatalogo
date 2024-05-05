@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.UsuarioRegistro
 import com.example.appcatalogo.databinding.FragmentRegistroFourthPageBinding
 import com.example.appcatalogo.showError
@@ -69,7 +69,9 @@ class RegistroFourthPage : Fragment() {
                         findNavController().navigate(RegistroFourthPageDirections.actionRegistroFourthPageToKnowMore())
                     }
                 }else{
-                    showError("No se pudo registrar el usuario")
+                    withContext(Dispatchers.Main) {
+                        showError("No se pudo registrar el usuario")
+                    }
                     return@launch
                 }
             }
@@ -99,15 +101,21 @@ class RegistroFourthPage : Fragment() {
                 if (response.isSuccessful) {
                     true
                 } else {
-                    showError(messageErrorToStatus(response.code()))
+                    withContext(Dispatchers.Main) {
+                        showError(messageErrorToStatus(response.code()))
+                    }
                     false
                 }
             }
         } catch (e: TimeoutException) {
-            showError("Tiempo de espera agotado")
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
             false
         }catch (e: IOException) {
-            showError("Error de conexión de red")
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
             false
         }
     }

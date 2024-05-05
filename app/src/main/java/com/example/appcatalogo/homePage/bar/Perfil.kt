@@ -1,6 +1,9 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +12,22 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
-import com.example.appcatalogo.apiConection.apiUsuario.Service.TokenManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withTimeout
+import java.io.IOException
+import java.util.concurrent.TimeoutException
+import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.example.appcatalogo.databinding.FragmentPerfilBinding
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
+import com.example.appcatalogo.messageErrorToStatus
+import com.example.appcatalogo.showError
+import com.squareup.picasso.Picasso
 
 class Perfil : Fragment() {
 
@@ -32,20 +46,20 @@ class Perfil : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.buttonSave.isEnabled = false
         navView = activity?.findViewById(R.id.nav_view)
         appBarLayout = activity?.findViewById(R.id.app_bar_layout)
         coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
         drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
-
-
+        CoroutineScope(Dispatchers.IO).launch {
+            tryGetUserProfile()
+        }
         coordinatorLayout?.visibility = View.VISIBLE
         appBarLayout?.visibility = View.VISIBLE
         navView?.visibility = View.VISIBLE
@@ -81,12 +95,7 @@ class Perfil : Fragment() {
                 else -> false
             }
         }
-
-
         val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)
-
-
-
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_icono -> {
@@ -112,6 +121,22 @@ class Perfil : Fragment() {
             true
         }
 
+        val textWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // no se necesita
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.buttonSave.isEnabled = true
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // no se necesita
+            }
+        }
+        binding.editTextUsername.addTextChangedListener(textWatcher)
+        binding.editTextTextNombreUser.addTextChangedListener(textWatcher)
+        binding.editTextEmailUser.addTextChangedListener(textWatcher)
     }
 
     override fun onDestroyView() {
@@ -120,4 +145,46 @@ class Perfil : Fragment() {
         _binding = null
     }
 
+    private suspend fun getUserProfile() {
+        val stringTokenAccess = "Bearer $accessToken"
+        val response = UserService.profileUser(stringTokenAccess)
+        return withContext(Dispatchers.Main) {
+            if (response.isSuccessful) {
+                val user = response.body()
+                if (user != null) {
+                    binding.editTextUsername.text = Editable.Factory.getInstance().newEditable(user.usuario)
+                    binding.editTextTextNombreUser.text = Editable.Factory.getInstance().newEditable(user.nombre)
+                    binding.editTextEmailUser.text = Editable.Factory.getInstance().newEditable(user.email)
+                    showImageProfile(user.imagen)
+                }
+            } else {
+                showError(messageErrorToStatus(response.code()))
+            }
+        }
+    }
+    private fun showImageProfile(imageUrl:String) {
+        Picasso.get()
+            .load(imageUrl)
+            .error(R.drawable.logo) // muestra una imagen de error si la carga falla
+            .into(binding.imageProfile, object : com.squareup.picasso.Callback {
+                override fun onSuccess() {
+                }
+
+                override fun onError(e: Exception?) {
+                    Log.d("API", "Error al cargar la imagen: $e")
+                }
+            })
+    }
+
+    private suspend fun tryGetUserProfile() {
+        return try {
+            withTimeout(5000) {
+                getUserProfile()
+            }
+        } catch (e: TimeoutException) {
+            showError("Tiempo de espera agotado")
+        }catch (e: IOException) {
+            showError("Error de conexión de red")
+        }
+    }
 }
