@@ -38,11 +38,11 @@
             android:id="@+id/imageProfile"
             android:layout_width="195dp"
             android:layout_height="195dp"
+            android:contentDescription="@string/perfil"
             android:src="@drawable/ic_imagen_perfil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guidelineTop"
-            android:contentDescription="@string/perfil" />
+            app:layout_constraintTop_toTopOf="@id/guidelineTop" />
 
         <TextView
             android:id="@+id/textViewNameApp"
@@ -61,11 +61,11 @@
             android:id="@+id/imageLogo"
             android:layout_width="130dp"
             android:layout_height="0dp"
+            android:contentDescription="@string/app_name"
             android:src="@drawable/logo"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guidelineBotton"
-            android:contentDescription="@string/app_name" />
+            app:layout_constraintTop_toTopOf="@+id/guidelineBotton" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineTop"
@@ -80,6 +80,75 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.75" />
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/user_name"
+            android:inputType="text"
+            android:autofillHints="username"
+            app:layout_constraintEnd_toEndOf="@id/guidelineMargenRight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/guidelineMargenLeft"
+            app:layout_constraintTop_toBottomOf="@id/imageProfile" />
+
+        <EditText
+            android:id="@+id/editTextEmailUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/correoElectronico"
+            android:inputType="textEmailAddress"
+            android:autofillHints="emailAddress"
+            app:layout_constraintEnd_toEndOf="@id/guidelineMargenRight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/guidelineMargenLeft"
+            app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
+
+        <EditText
+            android:id="@+id/editTextTextPasswordUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="@string/contraseña"
+            android:inputType="textPassword"
+            android:autofillHints="password"
+            app:layout_constraintEnd_toEndOf="@id/guidelineMargenRight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/guidelineMargenLeft"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailUser" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineMargenRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineMargenLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar_cambios"
+            style="@style/EstiloBotonPrincipal"
+            tools:layout_editor_absoluteX="167dp"
+            tools:layout_editor_absoluteY="480dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/editTextTextPasswordUser"
+            app:layout_constraintEnd_toEndOf="@id/guidelineMargenRight"
+            app:layout_constraintStart_toStartOf="@id/guidelineMargenLeft"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

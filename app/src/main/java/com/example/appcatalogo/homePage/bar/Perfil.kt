@@ -9,9 +9,11 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
+import com.example.appcatalogo.apiConection.apiUsuario.Service.TokenManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import com.example.appcatalogo.databinding.FragmentPerfilBinding
 
 class Perfil : Fragment() {
 
@@ -20,12 +22,19 @@ class Perfil : Fragment() {
     private var appBarLayout: AppBarLayout? = null
     private var coordinatorLayout: CoordinatorLayout? = null
 
+    private var _binding:FragmentPerfilBinding? = null
+    private val binding get() = _binding!!
+
+    private val accessToken = TokenManager.accessToken
+    private val refreshToken = TokenManager.refreshToken
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return inflater.inflate(R.layout.fragment_perfil, container, false)
+        _binding = FragmentPerfilBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -108,6 +117,7 @@ class Perfil : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        _binding = null
     }
 
 }

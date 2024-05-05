@@ -66,6 +66,7 @@
     <string name="navigation_drawer_close">Close</string>
     <string name="tus_catalogos">Tus Catalogos</string>
     <string name="tus_juegos">Tus Juegos</string>
+    <string name="guardar_cambios">Guardar</string>
 
 
 </resources>
