@@ -10,8 +10,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivCategorias"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="62dp"
+        android:layout_height="62dp"
         android:scaleType="centerCrop"
         tools:src="@tools:sample/avatars" />
 

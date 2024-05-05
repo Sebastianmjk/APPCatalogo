@@ -7,6 +7,7 @@
     tools:context=".homePage.bar.HomeFirstPage">
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,16 +15,28 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomePageCarrusel"
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_game" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomePageCategorias"
             android:layout_width="match_parent"
             android:layout_height="95dp"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/rvHomePageJuegos"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.933"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvHomePageCarrusel"
             tools:listitem="@layout/item_categorias" />
 
         <androidx.recyclerview.widget.RecyclerView
