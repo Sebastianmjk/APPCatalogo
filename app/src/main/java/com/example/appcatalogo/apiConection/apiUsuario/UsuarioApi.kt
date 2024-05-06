@@ -26,7 +26,7 @@ interface UsuarioApi {
 
     @FormUrlEncoded
     @PATCH("edit_user/")
-    suspend fun editUser(@Header("Authorization") authHeader: String ,@FieldMap fieldsUser: Map<String,String>)
+    suspend fun editUser(@Header("Authorization") authHeader: String ,@Body usuario:Usuario): Response<ResponseBody>
 
     @POST("email/send_code/")
     suspend fun sendCode(@Body email:EmailSendCode): Response<ResponseBody>
