@@ -102,6 +102,9 @@
                 val bundle = Bundle()
                 bundle.putString("titulo_juego", juego.titulo)
                 bundle.putString("resumen_juego", juego.resumen)
+                if (juego.images.isNotEmpty()) {
+                    bundle.putString("imagen_juego", juego.images[0])
+                }
                 findNavController().navigate(R.id.action_categoriasDetail_to_juegoDetail, bundle)
             }
 
