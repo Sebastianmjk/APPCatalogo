@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
+import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
 
 object UserService {
     private val baseUrlUser:String = "https://apicatalogojuegos.onrender.com/GameVault/Usuario/"
@@ -59,6 +60,12 @@ object UserService {
     suspend fun changePasswordForgot(solicitud:UserChangePassword): Response<ResponseBody> {
         return withContext(Dispatchers.IO) {
             usuarioApi.changePasswordForgot(solicitud)
+        }
+    }
+
+    suspend fun editUser(authHeader: String, usuario: UserEdit): Response<Usuario> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.editUser(authHeader, usuario)
         }
     }
 
