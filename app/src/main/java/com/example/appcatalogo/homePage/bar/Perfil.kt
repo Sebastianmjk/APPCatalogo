@@ -40,7 +40,10 @@ class Perfil : Fragment() {
     private val binding get() = _binding!!
 
     private val accessToken = TokenManager.accessToken
-    private val refreshToken = TokenManager.refreshToken
+
+    private var initialUsername: String? = null
+    private var initialNombreUser: String? = null
+    private var initialEmailUser: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -123,7 +126,13 @@ class Perfil : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                binding.buttonSave.isEnabled = true
+                if (initialUsername != binding.editTextUsername.text.toString() ||
+                    initialNombreUser != binding.editTextTextNombreUser.text.toString() ||
+                    initialEmailUser != binding.editTextEmailUser.text.toString()) {
+                    binding.buttonSave.isEnabled = true
+                } else {
+                    binding.buttonSave.isEnabled = false
+                }
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -148,6 +157,10 @@ class Perfil : Fragment() {
             if (response.isSuccessful) {
                 val user = response.body()
                 if (user != null) {
+                    initialUsername = user.usuario
+                    initialNombreUser = user.nombre
+                    initialEmailUser = user.email
+
                     binding.editTextUsername.text = Editable.Factory.getInstance().newEditable(user.usuario)
                     binding.editTextTextNombreUser.text = Editable.Factory.getInstance().newEditable(user.nombre)
                     binding.editTextEmailUser.text = Editable.Factory.getInstance().newEditable(user.email)
