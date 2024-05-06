@@ -1,6 +1,4 @@
-package com.example.appcatalogo.prueba
-
-
+package com.example.appcatalogo.apiConection.apiUsuario.model
 
 data class ImageResponse(
     var Usuario : String,

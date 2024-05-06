@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/home_icono"
+        android:icon="@drawable/ic_bottom_home"
+        android:iconTint="@color/white"
+        android:title="@string/home_icono"/>
+
+    <item
+        android:id="@+id/home_usuario_icono"
+        android:icon="@drawable/ic_bottom_home_usuario"
+        android:iconTint="@color/white"
         android:title="@string/explora" />
 
     <item
-        android:id="@+id/match"
-        android:title="@string/match" />
+        android:id="@+id/agregar_icono"
+        android:icon="@drawable/ic_bottom_add"
+        android:iconTint="#757DE8"
+        android:title="@string/agregar_icono" />
 
     <item
-        android:id="@+id/profile"
-        android:title="@string/perfil" />
+        android:id="@+id/search_icono"
+        android:icon="@drawable/ic_bottom_search"
+        android:iconTint="@color/white"
+        android:title="@string/buscar_icono"/>
 
     <item
-        android:id="@+id/search"
-        android:title="@string/search" />
+        android:id="@+id/profile_icono"
+        android:icon="@drawable/ic_bottom_account"
+        android:iconTint="@color/white"
+        android:title="@string/perfil_icono"/>
 
 </menu>

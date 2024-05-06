@@ -7,15 +7,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.navigation.NavigationView
 
 class SelectionDispositivos : Fragment() {
 
     private lateinit var adaptador : AdapterSelecciones
     private lateinit var recyclerView: RecyclerView
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -43,6 +49,7 @@ class SelectionDispositivos : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val layoutManager = GridLayoutManager(context, 2)
         recyclerView = view.findViewById(R.id.rvSeleccion)

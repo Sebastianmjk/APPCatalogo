@@ -5,43 +5,69 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
-import com.example.appcatalogo.apiConection.apiUsuario.Service.TokenManager
-import com.example.appcatalogo.apiConection.apiUsuario.Service.UserService
+import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
+import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.AutenticacionRequest
+import com.google.android.material.appbar.AppBarLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.appcatalogo.databinding.FragmentLoginBinding
+import com.example.appcatalogo.showError
+import com.google.android.material.navigation.NavigationView
 
 class LoginFragment : Fragment() {
+
+    private lateinit var drawerLayout: DrawerLayout
+    private var appBarLayout: AppBarLayout? = null
+    private var navView: NavigationView? = null
+    private var coordinatorLayout: CoordinatorLayout? = null
+
+    private var _binding:FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val inputUsername: EditText = view.findViewById(R.id.inputUsername)
-        val inputPassword: EditText = view.findViewById(R.id.inputPassword)
+
+        appBarLayout = activity?.findViewById(R.id.app_bar_layout)
+        navView = activity?.findViewById(R.id.nav_view)
+        coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
+        drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
+
+        coordinatorLayout?.visibility = View.GONE
+        appBarLayout?.visibility = View.GONE
+        navView?.visibility = View.VISIBLE
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
         var username: String
         var userPassword: String
-        val conectSignUp: TextView = view.findViewById(R.id.conectSignUp)
-        conectSignUp.setOnClickListener {
+        binding.passwordForgetText.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registroCorreoContra)
+        }
+        binding.conectSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registroFirstPage)
         }
 
-        val iniciarSesionButton = view.findViewById<Button>(R.id.buttonIniciarSesion);
-        iniciarSesionButton.setOnClickListener {
-            username = inputUsername.text.toString()
-            userPassword = inputPassword.text.toString()
+        binding.buttonIniciarSesion.setOnClickListener {
+            username = binding.inputUsername.text.toString().replace(" ","")
+            userPassword = binding.inputPassword.text.toString().replace(" ","")
+            if (username.isEmpty() || userPassword.isEmpty()) {
+                showError("Tiene que completar los campos obligatorios")
+                return@setOnClickListener
+            }
             CoroutineScope(Dispatchers.IO).launch {
                 val response = UserService.loginUser(AutenticacionRequest(username, userPassword))
                 withContext(Dispatchers.Main) {
@@ -53,7 +79,7 @@ class LoginFragment : Fragment() {
                         }
                         findNavController().navigate(R.id.action_loginFragment_to_homeFirstPage)
                     } else {
-                        showError(response.code())
+                        showError(createMessageError(response.code()))
                     }
                 }
             }
@@ -70,9 +96,6 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun showError(status: Int){
-        Toast.makeText(requireContext(), createMessageError(status), Toast.LENGTH_SHORT).show()
-    }
 
 
 }

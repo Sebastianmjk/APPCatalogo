@@ -53,6 +53,7 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="161dp"
         android:text="@string/inicio"
+        android:fontFamily="@font/inter_medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

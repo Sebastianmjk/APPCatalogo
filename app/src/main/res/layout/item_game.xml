@@ -4,10 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="16dp"
     android:layout_margin="16dp"
-    android:layout_height="320dp">
+    android:layout_height="250dp">
 
     <ImageView
-        android:id="@+id/ivGame"
+        android:id="@+id/ivGameHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop" />

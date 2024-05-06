@@ -18,7 +18,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginEnd="136dp"
             android:text="@string/categoria"
-            android:fontFamily="@font/inter"
+            android:fontFamily="@font/inter_medium"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="35sp"
@@ -33,11 +33,24 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/categoriaNombre"
             tools:listitem="@layout/item_juego" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/white"
+            app:labelVisibilityMode="unlabeled"
+            android:background="#757DE8"
+            app:menu="@menu/bottons_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

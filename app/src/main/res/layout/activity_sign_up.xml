@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawlerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    tools:openDrawer="start"
+    tools:context=".signUp.SignUp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constrainLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        tools:context=".signUp.SignUp">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerViewSignUp"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +24,21 @@
             app:navGraph="@navigation/navigation_signup" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/app_bar_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="250dp"
+            android:background="#3F51B5"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_main_drawler"
+            android:theme="@style/MyDrawerMenuTheme"/>
 
 
-</ScrollView>
+</androidx.drawerlayout.widget.DrawerLayout>
