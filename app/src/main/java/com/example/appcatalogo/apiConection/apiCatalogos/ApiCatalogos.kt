@@ -9,9 +9,6 @@ interface ApiCatalogos {
     @GET("catalogo/Catalogos/usuario/")
     suspend fun getCatalogos(@Header("Authorization") authHeader: String): Response<List<Catalogos>>
 
-    @GET("catalogo/Catalogos/usuario/{id}/")
-    suspend fun getCatalogo(@Header("Authorization") authHeader: String,@Path("id") id: Int): Response<Catalogos>
-
     @POST("catalogo/Catalogos/create/")
     suspend fun createCatalogo(@Header("Authorization") authHeader: String, @Body newCatalogo: Catalogo): Response<Catalogo>
 

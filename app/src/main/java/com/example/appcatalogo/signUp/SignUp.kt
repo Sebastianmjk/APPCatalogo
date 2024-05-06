@@ -14,7 +14,6 @@ import com.google.android.material.navigation.NavigationView
 open class SignUp : AppCompatActivity() {
     protected open lateinit var drawerLayout: DrawerLayout
     protected open lateinit var navView: NavigationView
-    private lateinit var toggle: ActionBarDrawerToggle
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
