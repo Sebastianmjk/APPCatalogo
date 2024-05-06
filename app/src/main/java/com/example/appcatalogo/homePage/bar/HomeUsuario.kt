@@ -94,8 +94,15 @@ class HomeUsuario : Fragment() {
         catalogoAdapter.onItemClick = { catalogo ->
             val bundle = Bundle()
             bundle.putString("titulo_catalogo", catalogo.Nombre)
-            bundle.putString("juegos", catalogo.juegos.toString())
-            findNavController().navigate(R.id.action_homeFirstPage_to_juegoDetail, bundle)
+
+            val juegoIds = ArrayList<Int>()
+            for (juego in catalogo.juegos) {
+                juegoIds.add(juego.id)
+            }
+
+            bundle.putIntegerArrayList("juego_ids", juegoIds)
+
+            findNavController().navigate(R.id.action_homeUsuario_to_catalogosDetail, bundle)
         }
 
     }

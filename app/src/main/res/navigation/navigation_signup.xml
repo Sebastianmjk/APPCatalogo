@@ -326,6 +326,9 @@
         <action
             android:id="@+id/action_homeUsuario_to_perfil"
             app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_homeUsuario_to_catalogosDetail"
+            app:destination="@id/catalogosDetail" />
     </fragment>
     <fragment
         android:id="@+id/registroCorreoContra"
@@ -362,6 +365,14 @@
         <argument
             android:name="correoElectronico"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/catalogosDetail"
+        android:name="com.example.appcatalogo.homePage.bar.CatalogosDetail"
+        android:label="CatalogosDetail" >
+        <action
+            android:id="@+id/action_catalogosDetail_to_juegoDetail"
+            app:destination="@id/juegoDetail" />
     </fragment>
 
 </navigation>
