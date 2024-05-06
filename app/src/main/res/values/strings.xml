@@ -73,6 +73,7 @@
     <string name="crea_tu_catalogo">Crea Tu Catalogo</string>
     <string name="ingrese_el_juego">Ingrese las ids de los juegos que quiera separados por ","</string>
     <string name="catalogos_nombre">Catalogos Nombre</string>
+    <string name="eliminar_cat_logo">Eliminar catálogo</string>
 
 
 </resources>

@@ -114,7 +114,7 @@ class RegistroCorreoVerificacion : Fragment() {
                     val message = response.body()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Codigo verificado correctamente")
                         }
                     }
                     true
@@ -122,7 +122,7 @@ class RegistroCorreoVerificacion : Fragment() {
                     val message = response.errorBody()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Codigo no verificado, intente de nuevo")
                         }
                     } else {
                         withContext(Dispatchers.Main) {

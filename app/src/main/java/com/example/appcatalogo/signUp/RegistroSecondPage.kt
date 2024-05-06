@@ -89,7 +89,7 @@ class RegistroSecondPage : Fragment() {
                     val message = response.body()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Correo enviado correctamente")
                         }
                     }
                     true
@@ -97,7 +97,7 @@ class RegistroSecondPage : Fragment() {
                     val message = response.errorBody()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Correo no enviado, intente de nuevo")
                         }
                     } else {
                         withContext(Dispatchers.Main) {

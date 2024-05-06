@@ -22,4 +22,12 @@ object ApiCatalogo {
             .build()
             .create(ApiJuegos::class.java)
     }
+
+    val apiDelete : ApiCatalogos by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiCatalogos::class.java)
+    }
 }

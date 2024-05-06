@@ -84,7 +84,7 @@ class RegistroCorreoContra : Fragment() {
                     val message = response.body()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Codigo enviado")
                         }
                     }
                     true
@@ -92,7 +92,7 @@ class RegistroCorreoContra : Fragment() {
                     val message = response.errorBody()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("No se pudo enviar el código, intente de nuevo")
                         }
                     } else {
                         withContext(Dispatchers.Main) {

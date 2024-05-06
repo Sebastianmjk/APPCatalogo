@@ -53,6 +53,7 @@
         </LinearLayout>
 
             <ImageView
+                android:id="@+id/popMenu"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"

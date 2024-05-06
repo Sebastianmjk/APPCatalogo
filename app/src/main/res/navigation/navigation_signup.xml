@@ -373,6 +373,24 @@
         <action
             android:id="@+id/action_catalogosDetail_to_juegoDetail"
             app:destination="@id/juegoDetail" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
     </fragment>
 
 </navigation>

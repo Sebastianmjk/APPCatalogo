@@ -58,7 +58,6 @@ class Perfil : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.buttonSave.isEnabled = false
         navView = activity?.findViewById(R.id.nav_view)
         appBarLayout = activity?.findViewById(R.id.app_bar_layout)
         coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
@@ -128,44 +127,19 @@ class Perfil : Fragment() {
             true
         }
 
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // no se necesita
-            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (initialUsername != binding.editTextUsername.text.toString() ||
-                    initialNombreUser != binding.editTextTextNombreUser.text.toString() ||
-                    initialEmailUser != binding.editTextEmailUser.text.toString()
-                ) {
-                    binding.buttonSave.isEnabled = true
-                } else {
-                    binding.buttonSave.isEnabled = false
-                }
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                // no se necesita
-            }
-        }
-        binding.editTextUsername.addTextChangedListener(textWatcher)
-        binding.editTextTextNombreUser.addTextChangedListener(textWatcher)
-        binding.editTextEmailUser.addTextChangedListener(textWatcher)
-
-        if (binding.buttonSave.isEnabled) {
-            binding.buttonSave.setOnClickListener {
-                val usuarioEdit = UserEdit(
-                    username = binding.editTextUsername.text.toString(),
-                    nombre = binding.editTextTextNombreUser.text.toString(),
-                    apellido = apellido?:"",
-                    email = binding.editTextEmailUser.text.toString()
-                )
-                val stringTokenAccess = "Bearer $accessToken"
-                CoroutineScope(Dispatchers.IO).launch {
-                    if (tryEditUser(stringTokenAccess, usuarioEdit)) {
-                        withContext(Dispatchers.Main) {
-                            findNavController().navigate(R.id.action_perfil_self)
-                        }
+        binding.buttonSave.setOnClickListener {
+            val usuarioEdit = UserEdit(
+                username = binding.editTextUsername.text.toString(),
+                nombre = binding.editTextTextNombreUser.text.toString(),
+                apellido = apellido?:"",
+                email = binding.editTextEmailUser.text.toString()
+            )
+            val stringTokenAccess = "Bearer $accessToken"
+            CoroutineScope(Dispatchers.IO).launch {
+                if (tryEditUser(stringTokenAccess, usuarioEdit)) {
+                    withContext(Dispatchers.Main) {
+                        findNavController().navigate(R.id.action_perfil_self)
                     }
                 }
             }

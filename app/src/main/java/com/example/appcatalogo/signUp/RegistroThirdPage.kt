@@ -114,7 +114,7 @@ class RegistroThirdPage : Fragment() {
                     val message = response.body()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Codigo verificado")
                         }
                     }
                     true
@@ -122,7 +122,7 @@ class RegistroThirdPage : Fragment() {
                     val message = response.errorBody()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError(message)
+                            showError("Codigo incorrecto o expirado")
                         }
                     } else {
                         withContext(Dispatchers.Main) {

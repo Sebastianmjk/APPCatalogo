@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.UsuarioRegistro
+import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
 import com.example.appcatalogo.databinding.FragmentRegistroFourthPageBinding
 import com.example.appcatalogo.showError
 import com.example.appcatalogo.messageErrorToStatus
@@ -48,7 +49,7 @@ class RegistroFourthPage : Fragment() {
                 showError("Los campos son obligatorios")
                 return@setOnClickListener
             }
-            if (checkPassword(password1,password2)){
+            if (!checkPassword(password1,password2)){
                 showError("Las contraseñas no coinciden")
                 return@setOnClickListener
             }
@@ -99,6 +100,13 @@ class RegistroFourthPage : Fragment() {
             withTimeout(5000) {
                 val response = UserService.registerUser(usuarioNuevo)
                 if (response.isSuccessful) {
+                    val tokensUser = response.body()
+                    withContext(Dispatchers.Main) {
+                        tokensUser?.let {
+                            TokenManager.accessToken = it.access
+                            TokenManager.refreshToken = it.refresh
+                        }
+                    }
                     true
                 } else {
                     withContext(Dispatchers.Main) {

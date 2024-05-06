@@ -86,7 +86,7 @@ class HomeUsuario : Fragment() {
         val layoutManagerCatalogo = LinearLayoutManager(context)
         recyclerViewCatalogo= view.findViewById(R.id.rvTusCatalogos)
         recyclerViewCatalogo.layoutManager = layoutManagerCatalogo
-        catalogoAdapter = CatalogoAdapter(mutableListOf())
+        catalogoAdapter = CatalogoAdapter(lifecycleScope, requireContext(), mutableListOf(), accessToken)
         recyclerViewCatalogo.adapter = catalogoAdapter
 
         fetchCatalogos()

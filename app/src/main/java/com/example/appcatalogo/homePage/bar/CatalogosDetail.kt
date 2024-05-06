@@ -17,6 +17,7 @@ import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
 import com.example.appcatalogo.apiConection.apiJuegos.ApiJuegos
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
+import com.example.appcatalogo.apiConection.apiJuegos.model.Result
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -88,22 +89,22 @@ class CatalogosDetail : Fragment() {
         navView?.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_item_mi_perfil -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_perfil)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_perfil)
                     true
                 }
 
                 R.id.nav_item_inicio -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_homeFirstPage)
                     true
                 }
 
                 R.id.nav_item_categorias -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_categoriasSlideBar2)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_categoriasSlideBar2)
                     true
                 }
 
                 R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_homeUsuario)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_homeUsuario)
                     true
                 }
 
@@ -125,23 +126,23 @@ class CatalogosDetail : Fragment() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_icono -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_homeFirstPage)
                 }
 
                 R.id.home_usuario_icono -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_homeUsuario)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_homeUsuario)
                 }
 
                 R.id.agregar_icono -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_crear)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_crear)
                 }
 
                 R.id.search_icono -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_buscar)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_buscar)
                 }
 
                 R.id.profile_icono -> {
-                    findNavController().navigate(R.id.action_categoriasDetail_to_perfil)
+                    findNavController().navigate(R.id.action_catalogosDetail_to_perfil)
                 }
             }
             true
@@ -156,30 +157,32 @@ class CatalogosDetail : Fragment() {
 
     fun loadJuegos(juegoIds: List<Int>?) {
         if (juegoIds != null) {
-            for (id in juegoIds) {
-                lifecycleScope.launch {
-                    try {
-                        val response = ApiCatalogo.apiJuegos.getJuego(id)
-                        if (response.isSuccessful) {
-                            val juego = response.body()
-                            if (juego != null) {
-                                adaptadorJuegos.juegosList.clear()
-                                adaptadorJuegos.juegosList.add(juego)
-                                adaptadorJuegos.notifyDataSetChanged()
+            lifecycleScope.launch {
+                val juegosList = mutableListOf<Result>()
+                for (id in juegoIds) {
+                        try {
+                            val response = ApiCatalogo.apiJuegos.getJuego(id)
+                            if (response.isSuccessful) {
+                                val juego = response.body()
+                                if (juego != null) {
+                                    juegosList.add(juego)
+                                } else {
+                                    // Maneja el caso en que juego es null
+                                }
                             } else {
-                                // Maneja el caso en que juego es null
+                                // Si la solicitud no fue exitosa, muestra un mensaje de error
+                                Toast.makeText(context, "Error al obtener el juego", Toast.LENGTH_SHORT).show()
                             }
-                        } else {
-                            // Si la solicitud no fue exitosa, muestra un mensaje de error
-                            Toast.makeText(context, "Error al obtener el juego", Toast.LENGTH_SHORT).show()
+                        } catch (e: Exception) {
+                            // Maneja cualquier excepción que pueda ocurrir
+                            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                         }
-                    } catch (e: Exception) {
-                        // Maneja cualquier excepción que pueda ocurrir
-                        Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
+                adaptadorJuegos.juegosList.clear()
+                adaptadorJuegos.juegosList.addAll(juegosList)
+                adaptadorJuegos.notifyDataSetChanged()
                 }
             }
         }
-    }
 
 }
