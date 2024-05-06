@@ -1,17 +1,27 @@
 package com.example.appcatalogo.homePage.bar
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
+import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
+import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
+import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 
 class Crear : Fragment() {
@@ -20,6 +30,10 @@ class Crear : Fragment() {
     private var navView: NavigationView? = null
     private var appBarLayout: AppBarLayout? = null
     private var coordinatorLayout: CoordinatorLayout? = null
+
+    private val accessToken = TokenManager.accessToken
+    private lateinit var catalogoAdapter : CatalogoAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,12 +71,9 @@ class Crear : Fragment() {
                     findNavController().navigate(R.id.action_crear_to_categoriasSlideBar2)
                     true
                 }
-                R.id.nav_item_mis_juegos -> {
-                    findNavController().navigate(R.id.action_crear_to_tusJuegos2)
-                    true
-                }
+
                 R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_crear_to_tusCatalogos)
+                    findNavController().navigate(R.id.action_crear_to_homeUsuario)
                     true
                 }
                 R.id.nav_item_cerrar_sesion -> {
@@ -103,6 +114,54 @@ class Crear : Fragment() {
             true
         }
 
+        val addButton = view.findViewById<FloatingActionButton>(R.id.addBtton)
+        addButton.setOnClickListener {
+            showCreateCatalogoDialog()
+        }
+
+    }
+
+    fun showCreateCatalogoDialog() {
+        // Infla la vista del diálogo
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.add_catalogo, null)
+
+        // Crea el diálogo
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setTitle("Crear nuevo catálogo")
+            .setPositiveButton("Crear") { _, _ ->
+                val nombre = dialogView.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
+                val juegosString = dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
+
+                // Convierte la lista de IDs de juegos a una lista de Int
+                val juegos = juegosString.split(",").map { it.trim().toInt() }
+
+                val newCatalogo = Catalogo(nombre, juegos)
+
+                // Llama a la API en una corutina
+                lifecycleScope.launch {
+                    val response = ApiCatalogo.apiCatalogos.createCatalogo("Bearer $accessToken", newCatalogo)
+
+                    Log.d("MyApp", "Response code: ${response.code()}")
+
+                    if (response.isSuccessful) {
+                        // Si la solicitud fue exitosa, actualiza el RecyclerView
+                        val catalogo = response.body()
+                        if (catalogo != null) {
+                            Toast.makeText(context, "El catalogo se ha creado correctamente", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(context, "El catalogo no se ha creado correctamente", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        // Si la solicitud no fue exitosa, muestra un mensaje de error
+                        Toast.makeText(context, "Error al crear el catálogo", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.show()
     }
 
     override fun onDestroyView() {

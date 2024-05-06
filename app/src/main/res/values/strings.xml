@@ -53,7 +53,7 @@
     <string name="user_name">User Name</string>
     <string name="categoria">Categorias</string>
     <string name="home_icono">Home</string>
-    <string name="agregar_icono">Agregar</string>
+    <string name="agregar_icono">Agregar Catalogo</string>
     <string name="buscar_icono">Buscar</string>
     <string name="perfil_icono">Perfil</string>
     <string name="mi_perfil">Mi perfil</string>
@@ -71,7 +71,7 @@
     <string name="titulo_catalogo">Titulo Catalogo</string>
     <string name="a_adir">Añadir juegos</string>
     <string name="crea_tu_catalogo">Crea Tu Catalogo</string>
-    <string name="ingrese_el_juego">Ingrese la id del juego</string>
+    <string name="ingrese_el_juego">Ingrese las ids de los juegos que quiera separados por ","</string>
 
 
 </resources>

@@ -76,12 +76,9 @@
                         findNavController().navigate(R.id.action_categoriasDetail_to_categoriasSlideBar2)
                         true
                     }
-                    R.id.nav_item_mis_juegos -> {
-                        findNavController().navigate(R.id.action_categoriasDetail_to_tusJuegos2)
-                        true
-                    }
+
                     R.id.nav_item_mis_catalogos -> {
-                        findNavController().navigate(R.id.action_categoriasDetail_to_tusCatalogos)
+                        findNavController().navigate(R.id.action_categoriasDetail_to_homeUsuario)
                         true
                     }
                     R.id.nav_item_cerrar_sesion -> {

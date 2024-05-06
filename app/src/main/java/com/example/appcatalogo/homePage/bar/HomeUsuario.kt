@@ -5,19 +5,31 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
+import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
+import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.launch
 
 class HomeUsuario : Fragment() {
 
     private lateinit var drawerLayout: DrawerLayout
     private var appBarLayout: AppBarLayout? = null
     private var coordinatorLayout: CoordinatorLayout? = null
+
+    private val accessToken = TokenManager.accessToken
+
+    private lateinit var recyclerViewCatalogo : RecyclerView
+    private lateinit var catalogoAdapter : CatalogoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +83,46 @@ class HomeUsuario : Fragment() {
             true
         }
 
+        val layoutManagerCatalogo = LinearLayoutManager(context)
+        recyclerViewCatalogo= view.findViewById(R.id.rvTusCatalogos)
+        recyclerViewCatalogo.layoutManager = layoutManagerCatalogo
+        catalogoAdapter = CatalogoAdapter(mutableListOf())
+        recyclerViewCatalogo.adapter = catalogoAdapter
+
+        fetchCatalogos()
+
+        catalogoAdapter.onItemClick = { catalogo ->
+            val bundle = Bundle()
+            bundle.putString("titulo_catalogo", catalogo.Nombre)
+            bundle.putString("juegos", catalogo.juegos.toString())
+            findNavController().navigate(R.id.action_homeFirstPage_to_juegoDetail, bundle)
+        }
+
+    }
+
+    private fun fetchCatalogos() {
+        lifecycleScope.launch {
+            try {
+                val response = ApiCatalogo.apiCatalogos.getCatalogos("Bearer $accessToken")
+                if (response.isSuccessful) {
+                    // Si la solicitud fue exitosa, actualiza el RecyclerView
+                    val catalogos = response.body()
+                    if (catalogos != null) {
+                        catalogoAdapter.catalogos.clear()
+                        catalogoAdapter.catalogos.addAll(catalogos)
+                        catalogoAdapter.notifyDataSetChanged()
+                    } else {
+                        // Maneja el caso en que catalogos es null
+                    }
+                } else {
+                    // Si la solicitud no fue exitosa, muestra un mensaje de error
+                    Toast.makeText(context, "Error al obtener los catálogos", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                // Maneja cualquier excepción que pueda ocurrir
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 }

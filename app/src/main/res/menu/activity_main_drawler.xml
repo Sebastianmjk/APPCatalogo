@@ -15,9 +15,6 @@
             android:id="@+id/nav_item_categorias"
             android:title="@string/categorias"/>
 
-        <item
-            android:id="@+id/nav_item_mis_juegos"
-            android:title="@string/mis_juegos"/>
 
         <item
             android:id="@+id/nav_item_mis_catalogos"
