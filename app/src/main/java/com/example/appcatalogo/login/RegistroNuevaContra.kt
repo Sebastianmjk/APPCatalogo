@@ -47,7 +47,7 @@ class RegistroNuevaContra : Fragment() {
                 showError("Los campos son obligatorios")
                 return@setOnClickListener
             }
-            if (checkPassword(password1,password2)){
+            if (!checkPassword(password1,password2)){
                 showError("Las contraseñas no coinciden")
                 return@setOnClickListener
             }
