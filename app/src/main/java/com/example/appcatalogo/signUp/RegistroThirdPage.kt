@@ -43,6 +43,32 @@ class RegistroThirdPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+            binding.Codigo1Text.setOnClickListener{
+                binding.invisibleEditText.requestFocus()
+                val imm =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(binding.invisibleEditText, InputMethodManager.SHOW_IMPLICIT)
+            }
+
+            binding.Codigo2Text.setOnClickListener{
+                binding.invisibleEditText.requestFocus()
+                val imm =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(binding.invisibleEditText, InputMethodManager.SHOW_IMPLICIT)
+            }
+            binding.Codigo3Text.setOnClickListener{
+                binding.invisibleEditText.requestFocus()
+                val imm =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(binding.invisibleEditText, InputMethodManager.SHOW_IMPLICIT)
+            }
+            binding.Codigo4Text.setOnClickListener{
+                binding.invisibleEditText.requestFocus()
+                val imm =
+                    context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(binding.invisibleEditText, InputMethodManager.SHOW_IMPLICIT)
+            }
+
 
 
             binding.invisibleEditText.post {
