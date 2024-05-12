@@ -28,11 +28,11 @@ interface UsuarioApi {
     @PATCH("edit_user/")
     suspend fun editUser(@Header("Authorization") authHeader: String ,@Body usuario:UserEdit): Response<Usuario>
 
-    @POST("email/send_code/")
-    suspend fun sendCode(@Body email:EmailSendCode): Response<ResponseBody>
+    @POST("email/register/send_code/")
+    suspend fun sendCodeRegister(@Body email:EmailSendCode): Response<ResponseBody>
 
-    @POST("email/send_code/")
-    suspend fun sendCode(@Body email:EmailSendCode): Response<ResponseBody>
+    @POST("email/change_password/send_code/")
+    suspend fun sendCodeChangePassword(@Body email:EmailSendCode): Response<ResponseBody>
 
     @POST("email/code_verify/")
     suspend fun verifyCode(@Body solicitud:VerifyEmail): Response<ResponseBody>

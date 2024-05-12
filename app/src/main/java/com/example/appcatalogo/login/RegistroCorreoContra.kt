@@ -79,7 +79,7 @@ class RegistroCorreoContra : Fragment() {
     private suspend fun trySendCode(email: String): Boolean {
         return try {
             withTimeout(5000) {
-                val response = UserService.sendCode(EmailSendCode(email))
+                val response = UserService.sendCodeChangePassword(EmailSendCode(email))
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {
@@ -92,7 +92,8 @@ class RegistroCorreoContra : Fragment() {
                     val message = response.errorBody()?.string()
                     if (message != null) {
                         withContext(Dispatchers.Main) {
-                            showError("No se pudo enviar el código, intente de nuevo")
+                            println("Mensaje de error: $message")
+                            showError("$message")
                         }
                     } else {
                         withContext(Dispatchers.Main) {

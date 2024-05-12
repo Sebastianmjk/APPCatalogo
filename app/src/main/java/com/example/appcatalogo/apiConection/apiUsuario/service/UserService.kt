@@ -45,9 +45,15 @@ object UserService {
         }
     }
 
-    suspend fun sendCode(email:EmailSendCode): Response<ResponseBody> {
+    suspend fun sendCodeRegister(email:EmailSendCode): Response<ResponseBody> {
         return withContext(Dispatchers.IO) {
-            usuarioApi.sendCode(email)
+            usuarioApi.sendCodeRegister(email)
+        }
+    }
+
+    suspend fun sendCodeChangePassword(email:EmailSendCode): Response<ResponseBody> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.sendCodeChangePassword(email)
         }
     }
 

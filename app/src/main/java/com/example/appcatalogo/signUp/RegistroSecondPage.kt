@@ -84,7 +84,7 @@ class RegistroSecondPage : Fragment() {
     private suspend fun trySendCode(email: String): Boolean {
         return try {
             withTimeout(5000) {
-                val response = UserService.sendCode(EmailSendCode(email))
+                val response = UserService.sendCodeRegister(EmailSendCode(email))
                 if (response.isSuccessful) {
                     val message = response.body()?.string()
                     if (message != null) {
