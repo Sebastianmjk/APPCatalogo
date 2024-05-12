@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiCatalogo {
-    private const val BASE_URL = "https://apicatalogojuegos.onrender.com/GameVault/"
+    private const val BASE_URL = "https://apicatalogojuegos-production.up.railway.app/GameVault/"
 
     val apiCatalogos: ApiCatalogos by lazy {
         Retrofit.Builder()

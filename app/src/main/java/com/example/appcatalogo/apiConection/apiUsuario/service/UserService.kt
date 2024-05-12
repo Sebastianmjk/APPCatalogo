@@ -17,7 +17,7 @@ import retrofit2.Response
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
 
 object UserService {
-    private val baseUrlUser:String = "https://apicatalogojuegos.onrender.com/GameVault/Usuario/"
+    private val baseUrlUser:String = "https://apicatalogojuegos-production.up.railway.app/GameVault/Usuario/"
     private val client = UserAuthenticateService.getOkHttpClient()
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrlUser)

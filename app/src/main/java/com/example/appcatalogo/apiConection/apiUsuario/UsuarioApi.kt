@@ -31,6 +31,9 @@ interface UsuarioApi {
     @POST("email/send_code/")
     suspend fun sendCode(@Body email:EmailSendCode): Response<ResponseBody>
 
+    @POST("email/send_code/")
+    suspend fun sendCode(@Body email:EmailSendCode): Response<ResponseBody>
+
     @POST("email/code_verify/")
     suspend fun verifyCode(@Body solicitud:VerifyEmail): Response<ResponseBody>
 

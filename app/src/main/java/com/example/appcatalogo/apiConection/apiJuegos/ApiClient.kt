@@ -10,7 +10,7 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "https://apicatalogojuegos.onrender.com/GameVault/catalogo/Juegos/"
+    private const val BASE_URL = "https://apicatalogojuegos-production.up.railway.app/GameVault/catalogo/Juegos/"
 
     private val okHttpClient = OkHttpClient.Builder()
         .readTimeout(60, TimeUnit.SECONDS)
