@@ -31,6 +31,8 @@
             android:layout_margin="15dp"
             android:hint="@string/ingrese_el_juego"
             android:textColor="#000000"
+            android:inputType="number"
+            android:digits="0123456789,"
             android:textSize="18sp"
             android:textStyle="bold"/>
 

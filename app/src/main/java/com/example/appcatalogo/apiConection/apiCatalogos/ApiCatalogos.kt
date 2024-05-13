@@ -16,4 +16,10 @@ interface ApiCatalogos {
     @DELETE("catalogo/Catalogos/usuario/delete/{id}/")
     suspend fun deleteCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int): Response<Void>
 
+    @POST("catalogo/Catalogos/usuario/add_juego/{id}/{juego_id}/")
+    suspend fun addJuegoToCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int, @Path("juego_id") juegoId: Int): Response<Void>
+
+    @DELETE("catalogo/Catalogos/usuario/delete_juego/{id}/{juego_id}/")
+    suspend fun deleteJuegoFromCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int, @Path("juego_id") juegoId: Int): Response<Void>
+
 }

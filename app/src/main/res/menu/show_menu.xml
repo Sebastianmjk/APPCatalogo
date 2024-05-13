@@ -4,4 +4,8 @@
         android:id="@+id/delete_catalogo"
         android:title="@string/eliminar_cat_logo"
         />
+    <item
+        android:id="@+id/edit_catalogo"
+        android:title="@string/editar_catalogo"
+        />
 </menu>

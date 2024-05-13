@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -65,6 +66,10 @@ class CatalogoAdapter(
                             deleteCatalogo(adapterPosition)
                             true
                         }
+                        R.id.edit_catalogo -> {
+                            editCatalogo(adapterPosition)
+                            true
+                        }
                         else -> false
                     }
                 }
@@ -107,5 +112,48 @@ class CatalogoAdapter(
                 Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun editCatalogo(position: Int) {
+        val catalogo = catalogos[position]
+
+        // Crea un diálogo para editar el catálogo
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.edit_catalogo, null)
+        val dialog = AlertDialog.Builder(context)
+            .setView(dialogView)
+            .setTitle("Editar catálogo")
+            .setPositiveButton("Guardar") { _, _ ->
+                val juegosString = dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
+
+                // Verifica si el campo EditText está vacío
+                if (juegosString.isBlank()) {
+                    // Si el campo está vacío, muestra un mensaje de error y detén la edición
+                    Toast.makeText(context, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show()
+                    return@setPositiveButton
+                }
+
+                // Convierte la lista de IDs de juegos a una lista de Int
+                val juegos = juegosString.split(",").map { it.trim().toInt() }
+
+                // Actualiza el catálogo con los nuevos juegos
+                catalogo.juegos = juegos
+
+                // Llama a la API en una corutina para actualizar el catálogo
+                lifecycleScope.launch {
+                    val response = ApiCatalogo.apiCatalogos.updateCatalogo("Bearer $accessToken", catalogo)
+
+                    if (response.isSuccessful) {
+                        // Si la solicitud fue exitosa, actualiza el RecyclerView
+                        catalogos[position] = catalogo
+                        notifyItemChanged(position)
+                    } else {
+                        // Si la solicitud no fue exitosa, muestra un mensaje de error
+                        Toast.makeText(context, "Error al editar el catálogo", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        dialog.show()
     }
 }

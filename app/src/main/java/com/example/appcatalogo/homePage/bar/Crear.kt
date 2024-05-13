@@ -133,6 +133,13 @@ class Crear : Fragment() {
                 val nombre = dialogView.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
                 val juegosString = dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
 
+                // Verifica si los campos EditText están vacíos
+                if (nombre.isBlank() || juegosString.isBlank()) {
+                    // Si los campos están vacíos, muestra un mensaje de error y detén la creación
+                    Toast.makeText(context, "Los campos no pueden estar vacíos", Toast.LENGTH_SHORT).show()
+                    return@setPositiveButton
+                }
+
                 // Convierte la lista de IDs de juegos a una lista de Int
                 val juegos = juegosString.split(",").map { it.trim().toInt() }
 
