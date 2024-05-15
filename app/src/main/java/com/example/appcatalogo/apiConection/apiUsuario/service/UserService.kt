@@ -8,6 +8,7 @@ import com.example.appcatalogo.apiConection.apiUsuario.model.UsuarioRegistro
 import com.example.appcatalogo.apiConection.apiUsuario.model.EmailSendCode
 import com.example.appcatalogo.apiConection.apiUsuario.model.VerifyEmail
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserChangePassword
+import com.example.appcatalogo.apiConection.apiUsuario.model.ImageProfile
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.Dispatchers
@@ -15,6 +16,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
+import okhttp3.MultipartBody
 
 object UserService {
     private val baseUrlUser:String = "https://apicatalogojuegos-production.up.railway.app/GameVault/Usuario/"
@@ -72,6 +74,12 @@ object UserService {
     suspend fun editUser(authHeader: String, usuario: UserEdit): Response<Usuario> {
         return withContext(Dispatchers.IO) {
             usuarioApi.editUser(authHeader, usuario)
+        }
+    }
+
+    suspend fun changeImageProfile(authHeader: String, imageProfile: ImageProfile): Response<Usuario> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.changeImageProfile(authHeader, imageProfile)
         }
     }
 

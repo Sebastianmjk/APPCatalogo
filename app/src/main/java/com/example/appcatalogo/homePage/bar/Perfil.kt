@@ -1,13 +1,16 @@
 package com.example.appcatalogo.homePage.bar
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
@@ -29,6 +32,11 @@ import com.example.appcatalogo.messageErrorToStatus
 import com.example.appcatalogo.showError
 import com.squareup.picasso.Picasso
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
+import com.example.appcatalogo.apiConection.apiUsuario.model.ImageProfile
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.InputStream
 
 
 class Perfil : Fragment() {
@@ -47,7 +55,19 @@ class Perfil : Fragment() {
     private var initialNombreUser: String? = null
     private var initialEmailUser: String? = null
 
-    private var apellido: String? = null
+    private lateinit var apellido: String
+
+    private var selectedImageUri: Uri? = null
+    private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
+        if (uri != null) {
+            selectedImageUri = uri
+
+            Log.d("PhotoPicker", "Selected URI: $uri")
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -127,12 +147,14 @@ class Perfil : Fragment() {
             true
         }
 
-
+        binding.imageProfile.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
+        }
         binding.buttonSave.setOnClickListener {
             val usuarioEdit = UserEdit(
                 username = binding.editTextUsername.text.toString(),
                 nombre = binding.editTextTextNombreUser.text.toString(),
-                apellido = apellido?:"",
+                apellido = apellido ?: "",
                 email = binding.editTextEmailUser.text.toString()
             )
             val stringTokenAccess = "Bearer $accessToken"
@@ -144,6 +166,8 @@ class Perfil : Fragment() {
                 }
             }
         }
+
+
     }
 
     override fun onDestroyView() {
@@ -180,7 +204,7 @@ class Perfil : Fragment() {
     private fun showImageProfile(imageUrl: String) {
         Picasso.get()
             .load(imageUrl)
-            .error(R.drawable.logo) // muestra una imagen de error si la carga falla
+            .error(R.drawable.logo)
             .into(binding.imageProfile, object : com.squareup.picasso.Callback {
                 override fun onSuccess() {
                 }
@@ -227,5 +251,54 @@ class Perfil : Fragment() {
             }
             false
         }
+    }
+
+    private suspend fun tryChangeImageProfile(
+        authHeader: String,
+        imageProfile: ImageProfile
+    ): Boolean {
+        return try {
+            withTimeout(5000) {
+                val response = UserService.changeImageProfile(authHeader, imageProfile)
+                if (response.isSuccessful) {
+                    true
+                } else {
+                    withContext(Dispatchers.Main) {
+                        showError(messageErrorToStatus(response.code()))
+                    }
+                    false
+                }
+            }
+        } catch (e: TimeoutException) {
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
+            false
+        } catch (e: IOException) {
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
+            false
+        }
+    }
+
+
+    private fun createImageProfilePart(uri: Uri, applicationContext: Context): MultipartBody.Part {
+        var inputStream: InputStream? = null
+        try {
+            inputStream = context?.contentResolver?.openInputStream(uri)
+            if (inputStream != null) {
+                val requestBody =
+                    RequestBody.create(MediaType.parse("image/*"), inputStream.readBytes())
+                return MultipartBody.Part.createFormData(
+                    "image_profile",
+                    uri.lastPathSegment!!,
+                    requestBody
+                )
+            }
+        } finally {
+            inputStream?.close()
+        }
+        throw IOException("No se pudo abrir el InputStream")
     }
 }
