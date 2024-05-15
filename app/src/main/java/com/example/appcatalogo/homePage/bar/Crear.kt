@@ -32,7 +32,8 @@ class Crear : Fragment() {
     private var coordinatorLayout: CoordinatorLayout? = null
 
     private val accessToken = TokenManager.accessToken
-    private lateinit var catalogoAdapter : CatalogoAdapter
+    private lateinit var catalogoAdapter: CatalogoAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,10 +64,12 @@ class Crear : Fragment() {
                     findNavController().navigate(R.id.action_crear_to_perfil)
                     true
                 }
+
                 R.id.nav_item_inicio -> {
                     findNavController().navigate(R.id.action_crear_to_homeFirstPage)
                     true
                 }
+
                 R.id.nav_item_categorias -> {
                     findNavController().navigate(R.id.action_crear_to_categoriasSlideBar2)
                     true
@@ -76,11 +79,13 @@ class Crear : Fragment() {
                     findNavController().navigate(R.id.action_crear_to_homeUsuario)
                     true
                 }
+
                 R.id.nav_item_cerrar_sesion -> {
                     findNavController().popBackStack(R.id.loginFragment, false)
                     true
 
                 }
+
                 else -> false
             }
         }
@@ -130,24 +135,36 @@ class Crear : Fragment() {
             .setView(dialogView)
             .setTitle("Crear nuevo catálogo")
             .setPositiveButton("Crear") { _, _ ->
-                val nombre = dialogView.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
-                val juegosString = dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
+                val nombre =
+                    dialogView.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
+                val juegosString =
+                    dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
 
                 // Verifica si los campos EditText están vacíos
-                if (nombre.isBlank() || juegosString.isBlank()) {
-                    // Si los campos están vacíos, muestra un mensaje de error y detén la creación
-                    Toast.makeText(context, "Los campos no pueden estar vacíos", Toast.LENGTH_SHORT).show()
+                if (nombre.isBlank()) {
+                    // Si el nombre está vacío, muestra un mensaje de error y detén la creación
+                    Toast.makeText(context, "Debe colocar el nombre del catalogo", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
 
+                if (juegosString.isBlank()) {
+                    // Si juegosString está vacío, permite la creación y muestra un mensaje
+                    Toast.makeText(context, "Creando catálogo sin juegos", Toast.LENGTH_SHORT).show()
+                }
+
                 // Convierte la lista de IDs de juegos a una lista de Int
-                val juegos = juegosString.split(",").map { it.trim().toInt() }
+                val juegos = if (juegosString.isBlank()) {
+                    listOf<Int>()
+                } else {
+                    juegosString.split(",").map { it.trim().toInt() }
+                }
 
                 val newCatalogo = Catalogo(nombre, juegos)
 
                 // Llama a la API en una corutina
                 lifecycleScope.launch {
-                    val response = ApiCatalogo.apiCatalogos.createCatalogo("Bearer $accessToken", newCatalogo)
+                    val response =
+                        ApiCatalogo.apiCatalogos.createCatalogo("Bearer $accessToken", newCatalogo)
 
                     Log.d("MyApp", "Response code: ${response.code()}")
 
@@ -155,13 +172,22 @@ class Crear : Fragment() {
                         // Si la solicitud fue exitosa, actualiza el RecyclerView
                         val catalogo = response.body()
                         if (catalogo != null) {
-                            Toast.makeText(context, "El catalogo se ha creado correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "El catalogo se ha creado correctamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         } else {
-                            Toast.makeText(context, "El catalogo no se ha creado correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                context,
+                                "El catalogo no se ha creado correctamente",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     } else {
                         // Si la solicitud no fue exitosa, muestra un mensaje de error
-                        Toast.makeText(context, "Error al crear el catálogo", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Error al crear el catálogo", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }

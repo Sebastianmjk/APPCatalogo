@@ -2,6 +2,7 @@ package com.example.appcatalogo.apiConection.apiCatalogos
 
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogos
+import com.example.appcatalogo.apiConection.apiJuegos.model.Result
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*

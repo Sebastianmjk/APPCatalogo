@@ -6,6 +6,10 @@
         />
     <item
         android:id="@+id/edit_catalogo"
-        android:title="@string/editar_catalogo"
+        android:title="@string/agregar_juego"
+        />
+    <item
+        android:id="@+id/eliminar_juego"
+        android:title="@string/eliminar_juego"
         />
 </menu>

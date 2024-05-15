@@ -86,7 +86,7 @@ class HomeUsuario : Fragment() {
         val layoutManagerCatalogo = LinearLayoutManager(context)
         recyclerViewCatalogo= view.findViewById(R.id.rvTusCatalogos)
         recyclerViewCatalogo.layoutManager = layoutManagerCatalogo
-        catalogoAdapter = CatalogoAdapter(lifecycleScope, requireContext(), mutableListOf(), accessToken)
+        catalogoAdapter = CatalogoAdapter(lifecycleScope, requireContext(), mutableListOf(), accessToken, findNavController())
         recyclerViewCatalogo.adapter = catalogoAdapter
 
         fetchCatalogos()
@@ -104,7 +104,6 @@ class HomeUsuario : Fragment() {
 
             findNavController().navigate(R.id.action_homeUsuario_to_catalogosDetail, bundle)
         }
-
     }
 
     private fun fetchCatalogos() {

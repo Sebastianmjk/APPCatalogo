@@ -30,4 +30,20 @@ object ApiCatalogo {
             .build()
             .create(ApiCatalogos::class.java)
     }
+
+    val apiAddJuego : ApiCatalogos by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiCatalogos::class.java)
+    }
+
+    val apiDeleteJuego : ApiCatalogos by lazy {
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiCatalogos::class.java)
+    }
 }

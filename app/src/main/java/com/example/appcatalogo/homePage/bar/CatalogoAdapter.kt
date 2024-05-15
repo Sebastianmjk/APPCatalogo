@@ -9,8 +9,12 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.navigation.NavController
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
@@ -22,7 +26,8 @@ class CatalogoAdapter(
     private val lifecycleScope: LifecycleCoroutineScope,
     private val context: Context,
     val catalogos: MutableList<Catalogos>,
-    private val accessToken: String?  // Agrega esta línea
+    private val accessToken: String?,
+    private val navController: NavController
 ) : RecyclerView.Adapter<CatalogoAdapter.CatalogoViewHolder>() {
 
     var onItemClick: ((Catalogos) -> Unit)? = null
@@ -67,7 +72,15 @@ class CatalogoAdapter(
                             true
                         }
                         R.id.edit_catalogo -> {
-                            editCatalogo(adapterPosition)
+                            requestJuegoId { juegoId ->
+                                addJuegoToCatalogo(adapterPosition, juegoId)
+                            }
+                            true
+                        }
+                        R.id.eliminar_juego -> {
+                            requestJuegoId { juegoId ->
+                                deleteJuegoFromCatalogo(adapterPosition, juegoId)
+                            }
                             true
                         }
                         else -> false
@@ -113,47 +126,75 @@ class CatalogoAdapter(
             }
         }
     }
-    private fun editCatalogo(position: Int) {
+
+    private fun addJuegoToCatalogo(position: Int, juegoId: Int) {
         val catalogo = catalogos[position]
 
-        // Crea un diálogo para editar el catálogo
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.edit_catalogo, null)
+        lifecycleScope.launch {
+            try {
+                val response = ApiCatalogo.apiAddJuego.addJuegoToCatalogo("Bearer $accessToken", catalogo.id, juegoId)
+
+                if (response.isSuccessful) {
+                    Toast.makeText(context, "Juego agregado", Toast.LENGTH_SHORT).show()
+                    notifyDataSetChanged()
+                    navController.navigate(R.id.action_homeUsuario_self)
+                } else {
+                    Toast.makeText(context, "Error al agregar el juego al catálogo", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun deleteJuegoFromCatalogo(position: Int, juegoId: Int) {
+        val catalogo = catalogos[position]
+
+        lifecycleScope.launch {
+            try {
+                val response = ApiCatalogo.apiDeleteJuego.deleteJuegoFromCatalogo("Bearer $accessToken", catalogo.id, juegoId)
+
+                if (response.isSuccessful) {
+                    Toast.makeText(context, "Juego eliminado", Toast.LENGTH_SHORT).show()
+                    notifyDataSetChanged()
+                    navController.navigate(R.id.action_homeUsuario_self)
+                } else {
+                    Toast.makeText(context, "Error al eliminar el juego del catálogo", Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun requestJuegoId(callback: (Int) -> Unit) {
+        // Infla la vista del diálogo
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_input, null)
+        val juegoIdEditText = dialogView.findViewById<EditText>(R.id.inputIdJuego)
+
+        // Crea el diálogo
         val dialog = AlertDialog.Builder(context)
             .setView(dialogView)
-            .setTitle("Editar catálogo")
-            .setPositiveButton("Guardar") { _, _ ->
-                val juegosString = dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
+            .setTitle("Ingrese el ID del juego")
+            .setPositiveButton("Aceptar") { _, _ ->
+                val juegoIdString = juegoIdEditText.text.toString()
 
                 // Verifica si el campo EditText está vacío
-                if (juegosString.isBlank()) {
-                    // Si el campo está vacío, muestra un mensaje de error y detén la edición
+                if (juegoIdString.isBlank()) {
+                    // Si el campo está vacío, muestra un mensaje de error y detén la operación
                     Toast.makeText(context, "El campo no puede estar vacío", Toast.LENGTH_SHORT).show()
                     return@setPositiveButton
                 }
 
-                // Convierte la lista de IDs de juegos a una lista de Int
-                val juegos = juegosString.split(",").map { it.trim().toInt() }
-
-                // Actualiza el catálogo con los nuevos juegos
-                catalogo.juegos = juegos
-
-                // Llama a la API en una corutina para actualizar el catálogo
-                lifecycleScope.launch {
-                    val response = ApiCatalogo.apiCatalogos.updateCatalogo("Bearer $accessToken", catalogo)
-
-                    if (response.isSuccessful) {
-                        // Si la solicitud fue exitosa, actualiza el RecyclerView
-                        catalogos[position] = catalogo
-                        notifyItemChanged(position)
-                    } else {
-                        // Si la solicitud no fue exitosa, muestra un mensaje de error
-                        Toast.makeText(context, "Error al editar el catálogo", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                // Convierte el ID del juego a Int y llama al callback
+                val juegoId = juegoIdString.toInt()
+                callback(juegoId)
             }
             .setNegativeButton("Cancelar", null)
             .create()
 
         dialog.show()
     }
+
 }
