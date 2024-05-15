@@ -8,10 +8,10 @@ import com.example.appcatalogo.apiConection.apiUsuario.model.EmailSendCode
 import com.example.appcatalogo.apiConection.apiUsuario.model.VerifyEmail
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserChangePassword
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
-import com.example.appcatalogo.apiConection.apiUsuario.model.ImageProfile
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
+import java.io.File
 
 interface UsuarioApi {
     @POST("login/")
@@ -29,14 +29,14 @@ interface UsuarioApi {
     @PATCH("edit_user/")
     suspend fun editUser(
         @Header("Authorization") authHeader: String,
-        @Part usuario: UserEdit
+        @Body usuario: UserEdit
     ): Response<Usuario>
 
     @Multipart
     @PATCH("edit_user/")
     suspend fun changeImageProfile(
         @Header("Authorization") authHeader: String,
-        @Part imageProfile: ImageProfile
+        @Part("image_profile") imageProfile: File
     ): Response<Usuario>
 
     @POST("email/register/send_code/")
