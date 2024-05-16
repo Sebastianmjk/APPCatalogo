@@ -26,9 +26,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCategoriasJuegos"
+        <LinearLayout
+            android:id="@+id/liContenedorJuegosCategoria"
+            android:orientation="vertical"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoriaNombre">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategoriasJuegos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_juego" />
+
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerCategoriasJuegos"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            app:shimmer_auto_start="true"
             android:layout_height="0dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
@@ -36,8 +60,24 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoriaNombre"
-            tools:listitem="@layout/item_juego" />
+            app:layout_constraintTop_toBottomOf="@+id/categoriaNombre">
+
+            <LinearLayout
+                android:id="@+id/liCargandoCategoriasJuegos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_juego_cargando" />
+                <include layout="@layout/item_juego_cargando" />
+                <include layout="@layout/item_juego_cargando" />
+                <include layout="@layout/item_juego_cargando" />
+                <include layout="@layout/item_juego_cargando" />
+                <include layout="@layout/item_juego_cargando" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

@@ -65,7 +65,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/rvRecomendaciones"
+                    app:layout_constraintBottom_toTopOf="@+id/shimmerJuegos"
                     app:layout_constraintEnd_toEndOf="@id/guidelineright"
                     app:layout_constraintStart_toStartOf="@id/guidelineleft"
                     app:layout_constraintTop_toBottomOf="@+id/tx_juego_titulo_detail">
@@ -99,17 +99,61 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.95" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRecomendaciones"
+                <LinearLayout
+                    android:id="@+id/liContenedorJuegos"
                     android:layout_width="379dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
                     android:layout_height="1092dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="1dp"
                     app:layout_constraintBottom_toBottomOf="@+id/guideline"
                     app:layout_constraintEnd_toEndOf="@+id/guidelineright"
                     app:layout_constraintStart_toStartOf="@+id/guidelineleft"
-                    app:layout_constraintTop_toBottomOf="@+id/scrollvievdetail"
-                    tools:listitem="@layout/item_juego" />
+                    app:layout_constraintTop_toBottomOf="@+id/scrollvievdetail">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvRecomendaciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/item_juego" />
+
+                </LinearLayout>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerJuegos"
+                    app:shimmer_auto_start="true"
+                    android:layout_width="379dp"
+                    android:orientation="vertical"
+                    android:layout_height="1092dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="1dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/guideline"
+                    app:layout_constraintEnd_toEndOf="@+id/guidelineright"
+                    app:layout_constraintStart_toStartOf="@+id/guidelineleft"
+                    app:layout_constraintTop_toBottomOf="@+id/scrollvievdetail">
+
+                    <LinearLayout
+                        android:id="@+id/liCargandoJuegos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+                        <include layout="@layout/item_juego_cargando" />
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

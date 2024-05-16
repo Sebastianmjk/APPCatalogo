@@ -1,13 +1,17 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -26,6 +30,9 @@ import retrofit2.Response
 
 
 class CatalogosDetail : Fragment() {
+
+    private lateinit var liContenedorCatalogosJuegos: LinearLayout
+    private lateinit var liCargandoCatalogosJuegos: LinearLayout
 
     private lateinit var adaptadorJuegos: AdapterJuegos
     private lateinit var recyclerViewJuegos: RecyclerView
@@ -148,6 +155,14 @@ class CatalogosDetail : Fragment() {
             true
         }
 
+        liContenedorCatalogosJuegos = view.findViewById(R.id.liContenedorCatalogosJuegos)
+        liCargandoCatalogosJuegos = view.findViewById(R.id.liCargandoCatalogosJuegos)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoCatalogosJuegos.isVisible = false
+            liContenedorCatalogosJuegos.isVisible = true
+        }, 3000)
+
     }
 
 
@@ -185,9 +200,6 @@ class CatalogosDetail : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        coordinatorLayout?.visibility = View.GONE
-        appBarLayout?.visibility = View.GONE
-        navView?.visibility = View.GONE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         recyclerViewJuegos.adapter = null
         adaptadorJuegos.juegosList.clear()

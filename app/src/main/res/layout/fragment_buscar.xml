@@ -23,16 +23,55 @@
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="Buscar" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvBuscar"
+        <LinearLayout
+            android:id="@+id/liContenedorBuscar"
             android:layout_width="match_parent"
             android:layout_height="600dp"
+            android:visibility="gone"
+            android:orientation="vertical"
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchViewBuscar"
-            tools:listitem="@layout/item_juego"/>
+            app:layout_constraintTop_toBottomOf="@+id/searchViewBuscar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_juego"/>
+
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerBuscar"
+            app:shimmer_auto_start="true"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchViewBuscar">
+
+            <LinearLayout
+                android:id="@+id/liCargandoBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_juego_cargando"/>
+                <include layout="@layout/item_juego_cargando"/>
+                <include layout="@layout/item_juego_cargando"/>
+                <include layout="@layout/item_juego_cargando"/>
+                <include layout="@layout/item_juego_cargando"/>
+                <include layout="@layout/item_juego_cargando"/>
+
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

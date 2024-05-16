@@ -1,11 +1,15 @@
 package com.example.appcatalogo.slideBar
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,6 +23,10 @@ import com.google.android.material.navigation.NavigationView
 
 
 class CategoriasSlideBar : Fragment() {
+
+    private lateinit var liContenedorCategoriasSlideBar : LinearLayout
+    private lateinit var liCargandoCategoriasSlideBar2 : LinearLayout
+    private lateinit var liCargandoCategoriasSlideBar : LinearLayout
 
     private lateinit var adaptador : AdapterCategoriasSlideBar
     private lateinit var recyclerViewCategoriasSlideBar: RecyclerView
@@ -136,13 +144,20 @@ class CategoriasSlideBar : Fragment() {
             true
         }
 
+        liCargandoCategoriasSlideBar2 = view.findViewById(R.id.liCargandoCategoriasSlideBar2)
+        liCargandoCategoriasSlideBar = view.findViewById(R.id.liCargandoCategoriasSlideBar)
+        liContenedorCategoriasSlideBar = view.findViewById(R.id.liContenedorCategoriasSlideBar)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoCategoriasSlideBar2.isVisible = false
+            liCargandoCategoriasSlideBar.isVisible = false
+            liContenedorCategoriasSlideBar.isVisible = true
+        }, 500)
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        coordinatorLayout?.visibility = View.GONE
-        appBarLayout?.visibility = View.GONE
-        navView?.visibility = View.GONE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         recyclerViewCategoriasSlideBar.adapter = null
         adaptador.clearData()

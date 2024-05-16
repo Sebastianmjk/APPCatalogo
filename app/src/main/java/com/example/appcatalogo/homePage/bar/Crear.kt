@@ -199,9 +199,6 @@ class Crear : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        coordinatorLayout?.visibility = View.GONE
-        appBarLayout?.visibility = View.GONE
-        navView?.visibility = View.GONE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
     }
 

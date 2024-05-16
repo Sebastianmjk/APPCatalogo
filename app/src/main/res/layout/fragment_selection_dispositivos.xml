@@ -81,10 +81,12 @@
                 app:layout_constraintTop_toTopOf="@+id/buttonBackSelection" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/dispositivosScrollView"
+        <LinearLayout
+            android:id="@+id/liContenedorSeleccion"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="0dp"
+            android:orientation="vertical"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
@@ -96,10 +98,53 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSeleccion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 tools:listitem="@layout/item_selecciones" />
 
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerSeleccionDispositivos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:shimmer_auto_start="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/footerVarSelection"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_escoga3_selecciones">
+
+            <LinearLayout
+                android:id="@+id/liCargandoSeleccion"
+                android:layout_width="175dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/liCargandoSeleccion2"
+                android:layout_width="175dp"
+                android:layout_gravity="end"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

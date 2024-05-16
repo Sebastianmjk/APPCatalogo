@@ -8,19 +8,17 @@
     android:orientation="vertical"
     app:cardCornerRadius="16dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <FrameLayout
         android:id="@+id/ivSelecciones"
         android:layout_width="140dp"
         android:layout_height="140dp"
-        android:scaleType="centerCrop"
-        tools:src="@tools:sample/avatars" />
-    <TextView
+        android:background="@drawable/forma_generos"
+        android:scaleType="centerCrop" />
+    <FrameLayout
         android:id="@+id/txSeleccionesNombre"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/inter_medium"
-        android:text="@string/categoria_nombre"
-        android:textColor="#000000"
+        android:layout_height="15dp"
+        android:background="#c8c8c9"
         android:gravity="center"/>
 
 

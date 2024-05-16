@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.homePage.Categorias
@@ -21,6 +22,7 @@ class AdapterCategoriasSlideBar(private val categoriaslist : ArrayList<Categoria
 
         var idCaregoria : Int = 0
         var imageCategoria : ImageView = itemView.findViewById(R.id.ivSelecciones)
+        var nombreSeleccion : TextView = itemView.findViewById(R.id.txSeleccionesNombre)
 
     }
 
@@ -37,8 +39,9 @@ class AdapterCategoriasSlideBar(private val categoriaslist : ArrayList<Categoria
         val categoria = categoriaslist[position]
         holder.idCaregoria = categoria.id
         holder.imageCategoria.setImageResource(categoria.image)
+        holder.nombreSeleccion.text = categoria.nombre
 
-        holder.imageCategoria.setOnClickListener{
+        holder.itemView.setOnClickListener{
             onItemClick?.invoke(categoria)
         }
     }
@@ -46,4 +49,5 @@ class AdapterCategoriasSlideBar(private val categoriaslist : ArrayList<Categoria
         categoriaslist.clear()
         notifyDataSetChanged()
     }
+
 }

@@ -2,12 +2,16 @@ package com.example.appcatalogo.signUp.quest
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -17,6 +21,10 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 
 class SelectionDispositivos : Fragment() {
+
+    private lateinit var liContenedorSeleccion : LinearLayout
+    private lateinit var liCargandoSeleccion : LinearLayout
+    private lateinit var liCargandoSeleccion2 : LinearLayout
 
     private lateinit var adaptador : AdapterSelecciones
     private lateinit var recyclerView: RecyclerView
@@ -33,16 +41,16 @@ class SelectionDispositivos : Fragment() {
     private fun getSeleccionList() : ArrayList<Selecciones>{
 
         val seleccionesList : ArrayList<Selecciones> = ArrayList()
-        seleccionesList.add(Selecciones(1, R.mipmap.playstation))
-        seleccionesList.add(Selecciones(2, R.mipmap.xbox))
-        seleccionesList.add(Selecciones(3, R.mipmap.nintendoswitch))
-        seleccionesList.add(Selecciones(4, R.mipmap.pc))
-        seleccionesList.add(Selecciones(5, R.mipmap.celular))
-        seleccionesList.add(Selecciones(6, R.mipmap.portatil))
-        seleccionesList.add(Selecciones(7, R.mipmap.wii))
-        seleccionesList.add(Selecciones(8, R.mipmap.psp))
-        seleccionesList.add(Selecciones(9, R.mipmap.tablet))
-        seleccionesList.add(Selecciones(10, R.mipmap.nes))
+        seleccionesList.add(Selecciones(1, R.mipmap.playstation, "PlayStation"))
+        seleccionesList.add(Selecciones(2, R.mipmap.xbox, "Xbox"))
+        seleccionesList.add(Selecciones(3, R.mipmap.nintendoswitch, "Nintendo Switch"))
+        seleccionesList.add(Selecciones(4, R.mipmap.pc, "PC"))
+        seleccionesList.add(Selecciones(5, R.mipmap.celular, "Celular"))
+        seleccionesList.add(Selecciones(6, R.mipmap.portatil, "Portatil"))
+        seleccionesList.add(Selecciones(7, R.mipmap.wii, "Wii"))
+        seleccionesList.add(Selecciones(8, R.mipmap.psp, "PSP"))
+        seleccionesList.add(Selecciones(9, R.mipmap.tablet, "Tablet"))
+        seleccionesList.add(Selecciones(10, R.mipmap.nes, "NES"))
         return seleccionesList
 
     }
@@ -70,5 +78,24 @@ class SelectionDispositivos : Fragment() {
         adaptador.onItemClick = { seleccion, view ->
             view.setBackgroundColor(if (seleccion.seleccionado) Color.parseColor("#3F51B5") else Color.TRANSPARENT)
         }
+
+        liCargandoSeleccion = view.findViewById(R.id.liCargandoSeleccion)
+        liCargandoSeleccion2 = view.findViewById(R.id.liCargandoSeleccion2)
+        liContenedorSeleccion = view.findViewById(R.id.liContenedorSeleccion)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoSeleccion.isVisible = false
+            liCargandoSeleccion2.isVisible = false
+            liContenedorSeleccion.isVisible = true
+        }, 500)
+
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recyclerView.adapter = null
+        recyclerView.layoutManager = null
+        adaptador.clearData()
+    }
+
 }

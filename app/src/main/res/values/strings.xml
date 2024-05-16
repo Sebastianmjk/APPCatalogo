@@ -78,6 +78,7 @@
     <string name="ingrese_el_id_del_juego">Ingrese el ID del juego</string>
     <string name="eliminar_juego">Eliminar Juego</string>
     <string name="agregar_juego">Agregar Juego</string>
+    <string name="categoria_nombre">Categoria</string>
 
 
 </resources>

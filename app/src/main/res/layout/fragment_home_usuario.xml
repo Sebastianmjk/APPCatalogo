@@ -25,15 +25,60 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvTusCatalogos"
+        <LinearLayout
+            android:id="@+id/liContenedorCatalogos"
             android:layout_width="match_parent"
             android:layout_height="589dp"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMisCatalogos">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTusCatalogos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_catalogos" />
+
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerCatalogos"
+            android:layout_width="match_parent"
+            android:layout_height="589dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewMisCatalogos"
-            tools:listitem="@layout/item_catalogos" />
+            app:shimmer_auto_start="true">
+
+            <LinearLayout
+                android:id="@+id/liCargandoCatalogos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMisCatalogos">
+
+                <include layout="@layout/item_catalogos_cargando" />
+                <include layout="@layout/item_catalogos_cargando" />
+                <include layout="@layout/item_catalogos_cargando" />
+                <include layout="@layout/item_catalogos_cargando" />
+                <include layout="@layout/item_catalogos_cargando" />
+                <include layout="@layout/item_catalogos_cargando" />
+
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

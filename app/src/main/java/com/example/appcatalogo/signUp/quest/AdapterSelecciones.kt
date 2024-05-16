@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 
@@ -21,6 +22,7 @@ class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) :
 
         var idSeleccion : Int = 0
         var imageSeleccion : ImageView = itemView.findViewById(R.id.ivSelecciones)
+        var nombreSeleccion : TextView = itemView.findViewById(R.id.txSeleccionesNombre)
 
     }
 
@@ -37,11 +39,12 @@ class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) :
         val seleccion = seleccioneslist[position]
         holder.idSeleccion = seleccion.id
         holder.imageSeleccion.setImageResource(seleccion.image)
+        holder.nombreSeleccion.text = seleccion.nombre
 
         // Establece el color de fondo inicial
-        holder.imageSeleccion.setBackgroundColor(if (seleccion.seleccionado) Color.parseColor("#3F51B5") else Color.TRANSPARENT)
+        holder.itemView.setBackgroundColor(if (seleccion.seleccionado) Color.parseColor("#3F51B5") else Color.TRANSPARENT)
 
-        holder.imageSeleccion.setOnClickListener{
+        holder.itemView.setOnClickListener{
             val numSeleccionados = seleccioneslist.count { it.seleccionado }
             if (!seleccion.seleccionado && numSeleccionados >= 3) {
                 // Si ya hay 3 elementos seleccionados, no permitas que se seleccionen más
@@ -55,5 +58,9 @@ class AdapterSelecciones(private val seleccioneslist : ArrayList<Selecciones>) :
             onItemClick?.invoke(seleccion, it)
         }
 
+
+    }
+    fun clearData() {
+        seleccioneslist.clear()
     }
 }

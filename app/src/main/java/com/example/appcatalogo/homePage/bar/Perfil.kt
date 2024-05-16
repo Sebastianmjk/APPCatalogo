@@ -1,6 +1,8 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -8,7 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.R
@@ -32,6 +36,9 @@ import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
 
 
 class Perfil : Fragment() {
+
+    private lateinit var liImagenPerfil : LinearLayout
+    private lateinit var liContenedorPerfil : LinearLayout
 
     private lateinit var drawerLayout: DrawerLayout
     private var navView: NavigationView? = null
@@ -144,13 +151,18 @@ class Perfil : Fragment() {
                 }
             }
         }
+
+        liContenedorPerfil = view.findViewById(R.id.liCargandoImagenPerfil)
+        liImagenPerfil = view.findViewById(R.id.liImagenPerfil)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liContenedorPerfil.isVisible = false
+            liImagenPerfil.isVisible = true
+        }, 1000)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        coordinatorLayout?.visibility = View.GONE
-        appBarLayout?.visibility = View.GONE
-        navView?.visibility = View.GONE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         _binding = null
     }

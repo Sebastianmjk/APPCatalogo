@@ -1,18 +1,20 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +25,6 @@ import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
 import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,8 +32,10 @@ import retrofit2.Response
 
 class Buscar : Fragment() {
 
+    private lateinit var liContenedorBuscar : LinearLayout
+    private lateinit var liCargandoBuscar : LinearLayout
+
     private lateinit var drawerLayout: DrawerLayout
-    private var navView: NavigationView? = null
     private var appBarLayout: AppBarLayout? = null
     private var coordinatorLayout: CoordinatorLayout? = null
 
@@ -52,6 +55,12 @@ class Buscar : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        liContenedorBuscar = view.findViewById(R.id.liContenedorBuscar)
+        liCargandoBuscar = view.findViewById(R.id.liCargandoBuscar)
+
+        liCargandoBuscar.isVisible = false
+        liContenedorBuscar.isVisible = true
+
        search = view.findViewById(R.id.searchViewBuscar)
         search.setOnClickListener {
             search.isIconified = false
@@ -67,7 +76,13 @@ class Buscar : Fragment() {
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
+                    liCargandoBuscar.isVisible = true
+                    liContenedorBuscar.isVisible = false
                     loadGames(query)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        liCargandoBuscar.isVisible = false
+                        liContenedorBuscar.isVisible = true
+                    }, 1000)
                 }
                 val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 inputMethodManager.hideSoftInputFromWindow(search.windowToken, 0)
@@ -82,13 +97,11 @@ class Buscar : Fragment() {
 
 
         drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
-        navView = activity?.findViewById(R.id.nav_view)
         appBarLayout = activity?.findViewById(R.id.app_bar_layout)
         coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
 
         coordinatorLayout?.visibility = View.GONE
         appBarLayout?.visibility = View.GONE
-        navView?.visibility = View.GONE
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
         val layoutManagerJuegos = LinearLayoutManager(context)

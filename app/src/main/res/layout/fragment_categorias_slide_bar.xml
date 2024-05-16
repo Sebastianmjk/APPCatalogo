@@ -23,23 +23,77 @@
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="35sp"
-            app:layout_constraintBottom_toTopOf="@+id/rvCategoriasSlideBar"
+            app:layout_constraintBottom_toTopOf="@+id/shimmerCategoriasSlideBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvCategoriasSlideBar"
+        <LinearLayout
+            android:id="@+id/liContenedorCategoriasSlideBar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
+            android:orientation="vertical"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/categoriasSlideBar"
-            tools:listitem="@layout/item_selecciones" />
+            app:layout_constraintTop_toBottomOf="@+id/categoriasSlideBar">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategoriasSlideBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_selecciones" />
+
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerCategoriasSlideBar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:shimmer_auto_start="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/categoriasSlideBar">
+
+            <LinearLayout
+                android:id="@+id/liCargandoCategoriasSlideBar"
+                android:layout_width="175dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/liCargandoCategoriasSlideBar2"
+                android:layout_width="175dp"
+                android:layout_gravity="end"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+                <include layout="@layout/item_selecciones_cargando" />
+
+            </LinearLayout>
+
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"

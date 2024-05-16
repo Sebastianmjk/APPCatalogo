@@ -1,13 +1,17 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.activity.addCallback
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,6 +31,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class HomeFirstPage : Fragment() {
+
+    private lateinit var liContenedorCarrusel : LinearLayout
+    private lateinit var liCargandoCarrusel : LinearLayout
+    private lateinit var liContenedorJuegos : LinearLayout
+    private lateinit var liCargandoJuegos : LinearLayout
+    private lateinit var liContenedorCategorias : LinearLayout
+    private lateinit var liCargandoCategorias : LinearLayout
 
     private lateinit var adaptadorCategorias : AdapterCategorias
     private lateinit var recyclerViewCategorias : RecyclerView
@@ -146,6 +157,22 @@ class HomeFirstPage : Fragment() {
             }
             findNavController().navigate(R.id.action_homeFirstPage_to_juegoDetail, bundle)
         }
+
+        liCargandoCarrusel = view.findViewById(R.id.liCargandoCarrusel)
+        liCargandoJuegos = view.findViewById(R.id.liCargandoJuegos)
+        liContenedorCarrusel = view.findViewById(R.id.liContenedorCarrusel)
+        liContenedorJuegos = view.findViewById(R.id.liContenedorJuegos)
+        liCargandoCategorias = view.findViewById(R.id.liCargandoCategorias)
+        liContenedorCategorias = view.findViewById(R.id.liContenedorCategorias)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoCarrusel.isVisible = false
+            liContenedorCarrusel.isVisible = true
+            liCargandoJuegos.isVisible = false
+            liContenedorJuegos.isVisible = true
+            liCargandoCategorias.isVisible = false
+            liContenedorCategorias.isVisible = true
+        }, 1000)
     }
 
     private fun loadGames() {

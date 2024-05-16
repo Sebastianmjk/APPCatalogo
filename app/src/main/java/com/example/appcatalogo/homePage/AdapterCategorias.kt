@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 
@@ -20,6 +21,7 @@ class AdapterCategorias(private val categoriaslist : ArrayList<Categorias>) : Re
 
         var idCaregoria : Int = 0
         var imageCategoria : ImageView = itemView.findViewById(R.id.ivCategorias)
+        var nombreCategoria : TextView = itemView.findViewById(R.id.txCategoriasNombre)
 
     }
 
@@ -36,8 +38,9 @@ class AdapterCategorias(private val categoriaslist : ArrayList<Categorias>) : Re
         val categoria = categoriaslist[position]
         holder.idCaregoria = categoria.id
         holder.imageCategoria.setImageResource(categoria.image)
+        holder.nombreCategoria.text = categoria.nombre
 
-        holder.imageCategoria.setOnClickListener{
+        holder.itemView.setOnClickListener{
             onItemClick?.invoke(categoria)
         }
     }

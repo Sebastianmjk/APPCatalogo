@@ -1,13 +1,17 @@
     package com.example.appcatalogo.homePage
 
     import android.os.Bundle
+    import android.os.Handler
+    import android.os.Looper
     import android.util.Log
     import androidx.fragment.app.Fragment
     import android.view.LayoutInflater
     import android.view.View
     import android.view.ViewGroup
+    import android.widget.LinearLayout
     import android.widget.TextView
     import androidx.coordinatorlayout.widget.CoordinatorLayout
+    import androidx.core.view.isVisible
     import androidx.drawerlayout.widget.DrawerLayout
     import androidx.navigation.fragment.findNavController
     import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +29,9 @@
 
 
     class CategoriasDetail : Fragment() {
+
+        private lateinit var liCargandoCategoriasJuegos : LinearLayout
+        private lateinit var liContenedorCategoriasJuegos : LinearLayout
 
         private lateinit var adaptadorJuegos: AdapterJuegos
         private lateinit var recyclerViewJuegos: RecyclerView
@@ -137,6 +144,14 @@
                 true
             }
 
+            liCargandoCategoriasJuegos = view.findViewById(R.id.liCargandoCategoriasJuegos)
+            liContenedorCategoriasJuegos = view.findViewById(R.id.liContenedorJuegosCategoria)
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                liCargandoCategoriasJuegos.isVisible = false
+                liContenedorCategoriasJuegos.isVisible = true
+            }, 1000)
+
         }
 
         private fun loadGeneros() {
@@ -164,9 +179,6 @@
 
         override fun onDestroyView() {
             super.onDestroyView()
-            coordinatorLayout?.visibility = View.GONE
-            appBarLayout?.visibility = View.GONE
-            navView?.visibility = View.GONE
             drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
             recyclerViewJuegos.adapter = null
             adaptadorJuegos.juegosList.clear()

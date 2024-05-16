@@ -1,13 +1,17 @@
 package com.example.appcatalogo.apiConection.apiJuegos.model
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -25,6 +29,9 @@ import retrofit2.Response
 
 
 class JuegoDetail : Fragment() {
+
+    private lateinit var liContenedorJuegos : LinearLayout
+    private lateinit var liCargandoJuegos : LinearLayout
 
     private lateinit var adaptadorJuegos : AdapterJuegos
     private lateinit var recyclerViewJuegos : RecyclerView
@@ -130,6 +137,14 @@ class JuegoDetail : Fragment() {
             }
             true
         }
+
+        liCargandoJuegos = view.findViewById(R.id.liCargandoJuegos)
+        liContenedorJuegos = view.findViewById(R.id.liContenedorJuegos)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoJuegos.isVisible = false
+            liContenedorJuegos.isVisible = true
+        }, 1000)
 
     }
 

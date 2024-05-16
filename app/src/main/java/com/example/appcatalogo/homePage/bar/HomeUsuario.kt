@@ -1,12 +1,16 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,6 +25,9 @@ import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.launch
 
 class HomeUsuario : Fragment() {
+
+    private lateinit var liContenedorCatalogos : LinearLayout
+    private lateinit var liCargandoCatalogos : LinearLayout
 
     private lateinit var drawerLayout: DrawerLayout
     private var appBarLayout: AppBarLayout? = null
@@ -104,6 +111,14 @@ class HomeUsuario : Fragment() {
 
             findNavController().navigate(R.id.action_homeUsuario_to_catalogosDetail, bundle)
         }
+
+        liCargandoCatalogos = view.findViewById(R.id.liCargandoCatalogos)
+        liContenedorCatalogos = view.findViewById(R.id.liContenedorCatalogos)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoCatalogos.isVisible = false
+            liContenedorCatalogos.isVisible = true
+        }, 1000)
     }
 
     private fun fetchCatalogos() {
