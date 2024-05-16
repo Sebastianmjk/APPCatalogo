@@ -165,5 +165,10 @@ class Buscar : Fragment() {
         })
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recyclerViewJuegos.adapter = null
+        adaptadorJuegos.juegosList.clear()
+    }
 
 }

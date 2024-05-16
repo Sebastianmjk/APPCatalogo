@@ -131,4 +131,10 @@ class HomeUsuario : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recyclerViewCatalogo.adapter = null
+        catalogoAdapter.catalogos.clear()
+    }
+
 }

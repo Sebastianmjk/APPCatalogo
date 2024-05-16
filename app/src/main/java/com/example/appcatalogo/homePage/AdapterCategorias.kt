@@ -41,4 +41,8 @@ class AdapterCategorias(private val categoriaslist : ArrayList<Categorias>) : Re
             onItemClick?.invoke(categoria)
         }
     }
+    fun clearData() {
+        categoriaslist.clear()
+        notifyDataSetChanged()
+    }
 }

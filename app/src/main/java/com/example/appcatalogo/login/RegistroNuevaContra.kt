@@ -77,6 +77,11 @@ class RegistroNuevaContra : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun checkPassword(password1:String, password2:String):Boolean{
         return password1 == password2
     }

@@ -139,10 +139,6 @@
 
         }
 
-        override fun onDestroyView() {
-            super.onDestroyView()
-            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        }
         private fun loadGeneros() {
             ApiClient.apiGenero.listGeneros(nombreCategoria ?: "", "20").enqueue(object : Callback<RemoteResult> {
                     override fun onResponse(
@@ -164,5 +160,15 @@
                         Log.d("API", "Error en la llamada: $t")
                     }
                 })
+        }
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            coordinatorLayout?.visibility = View.GONE
+            appBarLayout?.visibility = View.GONE
+            navView?.visibility = View.GONE
+            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            recyclerViewJuegos.adapter = null
+            adaptadorJuegos.juegosList.clear()
         }
     }

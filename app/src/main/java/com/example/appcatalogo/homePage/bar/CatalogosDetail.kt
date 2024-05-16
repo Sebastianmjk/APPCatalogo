@@ -150,10 +150,6 @@ class CatalogosDetail : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-    }
 
     fun loadJuegos(juegoIds: List<Int>?) {
         if (juegoIds != null) {
@@ -175,7 +171,9 @@ class CatalogosDetail : Fragment() {
                             }
                         } catch (e: Exception) {
                             // Maneja cualquier excepción que pueda ocurrir
-                            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                            if (isAdded) {
+                                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 adaptadorJuegos.juegosList.clear()
@@ -184,5 +182,15 @@ class CatalogosDetail : Fragment() {
                 }
             }
         }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        coordinatorLayout?.visibility = View.GONE
+        appBarLayout?.visibility = View.GONE
+        navView?.visibility = View.GONE
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        recyclerViewJuegos.adapter = null
+        adaptadorJuegos.juegosList.clear()
+    }
 
 }

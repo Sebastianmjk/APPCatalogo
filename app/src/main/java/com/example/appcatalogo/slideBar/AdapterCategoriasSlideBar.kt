@@ -42,4 +42,8 @@ class AdapterCategoriasSlideBar(private val categoriaslist : ArrayList<Categoria
             onItemClick?.invoke(categoria)
         }
     }
+    fun clearData() {
+        categoriaslist.clear()
+        notifyDataSetChanged()
+    }
 }
