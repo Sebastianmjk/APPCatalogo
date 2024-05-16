@@ -15,6 +15,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
+import okhttp3.MultipartBody
 import java.io.File
 
 object UserService {
@@ -76,7 +77,7 @@ object UserService {
         }
     }
 
-    suspend fun changeImageProfile(authHeader: String, imageProfile: File): Response<Usuario> {
+    suspend fun changeImageProfile(authHeader: String, imageProfile: MultipartBody.Part): Response<Usuario> {
         return withContext(Dispatchers.IO) {
             usuarioApi.changeImageProfile(authHeader, imageProfile)
         }

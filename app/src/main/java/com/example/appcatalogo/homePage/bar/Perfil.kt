@@ -1,10 +1,7 @@
 package com.example.appcatalogo.homePage.bar
 
-import android.content.ContentResolver
 import android.net.Uri
 import android.os.Bundle
-import okhttp3.MediaType.Companion.toMediaType
-import android.provider.OpenableColumns
 import android.text.Editable
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -35,8 +32,8 @@ import com.example.appcatalogo.showError
 import com.squareup.picasso.Picasso
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
 import com.example.appcatalogo.apiConection.apiUsuario.model.ImageProfile
+import com.example.appcatalogo.apiConection.functions.ImageController
 import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 
@@ -61,10 +58,14 @@ class Perfil : Fragment() {
     private var selectedImageUri: Uri? = null
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
         if (uri != null) {
-            binding.imageProfile.setImageURI(uri)
             selectedImageUri = uri
+            val imageFile = ImageController.uriToFile(uri, requireContext())
+            Log.d("ImageController", "Converted file path: ${imageFile?.absolutePath}")
 
             Log.d("PhotoPicker", "Selected URI: $uri")
+            val fileName = imageFile?.name
+            Log.d("PhotoPicker", "File name: $fileName")
+            Picasso.get().load(imageFile!!).into(binding.imageProfile)
         } else {
             Log.d("PhotoPicker", "No media selected")
         }
@@ -163,11 +164,15 @@ class Perfil : Fragment() {
             CoroutineScope(Dispatchers.IO).launch {
                 if (tryEditUser(stringTokenAccess, usuarioEdit)) {
                     selectedImageUri?.let { uri ->
-                        val imageProfilePart = changeProfileImage(uri)
                         withContext(Dispatchers.Main) {
-                            findNavController().navigate(R.id.action_perfil_self)
+                            val imageFile = ImageController.uriToFile(uri, requireContext())
+                            val imageProfile = ImageController.fileToMultiparBody(imageFile!!)
+                            if (tryChangeImageProfile(stringTokenAccess, imageProfile)) {
+                                findNavController().navigate(R.id.action_perfil_self)
+                            }
                         }
                     }
+                    findNavController().navigate(R.id.action_perfil_self)
                 }
             }
         }
@@ -258,25 +263,29 @@ class Perfil : Fragment() {
         }
     }
 
-    private suspend fun changeProfileImage(imageUri: Uri) {
-        val imageFile = imageUri.path?.let { File(it) }
-
-        val body = imageFile?.let {
-            MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("image_profile", imageFile?.name,
-                    it.asRequestBody("application/octet-stream".toMediaType()))
-                .build()
-        }
-
-        val stringTokenAccess = "Bearer $accessToken"
-        val response = imageFile?.let { UserService.changeImageProfile(stringTokenAccess, it) }
-
-        if (response != null) {
-            if (response.isSuccessful) {
-                showError("Imagen de perfil cambiada correctamente")
-            } else {
-                showError("Error al cambiar la imagen de perfil")
+    private suspend fun tryChangeImageProfile(authHeader: String, imageProfile: MultipartBody.Part): Boolean {
+        return try {
+            withTimeout(5000) {
+                val response = UserService.changeImageProfile(authHeader, imageProfile)
+                if (response.isSuccessful) {
+                    true
+                } else {
+                    withContext(Dispatchers.Main) {
+                        showError(messageErrorToStatus(response.code()))
+                    }
+                    false
+                }
             }
+        } catch (e: TimeoutException) {
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
+            false
+        } catch (e: IOException) {
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
+            false
         }
     }
 

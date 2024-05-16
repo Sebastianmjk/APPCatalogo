@@ -8,6 +8,7 @@ import com.example.appcatalogo.apiConection.apiUsuario.model.EmailSendCode
 import com.example.appcatalogo.apiConection.apiUsuario.model.VerifyEmail
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserChangePassword
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
+import okhttp3.MultipartBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -36,7 +37,7 @@ interface UsuarioApi {
     @PATCH("edit_user/")
     suspend fun changeImageProfile(
         @Header("Authorization") authHeader: String,
-        @Part("image_profile") imageProfile: File
+        @Part("image_profile") imageProfile: MultipartBody.Part
     ): Response<Usuario>
 
     @POST("email/register/send_code/")
