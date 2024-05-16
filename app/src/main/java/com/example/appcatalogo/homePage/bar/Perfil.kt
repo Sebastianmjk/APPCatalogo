@@ -31,10 +31,8 @@ import com.example.appcatalogo.messageErrorToStatus
 import com.example.appcatalogo.showError
 import com.squareup.picasso.Picasso
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
-import com.example.appcatalogo.apiConection.apiUsuario.model.ImageProfile
 import com.example.appcatalogo.apiConection.functions.ImageController
 import okhttp3.MultipartBody
-import java.io.File
 
 
 class Perfil : Fragment() {
@@ -59,13 +57,7 @@ class Perfil : Fragment() {
     private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
         if (uri != null) {
             selectedImageUri = uri
-            val imageFile = ImageController.uriToFile(uri, requireContext())
-            Log.d("ImageController", "Converted file path: ${imageFile?.absolutePath}")
-
-            Log.d("PhotoPicker", "Selected URI: $uri")
-            val fileName = imageFile?.name
-            Log.d("PhotoPicker", "File name: $fileName")
-            Picasso.get().load(imageFile!!).into(binding.imageProfile)
+            binding.imageProfile.setImageURI(uri)
         } else {
             Log.d("PhotoPicker", "No media selected")
         }
@@ -162,17 +154,11 @@ class Perfil : Fragment() {
             )
             val stringTokenAccess = "Bearer $accessToken"
             CoroutineScope(Dispatchers.IO).launch {
-                if (tryEditUser(stringTokenAccess, usuarioEdit)) {
-                    selectedImageUri?.let { uri ->
-                        withContext(Dispatchers.Main) {
-                            val imageFile = ImageController.uriToFile(uri, requireContext())
-                            val imageProfile = ImageController.fileToMultiparBody(imageFile!!)
-                            if (tryChangeImageProfile(stringTokenAccess, imageProfile)) {
-                                findNavController().navigate(R.id.action_perfil_self)
-                            }
-                        }
-                    }
-                    findNavController().navigate(R.id.action_perfil_self)
+                tryEditUser(stringTokenAccess, usuarioEdit)
+                selectedImageUri?.let { uri ->
+                    val imageFile = ImageController.uriToFile(uri, requireContext())
+                    val imageProfile = ImageController.fileToMultiparBody(imageFile!!,"image_profile")
+                    tryChangeImageProfile(stringTokenAccess, imageProfile)
                 }
             }
         }

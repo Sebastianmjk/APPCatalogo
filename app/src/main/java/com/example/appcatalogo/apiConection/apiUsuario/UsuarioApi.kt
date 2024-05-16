@@ -37,7 +37,7 @@ interface UsuarioApi {
     @PATCH("edit_user/")
     suspend fun changeImageProfile(
         @Header("Authorization") authHeader: String,
-        @Part("image_profile") imageProfile: MultipartBody.Part
+        @Part imageProfile: MultipartBody.Part
     ): Response<Usuario>
 
     @POST("email/register/send_code/")

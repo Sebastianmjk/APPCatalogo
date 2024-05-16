@@ -6,6 +6,7 @@ import android.webkit.MimeTypeMap
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
 
@@ -32,9 +33,9 @@ object ImageController {
 
     }
 
-    fun fileToMultiparBody(file: File): MultipartBody.Part {
-        val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-        return MultipartBody.Part.createFormData("image_profile", file.name, requestFile)
+    fun fileToMultiparBody(file: File, name:String): MultipartBody.Part {
+        val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData(name, file.name, requestFile)
     }
 
 }
