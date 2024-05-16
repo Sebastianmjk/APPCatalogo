@@ -134,7 +134,6 @@ class Perfil : Fragment() {
             true
         }
 
-
         binding.buttonSave.setOnClickListener {
             val usuarioEdit = UserEdit(
                 username = binding.editTextUsername.text.toString(),
