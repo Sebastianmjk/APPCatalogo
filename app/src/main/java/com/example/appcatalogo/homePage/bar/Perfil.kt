@@ -1,5 +1,6 @@
 package com.example.appcatalogo.homePage.bar
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,6 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -32,6 +35,8 @@ import com.example.appcatalogo.showError.messageErrorToStatus
 import com.example.appcatalogo.showError.showError
 import com.squareup.picasso.Picasso
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
+import com.example.appcatalogo.apiConection.functions.ImageController
+import okhttp3.MultipartBody
 
 
 class Perfil : Fragment() {
@@ -53,7 +58,18 @@ class Perfil : Fragment() {
     private var initialNombreUser: String? = null
     private var initialEmailUser: String? = null
 
-    private var apellido: String? = null
+    private lateinit var apellido: String
+
+    private var selectedImageUri: Uri? = null
+    private val pickMedia = registerForActivityResult(PickVisualMedia()) { uri ->
+        if (uri != null) {
+            selectedImageUri = uri
+            binding.imageProfile.setImageURI(uri)
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -133,19 +149,24 @@ class Perfil : Fragment() {
             true
         }
 
+        binding.imageProfile.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(PickVisualMedia.ImageOnly))
+        }
+
         binding.buttonSave.setOnClickListener {
             val usuarioEdit = UserEdit(
                 username = binding.editTextUsername.text.toString(),
                 nombre = binding.editTextTextNombreUser.text.toString(),
-                apellido = apellido?:"",
+                apellido = apellido ?: "",
                 email = binding.editTextEmailUser.text.toString()
             )
             val stringTokenAccess = "Bearer $accessToken"
             CoroutineScope(Dispatchers.IO).launch {
-                if (tryEditUser(stringTokenAccess, usuarioEdit)) {
-                    withContext(Dispatchers.Main) {
-                        findNavController().navigate(R.id.action_perfil_self)
-                    }
+                tryEditUser(stringTokenAccess, usuarioEdit)
+                selectedImageUri?.let { uri ->
+                    val imageFile = ImageController.uriToFile(uri, requireContext())
+                    val imageProfile = ImageController.fileToMultiparBody(imageFile!!,"image_profile")
+                    tryChangeImageProfile(stringTokenAccess, imageProfile)
                 }
             }
         }
@@ -157,6 +178,9 @@ class Perfil : Fragment() {
             liContenedorPerfil.isVisible = false
             liImagenPerfil.isVisible = true
         }, 1000)
+
+
+
     }
 
     override fun onDestroyView() {
@@ -193,7 +217,7 @@ class Perfil : Fragment() {
     private fun showImageProfile(imageUrl: String) {
         Picasso.get()
             .load(imageUrl)
-            .error(R.drawable.logo) // muestra una imagen de error si la carga falla
+            .error(R.drawable.logo)
             .into(binding.imageProfile, object : com.squareup.picasso.Callback {
                 override fun onSuccess() {
                 }
@@ -241,4 +265,31 @@ class Perfil : Fragment() {
             false
         }
     }
+
+    private suspend fun tryChangeImageProfile(authHeader: String, imageProfile: MultipartBody.Part): Boolean {
+        return try {
+            withTimeout(5000) {
+                val response = UserService.changeImageProfile(authHeader, imageProfile)
+                if (response.isSuccessful) {
+                    true
+                } else {
+                    withContext(Dispatchers.Main) {
+                        showError(messageErrorToStatus(response.code()))
+                    }
+                    false
+                }
+            }
+        } catch (e: TimeoutException) {
+            withContext(Dispatchers.Main) {
+                showError("Tiempo de espera agotado")
+            }
+            false
+        } catch (e: IOException) {
+            withContext(Dispatchers.Main) {
+                showError("Error de conexión de red")
+            }
+            false
+        }
+    }
+
 }

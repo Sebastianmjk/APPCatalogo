@@ -15,6 +15,8 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.Response
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
+import okhttp3.MultipartBody
+import java.io.File
 
 object UserService {
     private val baseUrlUser:String = "https://apicatalogojuegos-production.up.railway.app/GameVault/Usuario/"
@@ -72,6 +74,12 @@ object UserService {
     suspend fun editUser(authHeader: String, usuario: UserEdit): Response<Usuario> {
         return withContext(Dispatchers.IO) {
             usuarioApi.editUser(authHeader, usuario)
+        }
+    }
+
+    suspend fun changeImageProfile(authHeader: String, imageProfile: MultipartBody.Part): Response<Usuario> {
+        return withContext(Dispatchers.IO) {
+            usuarioApi.changeImageProfile(authHeader, imageProfile)
         }
     }
 
