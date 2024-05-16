@@ -13,8 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.appcatalogo.databinding.FragmentCorreoVerificacionBinding
 import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
-import com.example.appcatalogo.showError
-import com.example.appcatalogo.messageErrorToStatus
+import com.example.appcatalogo.showError.showError
+import com.example.appcatalogo.showError.messageErrorToStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.CoroutineScope

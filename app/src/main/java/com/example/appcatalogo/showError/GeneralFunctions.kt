@@ -1,4 +1,4 @@
-package com.example.appcatalogo
+package com.example.appcatalogo.showError
 
 import android.widget.Toast
 import androidx.fragment.app.Fragment

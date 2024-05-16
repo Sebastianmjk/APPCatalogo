@@ -11,8 +11,8 @@ import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
 import com.example.appcatalogo.apiConection.apiUsuario.model.UsuarioRegistro
 import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
 import com.example.appcatalogo.databinding.FragmentRegistroFourthPageBinding
-import com.example.appcatalogo.showError
-import com.example.appcatalogo.messageErrorToStatus
+import com.example.appcatalogo.showError.showError
+import com.example.appcatalogo.showError.messageErrorToStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.CoroutineScope

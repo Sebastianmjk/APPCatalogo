@@ -18,8 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.appcatalogo.databinding.FragmentLoginBinding
-import com.example.appcatalogo.showError
-import com.google.android.material.navigation.NavigationView
+import com.example.appcatalogo.showError.showError
 
 class LoginFragment : Fragment() {
 

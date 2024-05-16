@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,8 +28,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.example.appcatalogo.databinding.FragmentPerfilBinding
 import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
-import com.example.appcatalogo.messageErrorToStatus
-import com.example.appcatalogo.showError
+import com.example.appcatalogo.showError.messageErrorToStatus
+import com.example.appcatalogo.showError.showError
 import com.squareup.picasso.Picasso
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserEdit
 

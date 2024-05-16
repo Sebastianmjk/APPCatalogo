@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.appcatalogo.showError
-import com.example.appcatalogo.messageErrorToStatus
+import com.example.appcatalogo.showError.showError
+import com.example.appcatalogo.showError.messageErrorToStatus
 import androidx.navigation.fragment.navArgs
 import com.example.appcatalogo.databinding.FragmentNuevaContraBinding
 import com.example.appcatalogo.apiConection.apiUsuario.model.UserChangePassword

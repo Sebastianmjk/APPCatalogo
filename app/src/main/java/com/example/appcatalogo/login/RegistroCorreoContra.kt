@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.appcatalogo.showError
+import com.example.appcatalogo.showError.showError
 import com.example.appcatalogo.databinding.FragmentCorreoContraBinding
 import com.example.appcatalogo.apiConection.apiUsuario.service.UserService
-import com.example.appcatalogo.messageErrorToStatus
+import com.example.appcatalogo.showError.messageErrorToStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.CoroutineScope
