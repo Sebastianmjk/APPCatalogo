@@ -1,5 +1,6 @@
 package com.example.appcatalogo.apiConection.apiCatalogos
 
+import com.example.appcatalogo.apiConection.apiCatalogos.model.AddJuego
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogos
 import com.example.appcatalogo.apiConection.apiJuegos.model.Result
@@ -17,8 +18,8 @@ interface ApiCatalogos {
     @DELETE("catalogo/Catalogos/usuario/delete/{id}/")
     suspend fun deleteCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int): Response<Void>
 
-    @POST("catalogo/Catalogos/usuario/add_juego/{id}/{juego_id}/")
-    suspend fun addJuegoToCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int, @Path("juego_id") juegoId: Int): Response<Void>
+    @POST("catalogo/Catalogos/usuario/add_juego/{id}/")
+    suspend fun addJuegoToCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int, @Body juegoId: AddJuego): Response<Void>
 
     @DELETE("catalogo/Catalogos/usuario/delete_juego/{id}/{juego_id}/")
     suspend fun deleteJuegoFromCatalogo(@Header("Authorization") authHeader: String, @Path("id") id: Int, @Path("juego_id") juegoId: Int): Response<Void>

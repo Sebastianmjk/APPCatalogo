@@ -1,6 +1,5 @@
 package com.example.appcatalogo.homePage.bar
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -14,6 +13,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -25,16 +25,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
+import com.example.appcatalogo.apiConection.apiCatalogos.model.AddJuego
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
 import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
+import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterAgregar
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterCrear
-import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
 import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
 import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
-import com.example.appcatalogo.showError.showError
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,8 +43,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
-
-class Crear : Fragment() {
+class AgregarJuego : Fragment() {
 
     private lateinit var drawerLayout: DrawerLayout
     private var navView: NavigationView? = null
@@ -53,16 +51,16 @@ class Crear : Fragment() {
     private var coordinatorLayout: CoordinatorLayout? = null
 
     private val accessToken = TokenManager.accessToken
+    private var idCatalogo: Int? = null
 
-    private lateinit var recyclerViewCrear: RecyclerView
-    private lateinit var adapterCrear: AdapterCrear
+    private lateinit var recyclerViewAgregar: RecyclerView
+    private lateinit var adapterAgregar : AdapterAgregar
 
-    private lateinit var search: SearchView
-    private lateinit var botonCrear : Button
+    private lateinit var searchAgregar: SearchView
+    private lateinit var botonAgregar: Button
 
-    private lateinit var liCargandoCargar: LinearLayout
-    private lateinit var liContenedorCargar: LinearLayout
-
+    private lateinit var liCargandoAgregar: LinearLayout
+    private lateinit var liContenedorAgregar: LinearLayout
 
     val listGame = mutableListOf<Int>()
 
@@ -72,12 +70,15 @@ class Crear : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crear, container, false)
+        val view = inflater.inflate(R.layout.fragment_agregar_juego, container, false)
+        idCatalogo = arguments?.getInt("catalogo_id")
+
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         navView = activity?.findViewById(R.id.nav_view)
         appBarLayout = activity?.findViewById(R.id.app_bar_layout)
@@ -93,22 +94,22 @@ class Crear : Fragment() {
         navView?.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_item_mi_perfil -> {
-                    findNavController().navigate(R.id.action_crear_to_perfil)
+                    findNavController().navigate(R.id.action_agregarJuego_to_perfil)
                     true
                 }
 
                 R.id.nav_item_inicio -> {
-                    findNavController().navigate(R.id.action_crear_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_agregarJuego_to_homeFirstPage)
                     true
                 }
 
                 R.id.nav_item_categorias -> {
-                    findNavController().navigate(R.id.action_crear_to_categoriasSlideBar2)
+                    findNavController().navigate(R.id.action_agregarJuego_to_categoriasSlideBar2)
                     true
                 }
 
                 R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_crear_to_homeUsuario)
+                    findNavController().navigate(R.id.action_agregarJuego_to_homeUsuario)
                     true
                 }
 
@@ -129,103 +130,99 @@ class Crear : Fragment() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home_icono -> {
-                    findNavController().navigate(R.id.action_crear_to_homeFirstPage)
+                    findNavController().navigate(R.id.action_agregarJuego_to_homeFirstPage)
                 }
 
                 R.id.home_usuario_icono -> {
-                    findNavController().navigate(R.id.action_crear_to_homeUsuario)
+                    findNavController().navigate(R.id.action_agregarJuego_to_homeUsuario)
                 }
 
                 R.id.agregar_icono -> {
-                    findNavController().navigate(R.id.action_crear_self)
+                    findNavController().navigate(R.id.action_agregarJuego_to_crear)
                 }
 
                 R.id.search_icono -> {
-                    findNavController().navigate(R.id.action_crear_to_buscar)
+                    findNavController().navigate(R.id.action_agregarJuego_to_buscar)
                 }
 
                 R.id.profile_icono -> {
-                    findNavController().navigate(R.id.action_crear_to_perfil)
+                    findNavController().navigate(R.id.action_agregarJuego_to_perfil)
                 }
             }
             true
         }
 
-        botonCrear = view.findViewById(R.id.buttonCrear)
+        botonAgregar = view.findViewById(R.id.buttonAgregar)
 
 
 
-        botonCrear.setOnClickListener {
-            val nombre = view.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
-            val newCatalogo  = Catalogo(nombre, listGame)
-            if (nombre.isBlank()) {
-                Toast.makeText(context, "Debe colocar el nombre del catalogo", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+        botonAgregar.setOnClickListener {
+            val newJuegos = AddJuego(listGame)
             lifecycleScope.launch {
-                if (tryCreateCatalogo(newCatalogo)) {
-                    val etTituloCatalogo: EditText = requireView().findViewById(R.id.etTituloCatalogo)
-                    etTituloCatalogo.text.clear()
+                if (addJuegoToCatalogo(newJuegos)){
 
                     listGame.clear()
 
-                    adapterCrear.juegosList.clear()
-                    adapterCrear.notifyDataSetChanged()
+                    adapterAgregar.juegosList.clear()
+                    adapterAgregar.notifyDataSetChanged()
+
+                    withContext(Dispatchers.Main) {
+                        findNavController().navigate(R.id.action_agregarJuego_to_homeUsuario)
+                    }
                 }
             }
 
         }
-
-
         val layoutManagerJuegos = LinearLayoutManager(context)
-        recyclerViewCrear = view.findViewById(R.id.rvCrear)
-        recyclerViewCrear.layoutManager = layoutManagerJuegos
-        adapterCrear = AdapterCrear(ArrayList(),this)
-        recyclerViewCrear.adapter = adapterCrear
+        recyclerViewAgregar = view.findViewById(R.id.rvAgregar)
+        recyclerViewAgregar.layoutManager = layoutManagerJuegos
+        adapterAgregar = AdapterAgregar(ArrayList(), this)
+        recyclerViewAgregar.adapter = adapterAgregar
 
-        search = view.findViewById(R.id.searchView)
-        search.setOnClickListener {
-            search.isIconified = false
+        searchAgregar = view.findViewById(R.id.searchViewAgregar)
+        searchAgregar.setOnClickListener {
+            searchAgregar.isIconified = false
         }
 
-        search.setOnQueryTextFocusChangeListener { _, hasFocus ->
+        searchAgregar.setOnQueryTextFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                adapterCrear.juegosList.clear()
-                adapterCrear.notifyDataSetChanged()
+                adapterAgregar.juegosList.clear()
+                adapterAgregar.notifyDataSetChanged()
             }
         }
 
 
 
-        liContenedorCargar = view.findViewById(R.id.liContenedorCrear)
-        liCargandoCargar = view.findViewById(R.id.liCargandoCrear)
+        liContenedorAgregar = view.findViewById(R.id.liContenedorAgregar)
+        liCargandoAgregar = view.findViewById(R.id.liCargandoAgregar)
 
-        liCargandoCargar.isVisible = false
-        liContenedorCargar.isVisible = true
+        liCargandoAgregar.isVisible = false
+        liContenedorAgregar.isVisible = true
 
-        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (!query.isNullOrEmpty()) {
-                    liCargandoCargar.isVisible = true
-                    liContenedorCargar.isVisible = false
-                    loadGames(query)
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        liCargandoCargar.isVisible = false
-                        liContenedorCargar.isVisible = true
-                    }, 1000)
-                }
-                val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(search.windowToken, 0)
-                search.clearFocus()
-                return false
+
+    searchAgregar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean {
+            if (!query.isNullOrEmpty()) {
+                liCargandoAgregar.isVisible = true
+                liContenedorAgregar.isVisible = false
+                loadGames(query)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    liCargandoAgregar.isVisible = false
+                    liContenedorAgregar.isVisible = true
+                }, 1000)
             }
+            val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(searchAgregar.windowToken, 0)
+            searchAgregar.clearFocus()
+            return false
+        }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
+        override fun onQueryTextChange(newText: String?): Boolean {
+            return false
+        }
+    })
 
-    }
+}
     fun loadGamesToList(idJuego : Int) {
         listGame.add(idJuego)
     }
@@ -243,9 +240,9 @@ class Crear : Fragment() {
                     val juegos = response.body()?.results
                     Log.d("API", "Juegos recibidos: $juegos")
                     if (juegos != null && juegos.isNotEmpty()) {
-                        adapterCrear.juegosList.clear()
-                        adapterCrear.juegosList.addAll(juegos)
-                        adapterCrear.notifyDataSetChanged()
+                        adapterAgregar.juegosList.clear()
+                        adapterAgregar.juegosList.addAll(juegos)
+                        adapterAgregar.notifyDataSetChanged()
                     } else {
                         // Muestra un Toast cuando no se encuentren resultados
                         Toast.makeText(context, "Juego no encontrado", Toast.LENGTH_SHORT).show()
@@ -261,33 +258,28 @@ class Crear : Fragment() {
         })
     }
 
-    private suspend fun tryCreateCatalogo(catalogo: Catalogo): Boolean {
-        return try {
-            val response = ApiCatalogo.apiCatalogos.createCatalogo("Bearer $accessToken", catalogo)
-            if (response.isSuccessful) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "Catálogo creado", Toast.LENGTH_SHORT).show()
-                }
-                true
-            } else {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(context, "No se pudo crear el catálogo", Toast.LENGTH_SHORT).show()
-                }
-                false
-            }
-        } catch (e: Exception) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-            }
-            false
-        } catch (e: IOException) {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Error de conexión de red", Toast.LENGTH_SHORT).show()
-            }
-            false
-        }
-    }
 
+    private suspend fun addJuegoToCatalogo(listGame : AddJuego) : Boolean {
+            return try {
+                    val response = ApiCatalogo.apiAddJuego.addJuegoToCatalogo("Bearer $accessToken", idCatalogo!!, listGame)
+                    Log.d("API", "Respuesta: $idCatalogo")
+                    Log.d("API", "Respuesta: ${listGame.juegoId}")
+
+                    if (response.isSuccessful) {
+                        Toast.makeText(context, "Juego agregado", Toast.LENGTH_SHORT).show()
+                        adapterAgregar.notifyDataSetChanged()
+                        Log.d("API", "Juego ${response.body()}")
+                        true
+                    } else {
+                        Toast.makeText(context, "Error al agregar el juego al catálogo", Toast.LENGTH_SHORT).show()
+                        false
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    false
+                }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

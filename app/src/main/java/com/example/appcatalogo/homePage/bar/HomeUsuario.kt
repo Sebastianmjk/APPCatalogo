@@ -3,6 +3,7 @@ package com.example.appcatalogo.homePage.bar
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -100,6 +101,7 @@ class HomeUsuario : Fragment() {
 
         catalogoAdapter.onItemClick = { catalogo ->
             val bundle = Bundle()
+            bundle.putInt("catalogo_id", catalogo.id)
             bundle.putString("titulo_catalogo", catalogo.Nombre)
 
             val juegoIds = ArrayList<Int>()

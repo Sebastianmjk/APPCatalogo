@@ -71,18 +71,6 @@ class CatalogoAdapter(
                             deleteCatalogo(adapterPosition)
                             true
                         }
-                        R.id.edit_catalogo -> {
-                            requestJuegoId { juegoId ->
-                                addJuegoToCatalogo(adapterPosition, juegoId)
-                            }
-                            true
-                        }
-                        R.id.eliminar_juego -> {
-                            requestJuegoId { juegoId ->
-                                deleteJuegoFromCatalogo(adapterPosition, juegoId)
-                            }
-                            true
-                        }
                         else -> false
                     }
                 }
@@ -127,46 +115,7 @@ class CatalogoAdapter(
         }
     }
 
-    private fun addJuegoToCatalogo(position: Int, juegoId: Int) {
-        val catalogo = catalogos[position]
 
-        lifecycleScope.launch {
-            try {
-                val response = ApiCatalogo.apiAddJuego.addJuegoToCatalogo("Bearer $accessToken", catalogo.id, juegoId)
-
-                if (response.isSuccessful) {
-                    Toast.makeText(context, "Juego agregado", Toast.LENGTH_SHORT).show()
-                    notifyDataSetChanged()
-                    navController.navigate(R.id.action_homeUsuario_self)
-                } else {
-                    Toast.makeText(context, "Error al agregar el juego al catálogo", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun deleteJuegoFromCatalogo(position: Int, juegoId: Int) {
-        val catalogo = catalogos[position]
-
-        lifecycleScope.launch {
-            try {
-                val response = ApiCatalogo.apiDeleteJuego.deleteJuegoFromCatalogo("Bearer $accessToken", catalogo.id, juegoId)
-
-                if (response.isSuccessful) {
-                    Toast.makeText(context, "Juego eliminado", Toast.LENGTH_SHORT).show()
-                    notifyDataSetChanged()
-                    navController.navigate(R.id.action_homeUsuario_self)
-                } else {
-                    Toast.makeText(context, "Error al eliminar el juego del catálogo", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
     private fun requestJuegoId(callback: (Int) -> Unit) {
         // Infla la vista del diálogo

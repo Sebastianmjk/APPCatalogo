@@ -1,7 +1,5 @@
 package com.example.appcatalogo.apiConection.apiJuegos.model
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +9,14 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatCheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
-import com.example.appcatalogo.homePage.bar.CatalogosDetail
+import com.example.appcatalogo.homePage.bar.AgregarJuego
+import com.example.appcatalogo.homePage.bar.Crear
 import com.squareup.picasso.Picasso
 
 
-class AdapterEliminar(val juegosList : ArrayList<Result>, val catalogosDetail: CatalogosDetail) : RecyclerView.Adapter<AdapterEliminar.ViewHolder>() {
+class AdapterAgregar(val juegosList : ArrayList<Result>, val agregarJuego: AgregarJuego) : RecyclerView.Adapter<AdapterAgregar.ViewHolder>() {
 
     var onItemClick : ((Result) -> Unit)? = null
-    val viewHolders = mutableListOf<ViewHolder>()
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var idJuegos : Int = 0
@@ -46,10 +44,12 @@ class AdapterEliminar(val juegosList : ArrayList<Result>, val catalogosDetail: C
                         }
 
                         override fun onError(e: Exception?) {
+                            // Hubo un error al cargar la imagen
                             Log.d("API", "Error al cargar la imagen: $e")
                         }
                     })
             } else {
+                // Cargar una imagen predeterminada de la carpeta drawable
                 Picasso.get().load(R.drawable.logo).into(imagenJuegos)
             }
         }
@@ -68,41 +68,18 @@ class AdapterEliminar(val juegosList : ArrayList<Result>, val catalogosDetail: C
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val juego = juegosList[position]
         holder.bind(juego)
-        viewHolders.add(holder)
-
-        holder.imagenJuegos.setOnClickListener{
-            onItemClick?.invoke(juego)
-        }
-
-        holder.tituloJuegos.setOnClickListener{
-            onItemClick?.invoke(juego)
-        }
 
         holder.checkBox.setOnCheckedChangeListener(null)
-        holder.checkBox.isChecked = false
 
+        holder.checkBox.isChecked = agregarJuego.listGame.contains(juego.id)
 
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // Deshabilita todos los checkboxes
-                for (vh in viewHolders) {
-                    vh.checkBox.isEnabled = false
-                }
-
-                catalogosDetail.deleteJuegoFromCatalogo(juego.id)
-                juegosList.removeAt(position)
-                notifyItemRemoved(position)
-
-                // Inicia un temporizador para habilitar todos los checkboxes después de un retraso
-                Handler(Looper.getMainLooper()).postDelayed({
-                    for (vh in viewHolders) {
-                        vh.checkBox.isEnabled = true
-                    }
-                }, 2000) // 2000 ms = 2 segundos
+                agregarJuego.loadGamesToList(juego.id)
+            } else {
+                agregarJuego.removeGameToList(juego.id)
             }
         }
-
     }
-
 }
 

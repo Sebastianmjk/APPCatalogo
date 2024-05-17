@@ -391,6 +391,36 @@
         <action
             android:id="@+id/action_catalogosDetail_to_categoriasSlideBar2"
             app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_catalogosDetail_to_agregarJuego"
+            app:destination="@id/agregarJuego" />
+    </fragment>
+    <fragment
+        android:id="@+id/agregarJuego"
+        android:name="com.example.appcatalogo.homePage.bar.AgregarJuego"
+        android:label="fragment_agregar_juego"
+        tools:layout="@layout/fragment_agregar_juego" >
+        <action
+            android:id="@+id/action_agregarJuego_to_homeUsuario"
+            app:destination="@id/homeUsuario" />
+        <action
+            android:id="@+id/action_agregarJuego_to_homeFirstPage"
+            app:destination="@id/homeFirstPage" />
+        <action
+            android:id="@+id/action_agregarJuego_to_crear"
+            app:destination="@id/crear" />
+        <action
+            android:id="@+id/action_agregarJuego_to_buscar"
+            app:destination="@id/buscar" />
+        <action
+            android:id="@+id/action_agregarJuego_to_perfil"
+            app:destination="@id/perfil" />
+        <action
+            android:id="@+id/action_agregarJuego_to_categoriasSlideBar2"
+            app:destination="@id/categoriasSlideBar2" />
+        <action
+            android:id="@+id/action_agregarJuego_to_catalogosDetail"
+            app:destination="@id/catalogosDetail" />
     </fragment>
 
 </navigation>

@@ -4,12 +4,4 @@
         android:id="@+id/delete_catalogo"
         android:title="@string/eliminar_cat_logo"
         />
-    <item
-        android:id="@+id/edit_catalogo"
-        android:title="@string/agregar_juego"
-        />
-    <item
-        android:id="@+id/eliminar_juego"
-        android:title="@string/eliminar_juego"
-        />
 </menu>

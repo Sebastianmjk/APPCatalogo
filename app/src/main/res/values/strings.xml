@@ -80,6 +80,9 @@
     <string name="agregar_juego">Agregar Juego</string>
     <string name="categoria_nombre">Categoria</string>
     <string name="crear">Crear</string>
+    <string name="agregar">Agregar</string>
+    <string name="seleccione_el_chechbox_para_eliminar_el_juego">Seleccione el chechbox para eliminar el juego</string>
+    <string name="agregar___">Agregar</string>
 
 
 </resources>
