@@ -1,5 +1,6 @@
 package com.example.appcatalogo.homePage.bar
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,9 +9,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,15 +24,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
-import com.example.appcatalogo.apiConection.apiJuegos.ApiJuegos
+import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo.updateCatalogo
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterEliminar
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
 import com.example.appcatalogo.apiConection.apiJuegos.model.Result
 import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
+import com.example.appcatalogo.apiConection.functions.ImageController
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -50,10 +56,43 @@ class CatalogosDetail : Fragment() {
 
 
     private lateinit var drawerLayout: DrawerLayout
-    private var navView: NavigationView? = null
     private var appBarLayout: AppBarLayout? = null
     private var coordinatorLayout: CoordinatorLayout? = null
+    private var selectedImageUri: Uri? = null
+    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri != null) {
+            selectedImageUri = uri
+            val imageView = view?.findViewById<ImageView>(R.id.ivCatalogoDetail)
+            imageView?.setImageURI(uri)
 
+            selectedImageUri?.let { uri ->
+                val imageFile = ImageController.uriToFile(uri, requireContext())
+                val imagePortada = ImageController.fileToMultiparBody(imageFile!!,"Portada")
+                if (idCatalogo != null) {
+                    lifecycleScope.launch {
+                        try {
+                            val response = updateCatalogo.updateCatalogo("Bearer $accessToken", idCatalogo!!, imagePortada)
+                            if (response.isSuccessful) {
+                                Toast.makeText(context, "Imagen actualizada", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Log.d("API", "Error: ${response}")
+                                Toast.makeText(context, "${response}", Toast.LENGTH_SHORT).show()
+                            }
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                        } catch (e: IOException) {
+                            Toast.makeText(context, "Error de conexión de red", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, "Error: idCatalogo es nulo", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        } else {
+            Log.d("PhotoPicker", "No media selected")
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +104,26 @@ class CatalogosDetail : Fragment() {
         idCatalogo = arguments?.getInt("catalogo_id")
         val textView = view.findViewById<TextView>(R.id.catalogosNombre)
         textView.text = nombreCatalogo
+        val imageUrl = arguments?.getString("imagen_portada")
+        val imageView = view.findViewById<ImageView>(R.id.ivCatalogoDetail)
+        if (imageUrl != null) {
+            Picasso.get()
+                .load(imageUrl)
+                .error(R.drawable.logo) // muestra una imagen de error si la carga falla
+                .into(imageView, object : com.squareup.picasso.Callback {
+                    override fun onSuccess() {
+                        // La imagen se cargó correctamente
+                    }
+
+                    override fun onError(e: Exception?) {
+                        // Hubo un error al cargar la imagen
+                        Log.d("API", "Error al cargar la imagen: $e")
+                    }
+                })
+        } else {
+            // Cargar una imagen predeterminada de la carpeta drawable
+            Picasso.get().load(R.drawable.logo).into(imageView)
+        }
 
         return view
     }
@@ -87,6 +146,10 @@ class CatalogosDetail : Fragment() {
             }
             findNavController().navigate(R.id.action_catalogosDetail_to_juegoDetail, bundle)
         }
+        val imageView = view.findViewById<ImageView>(R.id.ivCatalogoDetail)
+        imageView.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+        }
 
 
         val juegoIds = arguments?.getIntegerArrayList("juego_ids")
@@ -103,48 +166,15 @@ class CatalogosDetail : Fragment() {
 
 
 
-        navView = activity?.findViewById(R.id.nav_view)
         appBarLayout = activity?.findViewById(R.id.app_bar_layout)
         coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
         drawerLayout = activity?.findViewById(R.id.drawlerLayout)!!
 
 
-        coordinatorLayout?.visibility = View.VISIBLE
-        appBarLayout?.visibility = View.VISIBLE
-        navView?.visibility = View.VISIBLE
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+        coordinatorLayout?.visibility = View.GONE
+        appBarLayout?.visibility = View.GONE
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
 
-        navView?.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_item_mi_perfil -> {
-                    findNavController().navigate(R.id.action_catalogosDetail_to_perfil)
-                    true
-                }
-
-                R.id.nav_item_inicio -> {
-                    findNavController().navigate(R.id.action_catalogosDetail_to_homeFirstPage)
-                    true
-                }
-
-                R.id.nav_item_categorias -> {
-                    findNavController().navigate(R.id.action_catalogosDetail_to_categoriasSlideBar2)
-                    true
-                }
-
-                R.id.nav_item_mis_catalogos -> {
-                    findNavController().navigate(R.id.action_catalogosDetail_to_homeUsuario)
-                    true
-                }
-
-                R.id.nav_item_cerrar_sesion -> {
-                    findNavController().popBackStack(R.id.loginFragment, false)
-                    true
-
-                }
-
-                else -> false
-            }
-        }
 
 
         val navView: BottomNavigationView = view.findViewById(R.id.bottomNavigationView)

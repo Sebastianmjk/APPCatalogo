@@ -103,6 +103,9 @@ class HomeUsuario : Fragment() {
             val bundle = Bundle()
             bundle.putInt("catalogo_id", catalogo.id)
             bundle.putString("titulo_catalogo", catalogo.Nombre)
+            if (catalogo.Portada.isNotEmpty()) {
+                bundle.putString("imagen_portada", catalogo.Portada)
+            }
 
             val juegoIds = ArrayList<Int>()
             for (juego in catalogo.juegos) {
