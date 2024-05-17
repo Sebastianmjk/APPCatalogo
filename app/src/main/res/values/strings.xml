@@ -79,6 +79,7 @@
     <string name="eliminar_juego">Eliminar Juego</string>
     <string name="agregar_juego">Agregar Juego</string>
     <string name="categoria_nombre">Categoria</string>
+    <string name="crear">Crear</string>
 
 
 </resources>

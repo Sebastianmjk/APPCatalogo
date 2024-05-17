@@ -1,21 +1,32 @@
 package com.example.appcatalogo.homePage.bar
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
+import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterCrear
+import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
 import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +43,16 @@ class Crear : Fragment() {
     private var coordinatorLayout: CoordinatorLayout? = null
 
     private val accessToken = TokenManager.accessToken
-    private lateinit var catalogoAdapter: CatalogoAdapter
+
+    private lateinit var recyclerViewCrear: RecyclerView
+    private lateinit var adapterCrear: AdapterCrear
+
+    private lateinit var search: SearchView
+
+    private lateinit var liCargandoCargar: LinearLayout
+    private lateinit var liContenedorCargar: LinearLayout
+
+    val listGame = mutableListOf<Int>()
 
 
     override fun onCreateView(
@@ -119,11 +139,53 @@ class Crear : Fragment() {
             true
         }
 
-        val addButton = view.findViewById<FloatingActionButton>(R.id.addBtton)
-        addButton.setOnClickListener {
-            showCreateCatalogoDialog()
+
+        val layoutManagerJuegos = LinearLayoutManager(context)
+        recyclerViewCrear = view.findViewById(R.id.rvHomePageJuegos)
+        recyclerViewCrear.layoutManager = layoutManagerJuegos
+        adapterCrear = AdapterCrear(ArrayList())
+        recyclerViewCrear.adapter = adapterCrear
+
+        search = view.findViewById(R.id.searchView)
+        search.setOnClickListener {
+            search.isIconified = false
         }
 
+        search.setOnQueryTextFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                adapterCrear.juegosList.clear()
+                adapterCrear.notifyDataSetChanged()
+            }
+        }
+
+        liContenedorCargar = view.findViewById(R.id.liContenedorCrear)
+        liCargandoCargar = view.findViewById(R.id.liCargandoCrear)
+
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    liCargandoCargar.isVisible = true
+                    liContenedorCargar.isVisible = false
+                    loadGames(query)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        liCargandoCargar.isVisible = false
+                        liContenedorCargar.isVisible = true
+                    }, 1000)
+                }
+                val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(search.windowToken, 0)
+                search.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
+    }
+    private fun loadGamesToList(idJuego : Int) {
+        listGame.add(idJuego)
     }
 
     fun showCreateCatalogoDialog() {
