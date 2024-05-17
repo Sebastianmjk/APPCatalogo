@@ -123,7 +123,7 @@ class HomeUsuario : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             liCargandoCatalogos.isVisible = false
             liContenedorCatalogos.isVisible = true
-        }, 1000)
+        }, 3000)
     }
 
     private fun fetchCatalogos() {

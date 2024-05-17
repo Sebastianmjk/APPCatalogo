@@ -28,7 +28,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivCatalogoDetail" />
+            app:layout_constraintTop_toBottomOf="@+id/shimmerImagenCatalogo" />
 
         <LinearLayout
             android:id="@+id/liContenedorCatalogosJuegos"
@@ -113,15 +113,52 @@
             android:background="#757DE8"
             app:menu="@menu/bottons_menu" />
 
-        <ImageView
-            android:id="@+id/ivCatalogoDetail"
+        <LinearLayout
+            android:id="@+id/liImagenCatalogo"
             android:layout_width="match_parent"
             android:layout_height="153dp"
+            android:visibility="gone"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivCatalogoDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:src="@tools:sample/avatars"
+                android:contentDescription="@string/imagen_portada" />
+
+        </LinearLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerImagenCatalogo"
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            app:shimmer_auto_start="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/liCargandoImagenCatalogo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#c8c8c9"/>
+
+            </LinearLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

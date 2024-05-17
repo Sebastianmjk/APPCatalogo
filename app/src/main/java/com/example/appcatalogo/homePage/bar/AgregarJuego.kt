@@ -157,6 +157,10 @@ class AgregarJuego : Fragment() {
 
 
         botonAgregar.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val newJuegos = AddJuego(listGame)
             lifecycleScope.launch {
                 if (addJuegoToCatalogo(newJuegos)){

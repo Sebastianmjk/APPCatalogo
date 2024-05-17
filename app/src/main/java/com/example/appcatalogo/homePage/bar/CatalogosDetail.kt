@@ -44,6 +44,9 @@ import java.io.IOException
 
 class CatalogosDetail : Fragment() {
 
+    private lateinit var liContenedorImagenCatalogo : LinearLayout
+    private lateinit var liCargandoImagenCatalogo : LinearLayout
+
     private lateinit var liContenedorCatalogosJuegos: LinearLayout
     private lateinit var liCargandoCatalogosJuegos: LinearLayout
 
@@ -214,9 +217,15 @@ class CatalogosDetail : Fragment() {
             liContenedorCatalogosJuegos.isVisible = true
         }, 3000)
 
+        liCargandoImagenCatalogo = view.findViewById(R.id.liCargandoImagenCatalogo)
+        liContenedorImagenCatalogo = view.findViewById(R.id.liImagenCatalogo)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            liCargandoImagenCatalogo.isVisible = false
+            liContenedorImagenCatalogo.isVisible = true
+        }, 1000)
+
     }
-
-
 
     fun loadJuegos(juegoIds: List<Int>?) {
         if (juegoIds != null) {

@@ -156,6 +156,10 @@ class Crear : Fragment() {
 
 
         botonCrear.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val nombre = view.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
             val newCatalogo  = Catalogo(nombre, listGame)
             if (nombre.isBlank()) {

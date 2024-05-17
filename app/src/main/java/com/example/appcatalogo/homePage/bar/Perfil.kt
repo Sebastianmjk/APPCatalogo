@@ -154,6 +154,10 @@ class Perfil : Fragment() {
         }
 
         binding.buttonSave.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val usuarioEdit = UserEdit(
                 username = binding.editTextUsername.text.toString(),
                 nombre = binding.editTextTextNombreUser.text.toString(),
