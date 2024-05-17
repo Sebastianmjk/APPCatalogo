@@ -264,10 +264,14 @@ class AgregarJuego : Fragment() {
 
 
     private suspend fun addJuegoToCatalogo(listGame : AddJuego) : Boolean {
-            return try {
+        if (listGame.isEmpty()) {
+            Toast.makeText(context, "No se puede agregar un juego vacío", Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return try {
                     val response = ApiCatalogo.apiAddJuego.addJuegoToCatalogo("Bearer $accessToken", idCatalogo!!, listGame)
-                    Log.d("API", "Respuesta: $idCatalogo")
-                    Log.d("API", "Respuesta: ${listGame.juegoId}")
+
 
                     if (response.isSuccessful) {
                         Toast.makeText(context, "Juego agregado", Toast.LENGTH_SHORT).show()
