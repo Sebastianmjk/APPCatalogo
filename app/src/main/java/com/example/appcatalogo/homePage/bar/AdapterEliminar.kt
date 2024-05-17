@@ -13,7 +13,7 @@ import com.example.appcatalogo.homePage.bar.Crear
 import com.squareup.picasso.Picasso
 
 
-class AdapterCrear(val juegosList : ArrayList<Result>, val crear: Crear) : RecyclerView.Adapter<AdapterCrear.ViewHolder>() {
+class AdapterEliminar(val juegosList : ArrayList<Result>, val crear: Crear) : RecyclerView.Adapter<AdapterEliminar.ViewHolder>() {
 
     var onItemClick : ((Result) -> Unit)? = null
 

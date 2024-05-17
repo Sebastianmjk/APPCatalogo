@@ -63,9 +63,11 @@
         <LinearLayout
             android:id="@+id/liContenedorCrear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchView">
@@ -81,12 +83,14 @@
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmerCrear"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:shimmer_auto_start="true"
+            android:layout_height="400dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchView">
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:shimmer_auto_start="true">
 
             <LinearLayout
                 android:id="@+id/liCargandoCrear"
@@ -94,11 +98,15 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <include layout="@layout/item_crear_cargando"/>
-                <include layout="@layout/item_crear_cargando"/>
-                <include layout="@layout/item_crear_cargando"/>
-                <include layout="@layout/item_crear_cargando"/>
-                <include layout="@layout/item_crear_cargando"/>
+                <include layout="@layout/item_crear_cargando" />
+
+                <include layout="@layout/item_crear_cargando" />
+
+                <include layout="@layout/item_crear_cargando" />
+
+                <include layout="@layout/item_crear_cargando" />
+
+                <include layout="@layout/item_crear_cargando" />
 
             </LinearLayout>
 

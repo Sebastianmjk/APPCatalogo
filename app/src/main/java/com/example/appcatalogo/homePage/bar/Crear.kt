@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -25,14 +26,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.appcatalogo.R
 import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
+import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterCrear
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
+import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
 import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
+import com.example.appcatalogo.showError.showError
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.IOException
 
 
 class Crear : Fragment() {
@@ -48,9 +58,11 @@ class Crear : Fragment() {
     private lateinit var adapterCrear: AdapterCrear
 
     private lateinit var search: SearchView
+    private lateinit var botonCrear : Button
 
     private lateinit var liCargandoCargar: LinearLayout
     private lateinit var liContenedorCargar: LinearLayout
+
 
     val listGame = mutableListOf<Int>()
 
@@ -139,11 +151,36 @@ class Crear : Fragment() {
             true
         }
 
+        botonCrear = view.findViewById(R.id.buttonCrear)
+
+
+
+        botonCrear.setOnClickListener {
+            val nombre = view.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
+            val newCatalogo  = Catalogo(nombre, listGame)
+            if (nombre.isBlank()) {
+                Toast.makeText(context, "Debe colocar el nombre del catalogo", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            lifecycleScope.launch {
+                if (tryCreateCatalogo(newCatalogo)) {
+                    val etTituloCatalogo: EditText = requireView().findViewById(R.id.etTituloCatalogo)
+                    etTituloCatalogo.text.clear()
+
+                    listGame.clear()
+
+                    adapterCrear.juegosList.clear()
+                    adapterCrear.notifyDataSetChanged()
+                }
+            }
+
+        }
+
 
         val layoutManagerJuegos = LinearLayoutManager(context)
-        recyclerViewCrear = view.findViewById(R.id.rvHomePageJuegos)
+        recyclerViewCrear = view.findViewById(R.id.rvCrear)
         recyclerViewCrear.layoutManager = layoutManagerJuegos
-        adapterCrear = AdapterCrear(ArrayList())
+        adapterCrear = AdapterCrear(ArrayList(),this)
         recyclerViewCrear.adapter = adapterCrear
 
         search = view.findViewById(R.id.searchView)
@@ -158,8 +195,13 @@ class Crear : Fragment() {
             }
         }
 
+
+
         liContenedorCargar = view.findViewById(R.id.liContenedorCrear)
         liCargandoCargar = view.findViewById(R.id.liCargandoCrear)
+
+        liCargandoCargar.isVisible = false
+        liContenedorCargar.isVisible = true
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -184,80 +226,68 @@ class Crear : Fragment() {
         })
 
     }
-    private fun loadGamesToList(idJuego : Int) {
+    fun loadGamesToList(idJuego : Int) {
         listGame.add(idJuego)
     }
 
-    fun showCreateCatalogoDialog() {
-        // Infla la vista del diálogo
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.add_catalogo, null)
+    fun removeGameToList(idJuego : Int) {
+        if (listGame.contains(idJuego)){
+            listGame.remove(idJuego)
+        }
+    }
 
-        // Crea el diálogo
-        val dialog = AlertDialog.Builder(context)
-            .setView(dialogView)
-            .setTitle("Crear nuevo catálogo")
-            .setPositiveButton("Crear") { _, _ ->
-                val nombre =
-                    dialogView.findViewById<EditText>(R.id.etTituloCatalogo).text.toString()
-                val juegosString =
-                    dialogView.findViewById<EditText>(R.id.etIdJuegos).text.toString()
-
-                // Verifica si los campos EditText están vacíos
-                if (nombre.isBlank()) {
-                    // Si el nombre está vacío, muestra un mensaje de error y detén la creación
-                    Toast.makeText(context, "Debe colocar el nombre del catalogo", Toast.LENGTH_SHORT).show()
-                    return@setPositiveButton
-                }
-
-                if (juegosString.isBlank()) {
-                    // Si juegosString está vacío, permite la creación y muestra un mensaje
-                    Toast.makeText(context, "Creando catálogo sin juegos", Toast.LENGTH_SHORT).show()
-                }
-
-                // Convierte la lista de IDs de juegos a una lista de Int
-                val juegos = if (juegosString.isBlank()) {
-                    listOf<Int>()
-                } else {
-                    juegosString.split(",").map { it.trim().toInt() }
-                }
-
-                val newCatalogo = Catalogo(nombre, juegos)
-
-                // Llama a la API en una corutina
-                lifecycleScope.launch {
-                    val response =
-                        ApiCatalogo.apiCatalogos.createCatalogo("Bearer $accessToken", newCatalogo)
-
-                    Log.d("MyApp", "Response code: ${response.code()}")
-
-                    if (response.isSuccessful) {
-                        // Si la solicitud fue exitosa, actualiza el RecyclerView
-                        val catalogo = response.body()
-                        if (catalogo != null) {
-                            Toast.makeText(
-                                context,
-                                "El catalogo se ha creado correctamente",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Toast.makeText(
-                                context,
-                                "El catalogo no se ha creado correctamente",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+    private fun loadGames(titulo: String) {
+        ApiClient.apiBuscar.listBuscar(titulo).enqueue(object : Callback<RemoteResult> {
+            override fun onResponse(call: Call<RemoteResult>, response: Response<RemoteResult>) {
+                if (response.isSuccessful) {
+                    val juegos = response.body()?.results
+                    Log.d("API", "Juegos recibidos: $juegos")
+                    if (juegos != null && juegos.isNotEmpty()) {
+                        adapterCrear.juegosList.clear()
+                        adapterCrear.juegosList.addAll(juegos)
+                        adapterCrear.notifyDataSetChanged()
                     } else {
-                        // Si la solicitud no fue exitosa, muestra un mensaje de error
-                        Toast.makeText(context, "Error al crear el catálogo", Toast.LENGTH_SHORT)
-                            .show()
+                        // Muestra un Toast cuando no se encuentren resultados
+                        Toast.makeText(context, "Juego no encontrado", Toast.LENGTH_SHORT).show()
                     }
+                } else {
+                    Log.d("API", "Error en la respuesta: ${response.errorBody()}")
                 }
             }
-            .setNegativeButton("Cancelar", null)
-            .create()
 
-        dialog.show()
+            override fun onFailure(call: Call<RemoteResult>, t: Throwable) {
+                Log.d("API", "Error en la llamada: $t")
+            }
+        })
     }
+
+    private suspend fun tryCreateCatalogo(catalogo: Catalogo): Boolean {
+        return try {
+            val response = ApiCatalogo.apiCatalogos.createCatalogo("Bearer $accessToken", catalogo)
+            if (response.isSuccessful) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "Catálogo creado", Toast.LENGTH_SHORT).show()
+                }
+                true
+            } else {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(context, "No se pudo crear el catálogo", Toast.LENGTH_SHORT).show()
+                }
+                false
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "Error de conexión de red", Toast.LENGTH_SHORT).show()
+            }
+            false
+        } catch (e: IOException) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, "Error de conexión de red", Toast.LENGTH_SHORT).show()
+            }
+            false
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
