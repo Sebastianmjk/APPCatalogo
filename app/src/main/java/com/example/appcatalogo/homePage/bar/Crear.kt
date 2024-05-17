@@ -1,15 +1,19 @@
 package com.example.appcatalogo.homePage.bar
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
@@ -28,13 +32,10 @@ import com.example.appcatalogo.apiConection.apiCatalogos.ApiCatalogo
 import com.example.appcatalogo.apiConection.apiCatalogos.model.Catalogo
 import com.example.appcatalogo.apiConection.apiJuegos.ApiClient
 import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterCrear
-import com.example.appcatalogo.apiConection.apiJuegos.model.AdapterJuegos
 import com.example.appcatalogo.apiConection.apiJuegos.model.RemoteResult
 import com.example.appcatalogo.apiConection.apiUsuario.service.TokenManager
-import com.example.appcatalogo.showError.showError
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -75,6 +76,7 @@ class Crear : Fragment() {
         return inflater.inflate(R.layout.fragment_crear, container, false)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -152,6 +154,43 @@ class Crear : Fragment() {
         }
 
         botonCrear = view.findViewById(R.id.buttonCrear)
+
+        val etTituloCatalogo: EditText = requireView().findViewById(R.id.etTituloCatalogo)
+
+        etTituloCatalogo.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // No se necesita hacer nada aquí
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                // Cuando el texto cambia, limpia la lista de juegos y notifica al adaptador
+                adapterCrear.juegosList.clear()
+                adapterCrear.notifyDataSetChanged()
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // No se necesita hacer nada aquí
+            }
+        })
+
+        etTituloCatalogo.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                // Cuando el EditText obtiene el foco, limpia la lista de juegos y notifica al adaptador
+                adapterCrear.juegosList.clear()
+                adapterCrear.notifyDataSetChanged()
+            }
+        }
+
+        etTituloCatalogo.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                val inputMethodManager = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(etTituloCatalogo.windowToken, 0)
+                search.requestFocus() // Mueve el foco al SearchView
+                true
+            } else {
+                false
+            }
+        }
 
 
 

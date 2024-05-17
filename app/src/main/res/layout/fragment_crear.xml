@@ -37,6 +37,7 @@
             android:autofillHints="name"
             android:paddingStart="25sp"
             android:paddingEnd="25sp"
+            android:imeOptions="actionNext"
             android:background="@drawable/custom_input"
             android:hint="@string/titulo_catalogo"
             android:inputType="text"
@@ -50,6 +51,8 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             style="@style/EstiloBotonBuscar"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
