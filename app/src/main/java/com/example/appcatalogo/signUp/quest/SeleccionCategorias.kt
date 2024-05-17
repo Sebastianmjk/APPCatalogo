@@ -67,9 +67,17 @@ class SeleccionCategorias : Fragment() {
         val buttonNext = view.findViewById<Button>(R.id.buttonNextSelection)
         val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
         buttonNext.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             findNavController().navigate(R.id.action_seleccionCategorias_to_homeFirstPage)
         }
         buttonBack.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             findNavController().navigateUp()
         }
 

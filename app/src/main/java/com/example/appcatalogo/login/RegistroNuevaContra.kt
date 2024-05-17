@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.appcatalogo.showError.showError
 import com.example.appcatalogo.showError.messageErrorToStatus
@@ -41,6 +42,10 @@ class RegistroNuevaContra : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonNext.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val password1 = binding.inputContraseA.text.toString()
             val password2 = binding.inputConfirmarContraseA.text.toString()
             if (password1.isEmpty() || password2.isEmpty()){
@@ -73,7 +78,11 @@ class RegistroNuevaContra : Fragment() {
         }
 
         binding.buttonBack.setOnClickListener {
-//            findNavController().navigateUp()
+            Toast.makeText(context, "No se puede regresar", Toast.LENGTH_SHORT).show()
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
     }
 

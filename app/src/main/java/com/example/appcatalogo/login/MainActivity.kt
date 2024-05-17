@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
 
         val comienzaButton =  findViewById<Button>(R.id.buttonInical);
         comienzaButton.setOnClickListener{
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val intent = Intent(this, SignUp::class.java)
             startActivity(intent)
         }

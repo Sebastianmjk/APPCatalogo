@@ -40,6 +40,10 @@ class RegistroCorreoContra : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.buttonNext.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val textEmail = binding.inputEmail.text.toString()
             if (textEmail.isEmpty()) {
                 showError("El campo tiene que ser completado")
@@ -63,6 +67,10 @@ class RegistroCorreoContra : Fragment() {
 
         }
         binding.buttonBack.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             findNavController().navigateUp()
         }
     }

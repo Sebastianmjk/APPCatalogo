@@ -101,6 +101,10 @@ class RegistroThirdPage : Fragment() {
             })
 
             binding.buttonNext.setOnClickListener {
+                it.isEnabled = false
+                it.postDelayed({
+                    it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+                }, 2000)
                 val code = binding.invisibleEditText.text.toString()
                 if (code.isEmpty()) {
                     showError("El código es obligatorio")
@@ -124,6 +128,10 @@ class RegistroThirdPage : Fragment() {
             }
             binding.buttonBack.setOnClickListener {
                 findNavController().navigateUp()
+                it.isEnabled = false
+                it.postDelayed({
+                    it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+                }, 2000)
             }
         }
 

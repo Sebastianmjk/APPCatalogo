@@ -52,12 +52,24 @@ class LoginFragment : Fragment() {
         var userPassword: String
         binding.passwordForgetText.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registroCorreoContra)
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
         binding.conectSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registroFirstPage)
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
 
         binding.buttonIniciarSesion.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             username = binding.inputUsername.text.toString().replace(" ","")
             userPassword = binding.inputPassword.text.toString().replace(" ","")
             if (username.isEmpty() || userPassword.isEmpty()) {

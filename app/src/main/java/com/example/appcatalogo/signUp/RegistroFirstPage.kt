@@ -43,6 +43,7 @@ class RegistroFirstPage : Fragment() {
 
 
         buttonNext.setOnClickListener {
+            it.isEnabled = false
             textUsername = inputUsername.text.toString().replace(" ", "")
             textPrimerNombre = inputPrimerNombre.text.toString().replace(" ", "")
             textSegundoNombre = inputSegundoNombre.text.toString().replace(" ", "") ?: ""
@@ -62,9 +63,17 @@ class RegistroFirstPage : Fragment() {
                 findNavController().navigate(action)
             }
 
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
+
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
     }
 

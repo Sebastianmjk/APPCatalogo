@@ -43,6 +43,10 @@ class RegistroFourthPage : Fragment() {
 
 
         binding.buttonNext.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val password1 = binding.inputContraseA.text.toString()
             val password2 = binding.inputConfirmarContraseA.text.toString()
             if (password1.isEmpty() || password2.isEmpty()){
@@ -80,6 +84,10 @@ class RegistroFourthPage : Fragment() {
         }
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
     }
 

@@ -42,6 +42,10 @@ class RegistroSecondPage : Fragment() {
 
 
         binding.buttonNext.setOnClickListener {
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
             val correoElectronico = binding.inputEmail.text.toString()
             if (correoElectronico.isEmpty()) {
                 showError("El campo de correo electrónico no puede estar vacío")
@@ -69,6 +73,10 @@ class RegistroSecondPage : Fragment() {
         }
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
     }
 

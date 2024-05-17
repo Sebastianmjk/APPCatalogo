@@ -31,7 +31,11 @@ class KnowMore : Fragment() {
 
         val buttonComenzar = view.findViewById<Button>(R.id.buttonComenzar)
         buttonComenzar.setOnClickListener {
-             findNavController().navigate(R.id.action_knowMore_to_selectionDesarrolladoras)
+            findNavController().navigate(R.id.action_knowMore_to_selectionDesarrolladoras)
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
     }
 }

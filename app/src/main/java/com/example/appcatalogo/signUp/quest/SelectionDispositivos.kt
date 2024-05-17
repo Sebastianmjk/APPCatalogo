@@ -70,9 +70,17 @@ class SelectionDispositivos : Fragment() {
         val buttonBack = view.findViewById<Button>(R.id.buttonBackSelection)
         buttonNext.setOnClickListener {
             findNavController().navigate(R.id.action_selectionDispositivos_to_seleccionCategorias)
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
         buttonBack.setOnClickListener {
             findNavController().navigateUp()
+            it.isEnabled = false
+            it.postDelayed({
+                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+            }, 2000)
         }
 
         adaptador.onItemClick = { seleccion, view ->
