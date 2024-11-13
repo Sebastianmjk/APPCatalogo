@@ -19,7 +19,7 @@ import okhttp3.MultipartBody
 import java.io.File
 
 object UserService {
-    private val baseUrlUser:String = "https://apicatalogojuegos-production.up.railway.app/GameVault/Usuario/"
+    private val baseUrlUser:String = "https://apicatalogojuegos.onrender.com/GameVault/Usuario/"
     private val client = UserAuthenticateService.getOkHttpClient()
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrlUser)

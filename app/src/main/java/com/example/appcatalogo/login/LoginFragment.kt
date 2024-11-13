@@ -54,14 +54,14 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_registroCorreoContra)
             it.isEnabled = false
             it.postDelayed({
-                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+                it.isEnabled = true
             }, 2000)
         }
         binding.conectSignUp.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registroFirstPage)
             it.isEnabled = false
             it.postDelayed({
-                it.isEnabled = true // Habilita el botón de nuevo después de un retraso
+                it.isEnabled = true
             }, 2000)
         }
 
